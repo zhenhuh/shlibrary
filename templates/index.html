@@ -1,0 +1,13 @@
+<html>
+    <head>
+        <script type="text/javascript" src="/static/jquery-1.11.3.min.js"></script>
+    </head>
+    <script type="text/javascript">
+        $(function() {
+            $.post(
+                '/index/leftfrm',{},function(data){
+                    console.log(data);
+                },"text");
+         });
+    </script>
+</html>
