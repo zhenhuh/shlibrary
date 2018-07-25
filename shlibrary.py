@@ -4,12 +4,6 @@ from server import app
 from util import *
 import requests
 
-def get_userkey():
-    with open(r"conf\key") as f:
-        return f.readline()
-
-userkey = get_userkey()
-
 @unique
 class ShlibParam(Enum):
     gj_name = "abn"
@@ -17,9 +11,7 @@ class ShlibParam(Enum):
 class ShlibDataMgr:
 
     def __check_shlib_params(self, args):
-        for each_arg in args:
-            if each_arg not in [item.value for item in ShlibParam]:
-                abort(400)
+        check_url_params(args, ShlibParam)
 
     def __make_brief_info(self, book_info):
         return {f"{breif_key}" : book_info}
@@ -31,7 +23,7 @@ class ShlibDataMgr:
     def get_gj_detail_info(self):
         self.__check_shlib_params(request.args)
         gj_name = request.args[ShlibParam.gj_name.value]
-        all_books = self.__qurey_brief_info_for(gj_name)
+        all_books = self.__query_brief_info_for(gj_name)
         check_resp_status(all_books)
 
         books = all_books.get("data")
@@ -48,7 +40,7 @@ class ShlibDataMgr:
             return book_infos
 
     @respjson
-    def __qurey_brief_info_for(self, ab_name):
+    def __query_brief_info_for(self, ab_name):
         return requests.get(f"http://data1.library.sh.cn/gj/webapi/instances?title={ab_name}&key={userkey}")
 
     @respjson
