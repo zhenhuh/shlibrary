@@ -41,8 +41,8 @@ class Wiki:
         elif field is not None:
             url += f"property={field}"
         else:
-            # never comes here
-            abort(500)
+            # no wikitype and no field
+            pass
 
         return requests.get(url)
 
