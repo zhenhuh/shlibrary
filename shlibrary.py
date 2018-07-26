@@ -4,6 +4,12 @@ from server import app
 from util import *
 import requests
 
+def get_userkey():
+    with open(r"conf\key") as f:
+        return f.readline()
+
+userkey = get_userkey()
+
 @unique
 class ShlibParam(Enum):
     gj_name = "abn"

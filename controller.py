@@ -4,41 +4,40 @@ from util import *
 from shlibrary import ShlibDataMgr
 from wiki import Wiki
 
-def get_userkey():
-    with open(r"conf\key") as f:
-        return f.readline()
-
-userkey = get_userkey()
-
 @app.route("/")
 def index():
     return render_template('index.html')
 
 @app.route("/index/leftfrm", methods = ["POST"])
+@returnjson
 def index_leftfrm():
     return "TODO"
 
 @app.route("/index/rightfrm_letter", methods = ["POST"])
+@returnjson
 def index_rightfrm_letter():
     return "TODO"
 
 @app.route("/index/rightfrm_label", methods = ["POST"])
+@returnjson
 def index_rightfrm_label():
     return "TODO"
 
 @app.route("/index/rightfrm_aera", methods = ["POST"])
+@returnjson
 def index_rightfrm_aera():
     return "TODO"
 
 # shanghai library other gj
 @app.route("/shlib/", methods = ["GET"])
-@returnstr
+@returnjson
 def shlib_gj_action():
     shlib = ShlibDataMgr()
     return shlib.get_gj_detail_info()
 
+# wiki data
 @app.route("/wiki/", methods = ["GET"])
-@returnstr
+@returnjson
 def wiki_action():
     wiki = Wiki()
     return wiki.get_wiki_info()

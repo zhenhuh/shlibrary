@@ -42,7 +42,7 @@ class Wiki:
             url += f"property={field}"
         else:
             # never comes here
-            pass
+            abort(500)
 
         return requests.get(url)
 

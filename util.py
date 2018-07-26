@@ -1,4 +1,4 @@
-from flask import abort
+from flask import abort, jsonify
 
 # region data
 
@@ -16,9 +16,9 @@ chinese = "zhwiki"
 
 # region decorator
 
-def returnstr(func):
+def returnjson(func):
     def wrapper(*args, **kwargs):
-        return str(func(*args, **kwargs))
+        return jsonify(func(*args, **kwargs))
 
     wrapper.__name__  = func.__name__ 
     return wrapper
