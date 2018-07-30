@@ -1,12 +1,11 @@
 from flask import Flask, render_template, request
 from server import app
 from util import *
-from shlibrary import ShlibDataMgr
-from wiki import Wiki
 
 @app.route("/")
+@returnHTML
 def index():
-    return render_template('index.html')
+    return "index.html"
 
 @app.route("/index/leftfrm", methods = ["POST"])
 @returnjson
@@ -28,10 +27,16 @@ def index_rightfrm_label():
 def index_rightfrm_aera():
     return "TODO"
 
+@app.route("/product_detail/", methods = ["GET"])
+@returnHTML
+def productinfo():
+    return "product_detail.html"
+
 # shanghai library other gj
 @app.route("/shlib/", methods = ["GET"])
 @returnjson
 def shlib_gj_action():
+    from shlibrary import ShlibDataMgr
     shlib = ShlibDataMgr()
     return shlib.get_gj_detail_info()
 
@@ -39,8 +44,17 @@ def shlib_gj_action():
 @app.route("/wiki/", methods = ["GET"])
 @returnjson
 def wiki_action():
+    from wiki import Wiki
     wiki = Wiki()
     return wiki.get_wiki_info()
+
+# search
+@app.route("/search/", methods = ["GET", "POST"])
+@returnjson
+def search_action():
+    from search import SearchHandler
+    searchHandler = SearchHandler()
+    return searchHandler.search()
 
 if __name__ == "__main__":
     app.run(host = "0.0.0.0", port = 5000, debug = True)
