@@ -1,4 +1,4 @@
-from flask import Flask, request, abort, jsonify
+from flask import request, abort
 from enum import Enum, unique
 from server import app
 from util import *
