@@ -1,0 +1,17 @@
+/**
+*   自定义css文件
+*/
+/*header part */
+.header_background_color { background-color: #4b9572 !important;}
+.header_tag_float_right {text-align:right !important;}
+
+/*right frame title style*/
+#left_frame_body_id .pannel_title_div{border-bottom:0.5px solid #ccc;}
+#left_frame_body_id .pannel_title_div_span{color: #596420;font-weight: bold;line-height: 35px;}
+#left_frame_body_id .pannel_title_div_arrow{float: right;padding-top: 6px;}
+
+.auto_break_word{
+    word-break:break-all;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
