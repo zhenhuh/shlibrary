@@ -17,6 +17,10 @@ baidu = "baidubaike"
 hudong = "hudongbaike"
 chinese = "zhwiki"
 
+## action
+search = "RESTfulWS/JL/wc/gjwc"
+random_list = "RESTfulWS/JL/wc/list"
+
 # endregion data
 
 # region decorator
