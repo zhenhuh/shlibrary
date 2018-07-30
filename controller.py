@@ -10,7 +10,8 @@ def index():
 @app.route("/index/leftfrm", methods = ["POST"])
 @returnjson
 def index_leftfrm():
-    return "TODO"
+    from index_page import query_random_list
+    return query_random_list()
 
 @app.route("/index/rightfrm_letter", methods = ["POST"])
 @returnjson

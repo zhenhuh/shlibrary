@@ -1,4 +1,4 @@
-from flask import request, abort, jsonify
+from flask import request, abort
 from functools import lru_cache
 from enum import Enum, unique
 from util import *
@@ -30,7 +30,7 @@ class SearchCond:
             abort(500, f"must specify one in " + " ".join(params - set(["current_page"])))
 
     def get_search_clause(self):
-        return "&".join([f"{k}={v}" for k, v in vars(self).items() if v])
+        return "&".join([f"{k}={v}" if v else f"{k}=-1" for k, v in vars(self).items()])
 
     def __convertNone2str(self, value):
         return value if value is not None else ""
@@ -65,7 +65,7 @@ class SearchHandler:
 @lru_cache()
 @respjson
 def do_search(condition):
-    return requests.get(f"{data_server}/search/?{condition.get_search_clause()}")
+    return requests.get(f"{data_server}/{search}/?{condition.get_search_clause()}")
     # return """{"status_code":200,
     #         [{
     #         "uid" : 1,
