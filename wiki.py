@@ -48,6 +48,6 @@ def query_wiki_info(name, wikitype = None, field = None):
     return requests.get(url)
 
 if __name__ == "__main__":
-    #app.run(host = "0.0.0.0", port = 5000, debug=True)
+    #app.run(host = "0.0.0.0", port = 8080, debug=True)
     # TODO
     pass

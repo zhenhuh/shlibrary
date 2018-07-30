@@ -29,7 +29,7 @@ def index_rightfrm_aera():
 
 @app.route("/product_detail/", methods = ["GET"])
 @returnHTML
-def productinfo():
+def product_detail():
     return "product_detail.html"
 
 # shanghai library other gj
@@ -57,4 +57,4 @@ def search_action():
     return searchHandler.search()
 
 if __name__ == "__main__":
-    app.run(host = "0.0.0.0", port = 5000, debug = True)
+    app.run(host = "0.0.0.0", port = 8080, debug = True)
