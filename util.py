@@ -4,6 +4,9 @@ from datetime import datetime, timedelta
 
 # region data
 
+## data server ip
+data_server = "http://localhost:2345"
+
 resp_error_code = "error_code"
 no_data = "zero_book"
 breif_key = "breif"

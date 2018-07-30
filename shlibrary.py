@@ -56,6 +56,6 @@ def query_detail_info_for(gj_uri):
     return requests.get(f"http://data1.library.sh.cn/gj/webapi/instanceInfo?uri={gj_uri}&key={userkey}")
 
 if __name__ == "__main__":
-    #app.run(host = "0.0.0.0", port = 5000, debug=True)
+    #app.run(host = "0.0.0.0", port = 8080, debug=True)
     # TODO
     pass
