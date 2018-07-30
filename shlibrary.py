@@ -12,7 +12,7 @@ userkey = get_userkey()
 
 @unique
 class ShlibParam(Enum):
-    gj_name = "abn"
+    gj_name = "gj"
 
 class ShlibDataMgr:
 
@@ -29,7 +29,7 @@ class ShlibDataMgr:
     def get_gj_detail_info(self):
         self.__check_shlib_params(request.args)
         gj_name = request.args[ShlibParam.gj_name.value]
-        all_books = self.__query_brief_info_for(gj_name)
+        all_books = query_brief_info_for(gj_name)
         check_resp_status(all_books)
 
         books = all_books.get("data")
@@ -42,16 +42,18 @@ class ShlibDataMgr:
                 if book_uri is None or len(book_uri) == 0:
                     book_infos.append(self.__make_brief_info(each_book))
                 else:
-                    book_infos.append(self.__make_detail_info(self.__query_detail_info_for(book_uri)))
+                    book_infos.append(self.__make_detail_info(query_detail_info_for(book_uri)))
             return book_infos
 
-    @respjson
-    def __query_brief_info_for(self, ab_name):
-        return requests.get(f"http://data1.library.sh.cn/gj/webapi/instances?title={ab_name}&key={userkey}")
+@lru_cache()
+@respjson
+def query_brief_info_for(gj_name):
+    return requests.get(f"http://data1.library.sh.cn/gj/webapi/instances?title={gj_name}&key={userkey}")
 
-    @respjson
-    def __query_detail_info_for(self, ab_uri):
-        return requests.get(f"http://data1.library.sh.cn/gj/webapi/instanceInfo?uri={ab_uri}&key={userkey}")
+@lru_cache()
+@respjson
+def query_detail_info_for(gj_uri):
+    return requests.get(f"http://data1.library.sh.cn/gj/webapi/instanceInfo?uri={gj_uri}&key={userkey}")
 
 if __name__ == "__main__":
     #app.run(host = "0.0.0.0", port = 5000, debug=True)

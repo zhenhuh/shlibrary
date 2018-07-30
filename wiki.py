@@ -19,7 +19,7 @@ class Wiki:
     def __check_wiki_params(self, args):
         check_url_params(args, WikiParam)
         if WikiParam.name.value not in args:
-            abort(500)
+            abort(500, "entity must has a value")
 
     def get_wiki_info(self):
         self.__check_wiki_params(request.args)
@@ -28,23 +28,24 @@ class Wiki:
         wikitype = request.args.get(WikiParam.type.value)
         field = request.args.get(WikiParam.field.value)
 
-        return self.__query_wiki_info(name, wikitype, field)
+        return query_wiki_info(name, wikitype, field)
 
-    @respjson
-    def __query_wiki_info(self, name, wikitype = None, field = None):
-        url = f"http://zhishi.me/api/entity/{name}" if wikitype is None and field is None else f"http://zhishi.me/api/entity/{name}?"
+@lru_cache()
+@respjson
+def query_wiki_info(name, wikitype = None, field = None):
+    url = f"http://zhishi.me/api/entity/{name}" if wikitype is None and field is None else f"http://zhishi.me/api/entity/{name}?"
 
-        if wikitype is not None and field is not None:
-            url += f"baike={wikitype}&property={field}"
-        elif wikitype is not None:
-            url += f"baike={wikitype}"
-        elif field is not None:
-            url += f"property={field}"
-        else:
-            # no wikitype and no field
-            pass
+    if wikitype is not None and field is not None:
+        url += f"baike={wikitype}&property={field}"
+    elif wikitype is not None:
+        url += f"baike={wikitype}"
+    elif field is not None:
+        url += f"property={field}"
+    else:
+        # no wikitype and no field
+        pass
 
-        return requests.get(url)
+    return requests.get(url)
 
 if __name__ == "__main__":
     #app.run(host = "0.0.0.0", port = 5000, debug=True)
