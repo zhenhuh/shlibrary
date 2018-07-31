@@ -16,17 +16,20 @@ def index_leftfrm():
 @app.route("/index/rightfrm_letter", methods = ["POST"])
 @returnjson
 def index_rightfrm_letter():
-    return "TODO"
+    from index_page import query_first_letter_list
+    return query_first_letter_list()
 
-@app.route("/index/rightfrm_label", methods = ["POST"])
+@app.route("/index/rightfrm_taxonomy", methods = ["POST"])
 @returnjson
-def index_rightfrm_label():
-    return "TODO"
+def index_rightfrm_taxonomy():
+    from index_page import query_taxonomy_list
+    return query_taxonomy_list()
 
-@app.route("/index/rightfrm_aera", methods = ["POST"])
+@app.route("/index/rightfrm_region", methods = ["POST"])
 @returnjson
-def index_rightfrm_aera():
-    return "TODO"
+def index_rightfrm_region():
+    from index_page import query_yn_region_list
+    return query_yn_region_list()
 
 @app.route("/product_detail/", methods = ["GET"])
 @returnHTML

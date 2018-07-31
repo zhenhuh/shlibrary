@@ -4,6 +4,8 @@ from datetime import datetime, timedelta
 
 # region data
 
+page_size = 10
+
 ## data server ip
 data_server = "http://localhost:2345"
 
@@ -11,6 +13,14 @@ resp_error_code = "error_code"
 no_data = "zero_book"
 breif_key = "breif"
 detail_key = "detail"
+
+## search resp json key
+count_key = "count"
+current_page_key = "current_page"
+first_index_key = "first_index"
+last_index_key = "last_index"
+page_count_key = "page_count"
+page_next_key = "page_next"
 
 ## wiki type
 baidu = "baidubaike"
@@ -20,6 +30,9 @@ chinese = "zhwiki"
 ## action
 search = "RESTfulWS/JL/wc/gjwc"
 random_list = "RESTfulWS/JL/wc/list"
+first_letter_list = "RESTfulWS/JL/wc/firstletter"
+taxonomy_list = "RESTfulWS/JL/wc/taxonomy"
+yn_region_list = "RESTfulWS/JL/wc/ynregion"
 
 # endregion data
 
