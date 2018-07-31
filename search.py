@@ -33,7 +33,7 @@ class SearchCond:
         return "&".join([f"{k}={v}" if v else f"{k}=-1" for k, v in vars(self).items()])
 
     def get_current_page(self):
-        return self.current_page
+        return int(self.current_page)
 
     def __convertNone2empty_str(self, value):
         return value if value is not None else ""

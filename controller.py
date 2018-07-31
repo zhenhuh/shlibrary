@@ -7,25 +7,25 @@ from util import *
 def index():
     return "index.html"
 
-@app.route("/index/leftfrm", methods = ["POST"])
+@app.route("/index/leftfrm", methods = ["POST", "GET"])
 @returnjson
 def index_leftfrm():
     from index_page import query_random_list
     return query_random_list()
 
-@app.route("/index/rightfrm_letter", methods = ["POST"])
+@app.route("/index/rightfrm_letter", methods = ["POST", "GET"])
 @returnjson
 def index_rightfrm_letter():
     from index_page import query_first_letter_list
     return query_first_letter_list()
 
-@app.route("/index/rightfrm_taxonomy", methods = ["POST"])
+@app.route("/index/rightfrm_taxonomy", methods = ["POST", "GET"])
 @returnjson
 def index_rightfrm_taxonomy():
     from index_page import query_taxonomy_list
     return query_taxonomy_list()
 
-@app.route("/index/rightfrm_region", methods = ["POST"])
+@app.route("/index/rightfrm_region", methods = ["POST", "GET"])
 @returnjson
 def index_rightfrm_region():
     from index_page import query_yn_region_list
