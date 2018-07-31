@@ -34,6 +34,8 @@ first_letter_list = "RESTfulWS/JL/wc/firstletter"
 taxonomy_list = "RESTfulWS/JL/wc/taxonomy"
 yn_region_list = "RESTfulWS/JL/wc/ynregion"
 
+detail_info = "RESTfulWS/JL/jtwc/detail"
+
 # endregion data
 
 # region decorator
