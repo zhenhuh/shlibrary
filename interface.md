@@ -20,10 +20,11 @@
 
 > 限制条件  
 > * current_page必须有值, 从1开始, 最大不超过页面数  
-> * 其他字段必须要有一个字段有值
+> * 其他字段必须要有一个字段有值, 没有值默认-1
+> * current_page超过最大页面数, data字段为 []
 
 `Sample URL:`
-http://localhost:2345/search/?name=松子&current_page=1&source_lc=云南志书
+http://localhost:2345/RESTfulWS/JL/wc/gjwc/?name=松子&current_page=1&year_start=-1&year_end=-1&source_lc=云南志书&yn_region=-1
 
 ## - 返回格式
 ```
@@ -49,21 +50,87 @@ http://localhost:2345/search/?name=松子&current_page=1&source_lc=云南志书
 > (None)
 
 `Sample URL:`
-http://localhost:2345/random_list
+http://localhost:2345/RESTfulWS/JL/wc/list
 
 ## - 返回格式
 ```
 [
-    {"uid":"1","product_name":"松子","temporal":"明景泰6年(1455)","desc":"树皮无龙鳞而稍光滑枝"},
-    {"uid":"2","product_name":"松子","temporal":"明正德5年(1510)","desc":""},
-    {"uid":"3","product_name":"松子","temporal":"明正德5年(1510)","desc":""}
+    {"uid":"1","product_name":"松子","wcsource": "云南图经志书","temporal": "明景泰6年(1455)","gjsource": ""},
+    {"uid":"2","product_name":"松子","wcsource": "云南志","temporal": "明正德5年(1510)","gjsource": ""},
+    {"uid":"3","product_name":"松子","wcsource": "云南志","temporal": "明正德5年(1510)","gjsource": ""}
 ]
 ```
 
 > 返回值说明  
 > 10条随机数据
 
-# 3. TODO接口
+# 3. 首字母查询接口
+
+##  - 入参说明
+* (None)
+
+> 限制条件  
+> (None)
+
+`Sample URL:`
+http://localhost:2345/RESTfulWS/JL/wc/firstletter
+
+## - 返回格式
+```
+[
+    {"letter":"A","count":100},
+    {"letter":"B","count":200}
+]
+```
+
+> 返回值说明  
+> TODO
+
+# 4. 分类标签接口
+
+##  - 入参说明
+* (None)
+
+> 限制条件  
+> (None)
+
+`Sample URL:`
+http://localhost:2345/RESTfulWS/JL/wc/taxonomy
+
+## - 返回格式
+```
+[
+    {"taxonomy":"土产","count":100},
+    {"taxonomy":"物产","count":200}
+]
+```
+
+> 返回值说明  
+> TODO
+
+# 5. 云南地区接口
+
+##  - 入参说明
+* (None)
+
+> 限制条件  
+> (None)
+
+`Sample URL:`
+http://localhost:2345/RESTfulWS/JL/wc/ynregion
+
+## - 返回格式
+```
+[
+    {"region":"云南府","count":100},
+    {"region":"建水州","count":200}
+]
+```
+
+> 返回值说明  
+> TODO
+
+# 6. TODO接口
 
 ##  - 入参说明
 * TODO
