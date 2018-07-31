@@ -84,7 +84,7 @@ http://localhost:2345/RESTfulWS/JL/wc/firstletter
 ```
 
 > 返回值说明  
-> TODO
+> (None)
 
 # 4. 分类标签接口
 
@@ -106,7 +106,7 @@ http://localhost:2345/RESTfulWS/JL/wc/taxonomy
 ```
 
 > 返回值说明  
-> TODO
+> (None)
 
 # 5. 云南地区接口
 
@@ -128,9 +128,28 @@ http://localhost:2345/RESTfulWS/JL/wc/ynregion
 ```
 
 > 返回值说明  
+> (None)
+
+# 6. 物产详细信息接口
+
+##  - 入参说明
+* id : 物产条目id
+
+> 限制条件  
+> (None)
+
+`Sample URL:`
+http://localhost:2345/RESTfulWS/JL/jtwc/detail/?id=1
+
+## - 返回格式
+```
+TODO
+```
+
+> 返回值说明  
 > TODO
 
-# 6. TODO接口
+# 7. TODO接口
 
 ##  - 入参说明
 * TODO

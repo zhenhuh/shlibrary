@@ -11,7 +11,7 @@ def index():
 @returnjson
 def index_leftfrm():
     from index_page import query_random_list
-    return query_random_list()
+    return {"count" : page_size, "data" : query_random_list()}
 
 @app.route("/index/rightfrm_letter", methods = ["POST", "GET"])
 @returnjson

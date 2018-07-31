@@ -18,6 +18,8 @@ class ShlibDataMgr:
 
     def __check_shlib_params(self, args):
         check_url_params(args, ShlibParam)
+        if ShlibParam.gj_name.value not in args:
+            abort(500, "gj_name must has a value")
 
     def __make_brief_info(self, book_info):
         return {f"{breif_key}" : book_info}
