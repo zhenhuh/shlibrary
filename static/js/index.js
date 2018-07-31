@@ -14,7 +14,7 @@ $(function(){
      */
     function getDataList(jsonData){
         $.ajax({
-            url:"/product_detail",
+            url:"/index/leftfrm",
             type:"post",
             data:jsonData,
             dataType:"json",
@@ -40,7 +40,7 @@ $(function(){
                     //                 '</a></div>';
                     var content ='<ul class="m-nav m-nav--inline">'+
                                     '<li class="m-nav__item">'+
-                                        '<a href="/detail" target="_blank" class="m-nav__link">'+
+                                        '<a href="/product_detail" target="_blank" class="m-nav__link">'+
                                             '<i class="flaticon-paper-plane m--font-info" style="padding-right:10px;"></i>'+
                                             '<span class="m-nav__link-text" style="font-size:16px;">'+
                                                 '松子'+    
