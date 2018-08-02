@@ -65,7 +65,7 @@ class SearchHandler:
     def search(self):
         search_cond = self.__prepare_search_cond()
         search_data = do_search(search_cond)
-        count = search_data.get(f"{count_key}")
+        count = search_data.get(f"{search_count_key}")
         pages = count // page_size + 1
         current_page = search_cond.get_current_page()
 
