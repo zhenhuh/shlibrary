@@ -60,5 +60,13 @@ def search_action():
     searchHandler = SearchHandler()
     return searchHandler.search()
 
+# poem
+@app.route("/poem/", methods = ["GET", "POST"])
+@returnjson
+def poem_action():
+    from poem import PoemHandler
+    poemHandler = PoemHandler()
+    return poemHandler.get_poem_info()
+
 if __name__ == "__main__":
     app.run(host = "0.0.0.0", port = 8080, debug = True)

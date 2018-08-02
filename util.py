@@ -10,12 +10,12 @@ page_size = 10
 data_server = "http://localhost:2345"
 
 resp_error_code = "error_code"
-no_data = "zero_book"
+no_data = "no_data"
 breif_key = "breif"
 detail_key = "detail"
 
 ## search resp json key
-count_key = "count"
+search_count_key = "count"
 current_page_key = "current_page"
 first_index_key = "first_index"
 last_index_key = "last_index"
@@ -26,6 +26,13 @@ page_next_key = "page_next"
 baidu = "baidubaike"
 hudong = "hudongbaike"
 chinese = "zhwiki"
+
+## poem key
+poem_count_key = "count"
+poem_data_key = "data"
+poem_author = "author"
+poem_title = "title"
+poem_clause = "clause"
 
 ## action
 search = "RESTfulWS/JL/wc/gjwc"

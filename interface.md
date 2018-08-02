@@ -136,7 +136,7 @@ http://localhost:2345/RESTfulWS/JL/wc/ynregion
 * id : 物产条目id
 
 > 限制条件  
-> (None)
+> 必须要有id参数
 
 `Sample URL:`
 http://localhost:2345/RESTfulWS/JL/jtwc/detail/?id=1
