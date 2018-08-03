@@ -68,5 +68,15 @@ def poem_action():
     poemHandler = PoemHandler()
     return poemHandler.get_poem_info()
 
+# CBDB
+@app.route("/cbdb/", methods = ["GET", "POST"])
+@returnjson
+def cbdb_action():
+    from cbdb import CBDB
+    cbdb = CBDB()
+    return cbdb.get_cbdb_info()
+
 if __name__ == "__main__":
-    app.run(host = "0.0.0.0", port = 8080, debug = True)
+    #app.run(host = "0.0.0.0", port = 8080, debug = True)
+    import server
+    server.run(True)
