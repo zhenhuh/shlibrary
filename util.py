@@ -14,6 +14,11 @@ no_data = "no_data"
 breif_key = "breif"
 detail_key = "detail"
 
+## index right
+first_letter_key = "letter"
+taxonomy_key = "taxonomy"
+yn_region_key = "region"
+
 ## search resp json key
 search_count_key = "count"
 current_page_key = "current_page"

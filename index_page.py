@@ -3,7 +3,7 @@ from server import app
 from util import *
 import requests
 
-@lru_cache()
+# @lru_cache()
 @respjson
 def query_random_list():
     return requests.get(f"{data_server}/{random_list}")
@@ -22,3 +22,8 @@ def query_taxonomy_list():
 @respjson
 def query_yn_region_list():
     return requests.get(f"{data_server}/{yn_region_list}")
+
+def query_right_all():
+    return {f"{first_letter_key}" : query_first_letter_list(), 
+        f"{taxonomy_key}" : query_taxonomy_list(), 
+        f"{yn_region_key}" : query_yn_region_list()}

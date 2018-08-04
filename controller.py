@@ -31,6 +31,12 @@ def index_rightfrm_region():
     from index_page import query_yn_region_list
     return query_yn_region_list()
 
+@app.route("/index/rightfrm", methods = ["POST", "GET"])
+@returnjson
+def index_rightfrm():
+    from index_page import query_right_all
+    return query_right_all()
+
 @app.route("/product_detail/", methods = ["GET"])
 @returnHTML
 def product_detail():
