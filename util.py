@@ -40,6 +40,7 @@ poem_title = "title"
 poem_clause = "clause"
 
 ## action
+search_simple = "RESTfulWS/JL/wc/fzwc"
 search = "RESTfulWS/JL/wc/gjwc"
 random_list = "RESTfulWS/JL/wc/list"
 first_letter_list = "RESTfulWS/JL/wc/firstletter"

@@ -66,6 +66,13 @@ def search_action():
     searchHandler = SearchHandler()
     return searchHandler.search()
 
+@app.route("/search_simple/", methods = ["GET", "POST"])
+@returnjson
+def search_simple_action():
+    from search import SearchHandler
+    searchHandler = SearchHandler()
+    return searchHandler.search(True)
+
 # poem
 @app.route("/poem/", methods = ["GET", "POST"])
 @returnjson
