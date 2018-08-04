@@ -39,7 +39,7 @@ $(function(){
             year_start: $("#year_start_id").val(),
             year_end: $("#year_end_id").val(),
             source_lc: $("#source_lc_id").val(),
-            yn_region: $("#yn_region_lc_id").val(),
+            yn_region: $("#yn_region_id").val(),
             current_page: 1
         };
         searchByParam(advancedPageData,'/search/');
@@ -179,11 +179,14 @@ $(function(){
             data:jsonData,
             dataType:"json",
             success:function(data){
-                if(data==null){
+                console.log(data);
+                if(data==null || data.count==0){
                     $("#m-list-search_results_id").append("<span class='m-list-search__result-message'>对不起，没有检索到相关数据 </span>");
+                     //当前页码信息
+                     $("#page_data_info_id").text("物产信息");
                 }else{
                     //当前页码信息
-                    $("#page_data_info_id").text("共"+data.count+"条，当前页面从1条至"+(data.last_index+1)+"条");
+                    $("#page_data_info_id").text("物产信息：共"+data.count+"条，当前页面从1条至"+(data.last_index+1)+"条");
 
                     //加载页面数据
                     $(data.data).each(function(index,ele){
