@@ -29,8 +29,15 @@ class SearchCond:
         if not any([v for k, v in vars(self).items() if k in params and k != "current_page"]):
             abort(500, f"must specify one in " + " ".join(params - set(["current_page"])))
 
+    def check_validation_simple(self):
+        if not self.current_page or not self.name:
+            abort(500, "current_page and name must have value")
+
     def get_search_clause(self):
         return "&".join([f"{k}={v}" if v else f"{k}=-1" for k, v in vars(self).items()])
+
+    def get_search_simple_clause(self):
+        return "&".join([f"{k}={v}" for k, v in vars(self).items() if v])
 
     def get_current_page(self):
         return int(self.current_page)
@@ -48,7 +55,7 @@ class SearchHandler:
     def __check_search_params(self, args):
         check_url_params(args, SearchParam)
 
-    def __prepare_search_cond(self):
+    def __prepare_search_cond(self, is_simple = False):
         if request.method == "POST":
             request_params = request.form
         elif request.method == "GET":
@@ -65,13 +72,16 @@ class SearchHandler:
             request_params.get(SearchParam.yn_region.value),
             request_params.get(SearchParam.current_page.value))
 
-        cond.check_validation()
+        if is_simple:
+            cond.check_validation_simple()
+        else:
+            cond.check_validation()
 
         return cond
 
-    def search(self):
-        search_cond = self.__prepare_search_cond()
-        search_data = do_search(search_cond)
+    def search(self, is_simple = False):
+        search_cond = self.__prepare_search_cond(is_simple)
+        search_data = do_search_simple(search_cond) if is_simple else do_search(search_cond)
         count = search_data.get(f"{search_count_key}")
         pages = count // page_size + 1
         current_page = search_cond.get_current_page()
@@ -80,7 +90,7 @@ class SearchHandler:
         search_data[f"{current_page_key}"] = current_page
         search_data[f"{page_next_key}"] = pages > current_page
         if current_page <= pages:
-            search_data[f"{first_index_key}"], search_data[f"{last_index_key}"] = page_size * (current_page - 1), min(page_size * current_page - 1, count)
+            search_data[f"{first_index_key}"], search_data[f"{last_index_key}"] = page_size * (current_page - 1), min(page_size * current_page - 1, count - 1)
         else:
             search_data[f"{first_index_key}"], search_data[f"{last_index_key}"] = -1, -1
         return search_data
@@ -90,3 +100,7 @@ class SearchHandler:
 def do_search(condition):
     return requests.get(f"{data_server}/{search}/?{condition.get_search_clause()}")
 
+@lru_cache()
+@respjson
+def do_search_simple(condition):
+    return requests.get(f"{data_server}/{search_simple}/?{condition.get_search_simple_clause()}")

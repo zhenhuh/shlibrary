@@ -14,9 +14,14 @@ $(function(){
      * name : 物产名称或来源支书
      * current_page : 结果当前所在页面
      */
-    // $("#single_search_btn_id").click(function(){
-    //     getDataList({name:"松子",current_page:1});
-    // });
+    $("#single_search_btn_id").click(function(){
+        $("#m-list-search_results_id").empty();
+        advancedPageData = {
+            name: $("#wc_or_zs_name_id").val(),
+            current_page: 1
+        };
+        searchByParam(advancedPageData,'/search_simple/');
+    });
 
     /**
      * 高级搜索
@@ -167,6 +172,7 @@ $(function(){
      * 根据查询条件检索数据
      */
     function searchByParam(jsonData,url){
+        console.log("jsonData:",jsonData);
         $.ajax({
             url:url,
             type:"post",
@@ -177,7 +183,7 @@ $(function(){
                     $("#m-list-search_results_id").append("<span class='m-list-search__result-message'>对不起，没有检索到相关数据 </span>");
                 }else{
                     //当前页码信息
-                    $("#page_data_info_id").text("共"+data.count+"条，当前页面从"+(data.first_index+1)+"至"+(data.last_index+1));
+                    $("#page_data_info_id").text("共"+data.count+"条，当前页面从1条至"+(data.last_index+1)+"条");
 
                     //加载页面数据
                     $(data.data).each(function(index,ele){
