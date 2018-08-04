@@ -128,7 +128,7 @@ $(function(){
      */
     function getDataList(){
         $.ajax({
-            url:"http://47.97.124.135/index/leftfrm",
+            url:"/index/leftfrm",
             type:"post",
             dataType:"json",
             success:function(data){
