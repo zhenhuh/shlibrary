@@ -49,14 +49,21 @@ class SearchHandler:
         check_url_params(args, SearchParam)
 
     def __prepare_search_cond(self):
-        self.__check_search_params(request.args)
+        if request.method == "POST":
+            request_params = request.form
+        elif request.method == "GET":
+            request_params = request.args
+        else:
+            abort(500, "method not support")
 
-        cond = SearchCond(request.args.get(SearchParam.name.value),
-            request.args.get(SearchParam.year_start.value),
-            request.args.get(SearchParam.year_end.value),
-            request.args.get(SearchParam.source_lc.value),
-            request.args.get(SearchParam.yn_region.value),
-            request.args.get(SearchParam.current_page.value))
+        self.__check_search_params(request_params)
+
+        cond = SearchCond(request_params.get(SearchParam.name.value),
+            request_params.get(SearchParam.year_start.value),
+            request_params.get(SearchParam.year_end.value),
+            request_params.get(SearchParam.source_lc.value),
+            request_params.get(SearchParam.yn_region.value),
+            request_params.get(SearchParam.current_page.value))
 
         cond.check_validation()
 
