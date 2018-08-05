@@ -69,7 +69,7 @@ class PoemHandler:
 
         return poem_data
 
-@lru_cache()
+@cache
 @respjson()
 def query_poem(key):
     return requests.get(f"https://api.sou-yun.com/api/poem/?key={key}&jsontype=true")

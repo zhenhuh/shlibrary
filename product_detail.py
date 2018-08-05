@@ -27,7 +27,7 @@ class ProductInfo:
 
         return detail_info
 
-@lru_cache()
+@cache
 @respjson()
 def query_product_detail_from_local(id):
     return requests.get(f"{data_server}/{detail_info}/?id={id}")

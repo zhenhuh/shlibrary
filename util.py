@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 page_size = 10
 
 ## data server ip
-data_server = "http://47.97.124.135" # "http://localhost:2345"
+data_server = "http://localhost:2345"
 
 resp_error_code = "error_code"
 no_data = "no_data"
@@ -132,8 +132,16 @@ def timed_cache(**timedelta_kwargs):
             if now >= next_update:
                 f.cache_clear()
                 next_update = now + update_delta
-            return f(*args, **kwargs)
+
+            try:
+                return f(*args, **kwargs)
+            except Exception as e:
+                f.cache_clear()
+                raise e
+
         return _wrapped
     return _wrapper
+
+cache = timed_cache(hours = 2)
 
 # endregion help function

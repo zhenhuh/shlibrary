@@ -30,7 +30,7 @@ class Wiki:
 
         return query_wiki_info(name, wikitype, field)
 
-@lru_cache()
+@cache
 @respjson()
 def query_wiki_info(name, wikitype = None, field = None):
     url = f"http://zhishi.me/api/entity/{name}" if wikitype is None and field is None else f"http://zhishi.me/api/entity/{name}?"

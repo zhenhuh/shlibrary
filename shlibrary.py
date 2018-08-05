@@ -47,12 +47,12 @@ class ShlibDataMgr:
                     book_infos.append(self.__make_detail_info(query_detail_info_for(book_uri)))
             return book_infos
 
-@lru_cache()
+@cache
 @respjson()
 def query_brief_info_for(gj_name):
     return requests.get(f"http://data1.library.sh.cn/gj/webapi/instances?title={gj_name}&key={userkey}")
 
-@lru_cache()
+@cache
 @respjson()
 def query_detail_info_for(gj_uri):
     return requests.get(f"http://data1.library.sh.cn/gj/webapi/instanceInfo?uri={gj_uri}&key={userkey}")
