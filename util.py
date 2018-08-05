@@ -67,16 +67,41 @@ def returnHTML(func):
 
     return wrapper
 
-def respjson(func):
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        resp = func(*args, **kwargs)
-        if resp.status_code == 200:
-            return resp.json()
+def respjson(ignoreJSONDecodeError = False):
+    def inner(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            resp = func(*args, **kwargs)
+            if resp.status_code == 200:
+                if not ignoreJSONDecodeError:
+                    return resp.json()
+                else:
+                    def consume_exceptions(gen):
+                        action = next(gen)
+                        while True:
+                            try:
+                                json_result = action(*args, **kwargs).json()
+                            except ValueError: # from simplejson import JSONDecodeError
+                                json_result = None
 
-        return {f"{resp_error_code}" : resp.status_code }
+                            try:
+                                action = gen.send(json_result)
+                            except StopIteration:
+                                return json_result
 
-    return wrapper
+                    def try_do_infinitely():
+                        while True:
+                            json_data = yield func
+                            if json_data is not None:
+                                raise StopIteration()
+                            continue
+
+                    return consume_exceptions(try_do_infinitely())
+
+            return {f"{resp_error_code}" : resp.status_code }
+
+        return wrapper
+    return inner
 
 # endregion decorator
 

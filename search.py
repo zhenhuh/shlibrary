@@ -96,11 +96,11 @@ class SearchHandler:
         return search_data
 
 @lru_cache()
-@respjson
+@respjson()
 def do_search(condition):
     return requests.get(f"{data_server}/{search}/?{condition.get_search_clause()}")
 
 @lru_cache()
-@respjson
+@respjson()
 def do_search_simple(condition):
     return requests.get(f"{data_server}/{search_simple}/?{condition.get_search_simple_clause()}")
