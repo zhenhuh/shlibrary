@@ -95,12 +95,12 @@ class SearchHandler:
             search_data[f"{first_index_key}"], search_data[f"{last_index_key}"] = -1, -1
         return search_data
 
-@lru_cache()
+@cache
 @respjson()
 def do_search(condition):
     return requests.get(f"{data_server}/{search}/?{condition.get_search_clause()}")
 
-@lru_cache()
+@cache
 @respjson()
 def do_search_simple(condition):
     return requests.get(f"{data_server}/{search_simple}/?{condition.get_search_simple_clause()}")

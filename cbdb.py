@@ -22,7 +22,7 @@ class CBDB:
 
         return query_cbdb(name)
 
-@lru_cache()
+@cache
 @respjson()
 def query_cbdb(name):
     return requests.get(f"https://cbdb.fas.harvard.edu/cbdbapi/person.php?name={name}&o=json")
