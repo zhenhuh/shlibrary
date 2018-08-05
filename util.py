@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 page_size = 10
 
 ## data server ip
-data_server = "http://localhost:2345"
+data_server = "http://47.97.124.135" # "http://localhost:2345"
 
 resp_error_code = "error_code"
 no_data = "no_data"
@@ -93,7 +93,8 @@ def respjson(ignoreJSONDecodeError = False):
                         while True:
                             json_data = yield func
                             if json_data is not None:
-                                raise StopIteration()
+                                # raise StopIteration() # error in Python3.7 
+                                return
                             continue
 
                     return consume_exceptions(try_do_infinitely())
