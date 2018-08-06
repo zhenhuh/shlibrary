@@ -1,7 +1,6 @@
 from flask import request, abort
 from functools import lru_cache, reduce
 from enum import Enum, unique
-from copy import deepcopy
 from util import *
 import requests
 
