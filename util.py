@@ -21,11 +21,17 @@ yn_region_key = "region"
 
 ## search resp json key
 search_count_key = "count"
+search_data_key = "data"
+search_product_name_key = "product_name"
 current_page_key = "current_page"
 first_index_key = "first_index"
 last_index_key = "last_index"
 page_count_key = "page_count"
 page_next_key = "page_next"
+page_prev_key = "page_prev"
+categories_key = "categories"
+category_data_key = "category_data"
+category_key = "category"
 
 ## wiki type
 baidu = "baidubaike"
