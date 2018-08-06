@@ -1,6 +1,7 @@
 from flask import request, abort
-from functools import lru_cache
+from functools import lru_cache, reduce
 from enum import Enum, unique
+from copy import deepcopy
 from util import *
 import requests
 
@@ -89,11 +90,49 @@ class SearchHandler:
         search_data[f"{page_count_key}"] = pages
         search_data[f"{current_page_key}"] = current_page
         search_data[f"{page_next_key}"] = pages > current_page
+        search_data[f"{page_prev_key}"] = current_page >= 2
         if current_page <= pages:
             search_data[f"{first_index_key}"], search_data[f"{last_index_key}"] = page_size * (current_page - 1), min(page_size * current_page - 1, count - 1)
         else:
             search_data[f"{first_index_key}"], search_data[f"{last_index_key}"] = -1, -1
+
+        idx = 0
+        def add_category_for_each_data(data_list):
+            # assume data list is sorted by product_name
+            if len(data_list) == 0:
+                return data_list
+
+            first_data = data_list[idx]
+            name = first_data[f"{search_product_name_key}"]
+
+            def deal_each_data(each_data):
+                nonlocal idx
+                if each_data[f"{search_product_name_key}"] != name:
+                    idx += 1
+
+                each_data[f"{category_key}"] = idx
+
+            list(map(deal_each_data, data_list))
+            return data_list
+
+        search_data[f"{search_data_key}"] = add_category_for_each_data(deepcopy(search_data.get(f"{search_data_key}")))
+
+        def create_catgory_data_node(category_dict, data_list):
+            if len(data_list) == 0:
+                return category_dict
+
+            def add_to_dict(accu_dict, each_data):
+                accu_dict.update({each_data[f"{search_product_name_key}"] : each_data[(f"{category_key}")]})
+                return accu_dict
+
+            return reduce(add_to_dict, data_list, category_dict)
+
+        search_data[f"{category_data_key}"] = create_catgory_data_node(dict(), deepcopy(search_data.get(f"{search_data_key}")))
+
+        search_data[f"{categories_key}"] = idx + 1
+
         return search_data
+
 
 @cache
 @respjson()

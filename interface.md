@@ -29,7 +29,7 @@ http://localhost:2345/RESTfulWS/JL/wc/gjwc/?name=松子&current_page=1&year_star
 ## - 返回格式
 ```
 {
-    "count":"107",
+    "count":107,
     "data":[
         {"uid":"1","product_name":"松子","temporal":"明景泰6年(1455)","desc":"树皮无龙鳞而稍光滑枝"},
         {"uid":"2","product_name":"松子","temporal":"明正德5年(1510)","desc":""},
@@ -38,8 +38,9 @@ http://localhost:2345/RESTfulWS/JL/wc/gjwc/?name=松子&current_page=1&year_star
 }
 ```
 > 返回值说明  
-> count : 搜索结果总数
-> data : 数据列表(10条)
+> count : 搜索结果总数  
+> data : 数据列表(10条)  
+> 按物产名排序
 
 # 2. 首页随机展示接口
 
