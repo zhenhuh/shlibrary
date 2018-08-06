@@ -1,7 +1,6 @@
 from flask import request, abort
 from functools import lru_cache, reduce
 from enum import Enum, unique
-from copy import deepcopy
 from util import *
 import requests
 
@@ -103,11 +102,11 @@ class SearchHandler:
                 return data_list
 
             first_data = data_list[idx]
-            name = first_data[f"{search_product_name_key}"]
+            name = first_data[f"{search_product_name_key}"].strip()
 
             def deal_each_data(each_data):
                 nonlocal idx
-                if each_data[f"{search_product_name_key}"] != name:
+                if each_data[f"{search_product_name_key}"].strip() != name:
                     idx += 1
 
                 each_data[f"{category_key}"] = idx
@@ -115,19 +114,19 @@ class SearchHandler:
             list(map(deal_each_data, data_list))
             return data_list
 
-        search_data[f"{search_data_key}"] = add_category_for_each_data(deepcopy(search_data.get(f"{search_data_key}")))
+        search_data[f"{search_data_key}"] = add_category_for_each_data(search_data.get(f"{search_data_key}"))
 
         def create_catgory_data_node(category_dict, data_list):
             if len(data_list) == 0:
                 return category_dict
 
             def add_to_dict(accu_dict, each_data):
-                accu_dict.update({each_data[f"{search_product_name_key}"] : each_data[(f"{category_key}")]})
+                accu_dict.update({each_data[f"{search_product_name_key}"].strip() : each_data[(f"{category_key}")]})
                 return accu_dict
 
             return reduce(add_to_dict, data_list, category_dict)
 
-        search_data[f"{category_data_key}"] = create_catgory_data_node(dict(), deepcopy(search_data.get(f"{search_data_key}")))
+        search_data[f"{category_data_key}"] = create_catgory_data_node(dict(), search_data.get(f"{search_data_key}"))
 
         search_data[f"{categories_key}"] = idx + 1
 
