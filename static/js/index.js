@@ -15,6 +15,12 @@ $(function(){
      * current_page : 结果当前所在页面
      */
     $("#single_search_btn_id").click(function(){
+        var val = $("#wc_or_zs_name_id").val();
+        if(val==null || val.trim() == ""){
+            alert("请输入检索词!");
+            return;
+        }
+        //清空查询结果列表
         $("#m-list-search_results_id").empty();
         advancedPageData = {
             name: $("#wc_or_zs_name_id").val(),
@@ -33,7 +39,6 @@ $(function(){
      * current_page : 结果当前所在页面
      */
     $("#advanced_seache_btn_id").click(function(){
-        $("#m-list-search_results_id").empty();
         advancedPageData = {
             name: $("#name_id").val(),
             year_start: $("#year_start_id").val(),
@@ -42,6 +47,15 @@ $(function(){
             yn_region: $("#yn_region_id").val(),
             current_page: 1
         };
+        if((advancedPageData.name==null || advancedPageData.name=="") &&
+            (advancedPageData.year_start==null || advancedPageData.year_start=="") &&
+            (advancedPageData.year_end==null || advancedPageData.year_end=="") &&
+            (advancedPageData.source_lc==null || advancedPageData.source_lc=="") &&
+            (advancedPageData.yn_region==null || advancedPageData.yn_region=="")){
+            alert("请至少输入一个检索词!");
+            return;
+        }
+        $("#m-list-search_results_id").empty();
         searchByParam(advancedPageData,'/search/');
     });
 
@@ -49,6 +63,7 @@ $(function(){
      * 首页右侧部分内容检索
      */
     function getRightDataList(){
+        var t = 400;
         $.ajax({
             url:"/index/rightfrm",
             type:"post",
@@ -68,13 +83,13 @@ $(function(){
                     $("#firstLetter_id").append(letterContent);
                     $("#firstLetter_id").append("</p>");
                     //隐藏三行之后的数据
-                    $("#firstLetter_id").find("p:gt(3)").hide();
+                    $("#firstLetter_id").find("p:gt(3)").hide(t);
                     //动态显隐
                     $("#firstLetter_more_id").click(function(){
                         if($("#firstLetter_id").find("p:eq(4)").is(":hidden")){
-                            $("#firstLetter_id").find("p:gt(3)").show();
+                            $("#firstLetter_id").find("p:gt(3)").show(t);
                         }else{
-                            $("#firstLetter_id").find("p:gt(3)").hide();
+                            $("#firstLetter_id").find("p:gt(3)").hide(t);
                         }
                     });
 
@@ -89,13 +104,13 @@ $(function(){
                     $("#taxonomy_id").append(taxonomyContent);
                     $("#taxonomy_id").append("</p>");
                     //隐藏三行之后的数据
-                    $("#taxonomy_id").find("p:gt(3)").hide();
+                    $("#taxonomy_id").find("p:gt(3)").hide(t);
                     //动态显隐
                     $("#taxonomy_more_id").click(function(){
                         if($("#taxonomy_id").find("p:eq(4)").is(":hidden")){
-                            $("#taxonomy_id").find("p:gt(3)").show();
+                            $("#taxonomy_id").find("p:gt(3)").show(t);
                         }else{
-                            $("#taxonomy_id").find("p:gt(3)").hide();
+                            $("#taxonomy_id").find("p:gt(3)").hide(t);
                         }
                     });
 
@@ -111,13 +126,13 @@ $(function(){
                     $("#region_id").append(regionContent);
                     $("#region_id").append("</p>");
                     //隐藏三行之后的数据
-                    $("#region_id").find("p:gt(3)").hide();
+                    $("#region_id").find("p:gt(3)").hide(t);
                     //动态显隐
                     $("#region_more_id").click(function(){
                         if($("#region_id").find("p:eq(4)").is(":hidden")){
-                            $("#region_id").find("p:gt(3)").show();
+                            $("#region_id").find("p:gt(3)").show(t);
                         }else{
-                            $("#region_id").find("p:gt(3)").hide();
+                            $("#region_id").find("p:gt(3)").hide(t);
                         }
                     });
                 }
@@ -129,7 +144,7 @@ $(function(){
     }
 
     /**
-     * 根据查询条件检索数据
+     * 默认检索数据
      */
     function getDataList(){
         $.ajax({
@@ -137,6 +152,7 @@ $(function(){
             type:"post",
             dataType:"json",
             success:function(data){
+                
                 $("#m-list-search_results_id").empty();
                 if(data==null){
                     $("#m-list-search_results_id").html("<span class='m-list-search__result-message'>对不起，没有检索到相关数据 </span>");
@@ -180,6 +196,7 @@ $(function(){
             dataType:"json",
             success:function(data){
                 console.log(data);
+                $.callbackPageinfo(data);
                 if(data==null || data.count==0){
                     $("#m-list-search_results_id").append("<span class='m-list-search__result-message'>对不起，没有检索到相关数据 </span>");
                      //当前页码信息
