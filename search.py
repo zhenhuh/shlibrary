@@ -105,8 +105,9 @@ class SearchHandler:
             name = first_data[f"{search_product_name_key}"].strip()
 
             def deal_each_data(each_data):
-                nonlocal idx
+                nonlocal idx, name
                 if each_data[f"{search_product_name_key}"].strip() != name:
+                    name = each_data[f"{search_product_name_key}"].strip()
                     idx += 1
 
                 each_data[f"{category_key}"] = idx
