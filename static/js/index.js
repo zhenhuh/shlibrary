@@ -24,9 +24,10 @@ $(function(){
         $("#m-list-search_results_id").empty();
         advancedPageData = {
             name: $("#wc_or_zs_name_id").val(),
-            current_page: 1
+            current_page: 1,
+            url:'/search_simple/'
         };
-        searchByParam(advancedPageData,'/search_simple/');
+        searchByParam(advancedPageData);
     });
 
     /**
@@ -187,24 +188,23 @@ $(function(){
     /**
      * 根据查询条件检索数据
      */
-    function searchByParam(jsonData,url){
-        console.log("jsonData:",jsonData);
+    function searchByParam(jsonData){
+        
+        var tempdata = {};
+        $.extend(tempdata, jsonData);
+        delete tempdata.url; 
+
         $.ajax({
-            url:url,
+            url:jsonData.url,
             type:"post",
-            data:jsonData,
+            data: tempdata,
             dataType:"json",
             success:function(data){
                 console.log(data);
                 $.callbackPageinfo(data);
                 if(data==null || data.count==0){
                     $("#m-list-search_results_id").append("<span class='m-list-search__result-message'>对不起，没有检索到相关数据 </span>");
-                     //当前页码信息
-                     $("#page_data_info_id").text("物产信息");
-                }else{
-                    //当前页码信息
-                    $("#page_data_info_id").text("物产信息：共"+data.count+"条，当前页面从1条至"+(data.last_index+1)+"条");
-
+                }else{                    
                     //加载页面数据
                     $(data.data).each(function(index,ele){
                         var content ='<ul class="m-nav m-nav--inline">'+
@@ -224,28 +224,6 @@ $(function(){
                             '</ul>';
                         $("#m-list-search_results_id").append(content);
                     });
-                    //判断是否还有下一页
-                    var info = "";
-                    if(data.page_next){
-                        info = '<a style="float:right;" id="index_page_more_id" class="btn btn-info m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air" onclick="searchMore('+data.current_page+','+url+')" >'+
-                            '<span>'+
-                                '<i class="la la-plus"></i>'+
-                                '<span>'+
-                                    '点我加载更多' +
-                                '</span>'+
-                            '</span>'+
-                        '</a>';
-                    }else{
-                        info = '<a style="float:right;" class="btn btn-info m-btn m-btn--custom m-btn--icon m-btn--pill m-btn--air">'+
-                            '<span>'+
-                                '<span>'+
-                                    '没有更多了' +
-                                '</span>'+
-                            '</span>'+
-                        '</a>';
-                    }
-                    
-                    $("#m-list-search_results_id").append(info);
                 }
             },
             error:function(data){
@@ -257,9 +235,7 @@ $(function(){
     /**
      *查看更多
      */
-    function searchMore(current_page,url){
-        $("#index_page_more_id").remove();
-        
-        advancedPageData.current_page = current_page + 1;
-        searchByParam(advancedPageData,url);
+    function searchByPageIndex(advancedPageData){
+        $("#m-list-search_results_id").empty();
+        searchByParam(advancedPageData);
     }
