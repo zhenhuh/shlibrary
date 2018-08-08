@@ -43,6 +43,7 @@ gj_list_key = "wcsource_qt"
 gj_desc_key = "gjdesc"
 wiki_info_key = "wiki_info"
 related_poems_key = "poems"
+map_location_key = "map_location"
 
 ## wiki type
 baidu = "baidubaike"
@@ -64,8 +65,13 @@ first_letter_list = "RESTfulWS/JL/wc/firstletter"
 taxonomy_list = "RESTfulWS/JL/wc/taxonomy"
 yn_region_list = "RESTfulWS/JL/wc/ynregion"
 
+first_letter_info = "RESTfulWS/JL/wc/certainL"
+taxonomy_info = "RESTfulWS/JL/wc/certainClass"
+yn_region_info = "RESTfulWS/JL/wc/certainRegion"
+
 detail_info = "RESTfulWS/JL/jtwc/detail"
 gj_detail = "RESTfulWS/JL/jtwc/gjdetail"
+map_location = "RESTfulWS/JL/jtwc/lyplace"
 
 # endregion data
 
