@@ -9,7 +9,10 @@ DEBUG_ONLY = True
 page_size = 10
 
 ## data server ip
-data_server = "http://localhost:2345"
+def get_data_server():
+    with open(r"conf\datasrv") as f:
+        return f.readline()
+data_server = get_data_server() # "http://47.97.124.135" # "http://localhost:2345"
 
 resp_error_code = "error_code"
 no_data = "no_data"
