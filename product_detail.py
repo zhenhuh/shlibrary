@@ -25,6 +25,8 @@ class ProductInfo:
 
         detail_info = query_product_detail_from_local(id)
 
+        place_name_in_map = detail_info["mapPlace"]
+
         gj_list = detail_info.get(f"{gj_list_key}")
         if gj_list and len(gj_list) != 0:
             detail_list = query_gj_detail_from_local(name, gj_list)
@@ -38,6 +40,8 @@ class ProductInfo:
         poemHandler = PoemHandler()
         detail_info[f"{related_poems_key}"] = poemHandler.get_poem_info_from_key(name)
 
+        detail_info[f"{map_location_key}"] = query_map_location_from_local(place_name_in_map)
+
         return detail_info
 
 @cache
@@ -49,6 +53,11 @@ def query_product_detail_from_local(id):
 @respjson()
 def query_gj_detail_from_local(name, gj_list):
     return requests.get(f"{data_server}/{gj_detail}/?wcname={name}&gjname={gj_list}")
+
+@cache
+@respjson()
+def query_map_location_from_local(map_place):
+    return requests.get(f"{data_server}/{map_location}/?place={map_place}")
 
 if __name__ == "__main__":
     pass
