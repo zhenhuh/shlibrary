@@ -1,6 +1,7 @@
 from flask import request, abort
 from enum import Enum, unique
 from wiki import query_wiki_info
+from poem import PoemHandler
 from util import *
 import requests
 
@@ -23,7 +24,19 @@ class ProductInfo:
         name = request.args.get(ProdParam.name.value)
 
         detail_info = query_product_detail_from_local(id)
-        detail_info["wiki_info"] = query_wiki_info(name)
+
+        gj_list = detail_info.get(f"{gj_list_key}")
+        if gj_list and len(gj_list) != 0:
+            detail_list = query_gj_detail_from_local(name, gj_list)
+            wc_desc_in_gj = {detail["gjsource"] : detail["gjdesc"] for detail in detail_list if len(detail["gjdesc"]) != 0}
+        else:
+            wc_desc_in_gj = {}
+
+        detail_info[f"{gj_desc_key}"] = wc_desc_in_gj
+        detail_info[f"{wiki_info_key}"] = query_wiki_info(name)
+
+        poemHandler = PoemHandler()
+        detail_info[f"{related_poems_key}"] = poemHandler.get_poem_info_from_key(name)
 
         return detail_info
 
@@ -31,6 +44,11 @@ class ProductInfo:
 @respjson()
 def query_product_detail_from_local(id):
     return requests.get(f"{data_server}/{detail_info}/?id={id}")
+
+@cache
+@respjson()
+def query_gj_detail_from_local(name, gj_list):
+    return requests.get(f"{data_server}/{gj_detail}/?wcname={name}&gjname={gj_list}")
 
 if __name__ == "__main__":
     pass

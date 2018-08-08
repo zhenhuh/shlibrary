@@ -14,7 +14,12 @@ class PoemHandler:
     def __check_poem_params(self, args):
         check_url_params(args, PoemParam)
         if PoemParam.name.value not in args:
-            abort(500, "key must has value")
+            abort(500, "name must has value")
+
+    def get_poem_info_from_key(self, key):
+        poem_resp = query_poem(key)
+
+        return self.__prepare_poem(poem_resp, key)
 
     def get_poem_info(self):
         self.__check_poem_params(request.args)

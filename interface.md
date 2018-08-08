@@ -144,13 +144,78 @@ http://localhost:2345/RESTfulWS/JL/jtwc/detail/?id=1
 
 ## - 返回格式
 ```
-TODO
+{
+    "uid": "1",
+    "product_name": "松子",
+    "wcsource_fz": "云南图经志书",
+    "wcsource_qt": "证类本草;滇游记;云南掌故;宁蒗见闻录;",
+    "temporal": "明景泰6年(1455)",
+    "category_fz": "土产",
+    "category_qt": "花之属",
+    "alternateName": "",
+    "Des_people": "",
+    "Des_site": "",
+    "Des_cite": "",
+    "mapPlace": "云南府",
+    "recordPlace": "云南府",
+    "desc": "树皮无龙鳞而稍光滑枝上结松毬大如茶瓯其中含宝有二三百粒者"
+}
 ```
 
 > 返回值说明  
-> TODO
+> product_name没有空格
 
-# 7. TODO接口
+# 7. 其他古籍详细信息接口
+
+##  - 入参说明
+* wcname : 物产名称
+* gjname : 古籍列表
+
+> 限制条件  
+> wcname 和 gjname 都要有值
+
+`Sample URL:`
+http://localhost:2345/RESTfulWS/JL/jtwc/gjdetail/wcname=松子&gjname=证类本草;滇游记;
+
+## - 返回格式
+```
+[
+    {
+        "uid": "15713",
+        "product_name": "松子",
+        "gj_category": "果之属-",
+        "gj_sourceClassify": "",
+        "gjsource": "《证类本草》",
+        "gjcol": "",
+        "gjpage": "卷23",
+        "gjdesc": "《海药》云：云南松子似巴豆，其体不厚，多食发热毒。松子味甘美，大温无毒，主诸风，温肠胃，久服轻身，延年不老",
+        "gjdesc_name": "",
+        "gjdesc_area": "云南",
+        "gjdesc_cite": "《海药》",
+        "gjdesc_people": ""
+    },
+    {
+        "uid": "15718",
+        "product_name": "松子",
+        "gj_category": "果之属-",
+        "gj_sourceClassify": "",
+        "gjsource": "《滇游记》",
+        "gjcol": "",
+        "gjpage": "第7页",
+        "gjdesc": "大和县，......榛松皆不下辽东，但味淡少逊耳。",
+        "gjdesc_name": "",
+        "gjdesc_area": "",
+        "gjdesc_cite": "",
+        "gjdesc_people": ""
+    }
+]
+```
+
+> 返回值说明  
+> 如果参数内容错误，返回空列表  
+> 其他古籍的物产描述的信息一起返回
+
+# 8. TODO接口
 
 ##  - 入参说明
 * TODO
