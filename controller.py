@@ -37,6 +37,14 @@ def index_rightfrm():
     from index_page import query_right_all
     return query_right_all()
 
+@app.route("/product_detail_test/", methods=["GET"])
+@jsut4test
+@returnjson
+def product_detail_test():
+    from product_detail import ProductInfo
+    prod = ProductInfo()
+    return prod.get_product_info()
+
 @app.route("/product_detail/", methods = ["GET"])
 @returnHTML
 def product_detail():
@@ -74,7 +82,8 @@ def search_simple_action():
     return searchHandler.search(True)
 
 # poem
-@app.route("/poem/", methods = ["GET", "POST"])
+@app.route("/poem/", methods=["GET", "POST"])
+@jsut4test
 @returnjson
 def poem_action():
     from poem import PoemHandler

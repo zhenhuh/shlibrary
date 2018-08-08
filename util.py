@@ -2,6 +2,8 @@ from flask import abort, jsonify, render_template
 from functools import wraps, lru_cache
 from datetime import datetime, timedelta
 
+DEBUG_ONLY = True
+
 # region data
 
 page_size = 10
@@ -33,6 +35,12 @@ categories_key = "categories"
 category_data_key = "category_data"
 category_key = "category"
 
+## detail resp json key
+gj_list_key = "wcsource_qt"
+gj_desc_key = "gjdesc"
+wiki_info_key = "wiki_info"
+related_poems_key = "poems"
+
 ## wiki type
 baidu = "baidubaike"
 hudong = "hudongbaike"
@@ -54,10 +62,20 @@ taxonomy_list = "RESTfulWS/JL/wc/taxonomy"
 yn_region_list = "RESTfulWS/JL/wc/ynregion"
 
 detail_info = "RESTfulWS/JL/jtwc/detail"
+gj_detail = "RESTfulWS/JL/jtwc/gjdetail"
 
 # endregion data
 
 # region decorator
+
+def jsut4test(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        if DEBUG_ONLY:
+            return func(*args, **kwargs)
+        abort(404, "Page not found")
+
+    return wrapper
 
 def returnjson(func):
     @wraps(func)
