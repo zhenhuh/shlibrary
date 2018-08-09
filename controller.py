@@ -37,6 +37,27 @@ def index_rightfrm():
     from index_page import query_right_all
     return query_right_all()
 
+@app.route("/index/rightfrm_letter_click/", methods = ["POST", "GET"])
+@returnjson
+def index_rightfrm_letter_click():
+    from index_page_click import Chessboard, ChessboardType
+    chess = Chessboard(ChessboardType.letter)
+    return chess.get_chessboard_data()
+
+@app.route("/index/rightfrm_taxonomy_click/", methods = ["POST", "GET"])
+@returnjson
+def index_rightfrm_taxonomy_click():
+    from index_page_click import Chessboard, ChessboardType
+    chess = Chessboard(ChessboardType.taxonomy)
+    return chess.get_chessboard_data()
+
+@app.route("/index/rightfrm_region_click/", methods = ["POST", "GET"])
+@returnjson
+def index_rightfrm_region_click():
+    from index_page_click import Chessboard, ChessboardType
+    chess = Chessboard(ChessboardType.region)
+    return chess.get_chessboard_data()
+
 @app.route("/product_detail_test/", methods=["GET"])
 @jsut4test
 @returnjson
@@ -49,6 +70,11 @@ def product_detail_test():
 @returnHTML
 def product_detail():
     return "product_detail.html"
+
+#@app.route("/fz_detail/", method = ["GET"])
+#@returnHTML
+#def fz_detail():
+#    return "fz_detail.html"
 
 # shanghai library other gj
 @app.route("/shlib/", methods = ["GET"])
