@@ -22,11 +22,13 @@ class Wiki:
             abort(500, "entity must has a value")
 
     def get_wiki_info(self):
-        self.__check_wiki_params(request.args)
+        request_params = get_request_params()
 
-        name = request.args.get(WikiParam.name.value)
-        wikitype = request.args.get(WikiParam.type.value)
-        field = request.args.get(WikiParam.field.value)
+        self.__check_wiki_params(request_params)
+
+        name = request_params.get(WikiParam.name.value)
+        wikitype = request_params.get(WikiParam.type.value)
+        field = request_params.get(WikiParam.field.value)
 
         return query_wiki_info(name, wikitype, field)
 

@@ -1,4 +1,4 @@
-from flask import abort, jsonify, render_template
+from flask import request, abort, jsonify, render_template
 from functools import wraps, lru_cache
 from datetime import datetime, timedelta
 
@@ -45,6 +45,11 @@ wiki_info_key = "wiki_info"
 related_poems_key = "poems"
 map_location_key = "map_location"
 
+## statistics
+stat_fz_count_key = "count"
+stat_fz_data_key = "data"
+stat_map_location_key = "map_location"
+
 ## wiki type
 baidu = "baidubaike"
 hudong = "hudongbaike"
@@ -69,9 +74,14 @@ first_letter_info = "RESTfulWS/JL/wc/certainL"
 taxonomy_info = "RESTfulWS/JL/wc/certainClass"
 yn_region_info = "RESTfulWS/JL/wc/certainRegion"
 
-detail_info = "RESTfulWS/JL/jtwc/detail"
+wc_detail = "RESTfulWS/JL/jtwc/detail"
 gj_detail = "RESTfulWS/JL/jtwc/gjdetail"
+fz_detail = "RESTfulWS/JL/jtwc/lyfzDetail"
 map_location = "RESTfulWS/JL/jtwc/lyplace"
+
+wc_statistics_info = "RESTfulWS/JL/wc/tjwc"
+fz_statistics_info = "RESTfulWS/JL/jtwc/allFZ"
+wc_count_in_fz_info = "RESTfulWS/JL/jtwc/wcTJ"
 
 # endregion data
 
@@ -140,6 +150,16 @@ def respjson(ignoreJSONDecodeError = False):
 # endregion decorator
 
 # region help function
+
+def get_request_params():
+    if request.method == "POST":
+        request_params = request.form
+    elif request.method == "GET":
+        request_params = request.args
+    else:
+        abort(500, "method not support")
+
+    return request_params
 
 def check_url_params(args, whichdict):
     for each_arg in args:

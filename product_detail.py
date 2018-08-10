@@ -18,10 +18,12 @@ class ProductInfo:
             abort(500, "id and name must have value")
 
     def get_product_info(self):
-        self.__check_prod_params(request.args)
+        request_params = get_request_params()
 
-        id = request.args.get(ProdParam.id.value)
-        name = request.args.get(ProdParam.name.value)
+        self.__check_prod_params(request_params)
+
+        id = request_params.get(ProdParam.id.value)
+        name = request_params.get(ProdParam.name.value)
 
         detail_info = query_product_detail_from_local(id)
 
@@ -47,7 +49,7 @@ class ProductInfo:
 @cache
 @respjson()
 def query_product_detail_from_local(id):
-    return requests.get(f"{data_server}/{detail_info}/?id={id}")
+    return requests.get(f"{data_server}/{wc_detail}/?id={id}")
 
 @cache
 @respjson()

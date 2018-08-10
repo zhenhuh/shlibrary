@@ -22,9 +22,11 @@ class PoemHandler:
         return self.__prepare_poem(poem_resp, key)
 
     def get_poem_info(self):
-        self.__check_poem_params(request.args)
+        request_params = get_request_params()
 
-        key = request.args.get(PoemParam.name.value)
+        self.__check_poem_params(request_params)
+
+        key = request_params.get(PoemParam.name.value)
 
         poem_resp = query_poem(key)
 

@@ -37,21 +37,23 @@ class Chessboard:
             abort(500, "current_page must specify(start from 1)")
 
         if not (len(args) == 2 and (ChessboardParam.current_letter.value in args or ChessboardParam.current_taxonomy.value in args or ChessboardParam.current_region.value in args)):
-            abort(500, "current_letter , current_taxonomy , current_region must specify one and only one")
+            abort(500, "choose only one in current_letter , current_taxonomy , current_region")
 
     def get_chessboard_data(self):
-        self.__check_chessboard_params(request.args)
+        request_params = get_request_params()
 
-        current_page = request.args.get(ChessboardParam.current_page.value)
+        self.__check_chessboard_params(request_params)
+
+        current_page = request_params.get(ChessboardParam.current_page.value)
 
         if ChessboardType.letter == self.type:
-            letter = request.args.get(ChessboardParam.current_letter.value)
+            letter = request_params.get(ChessboardParam.current_letter.value)
             return query_first_letter_info(letter, current_page)
         elif ChessboardType.taxonomy == self.type:
-            taxonomy = request.args.get(ChessboardParam.current_taxonomy.value)
+            taxonomy = request_params.get(ChessboardParam.current_taxonomy.value)
             return query_taxonomy_info(taxonomy, current_page)
         elif ChessboardType.region == self.type:
-            region = request.args.get(ChessboardParam.current_region.value)
+            region = request_params.get(ChessboardParam.current_region.value)
             return query_yn_region_info(region, current_page)
         else:
             pass
