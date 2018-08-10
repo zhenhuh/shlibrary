@@ -58,7 +58,7 @@ def index_rightfrm_region_click():
     chess = Chessboard(ChessboardType.region)
     return chess.get_chessboard_data()
 
-@app.route("/product_detail_test/", methods=["GET"])
+@app.route("/product_detail_test/", methods = ["GET"])
 @jsut4test
 @returnjson
 def product_detail_test():
@@ -68,13 +68,21 @@ def product_detail_test():
 
 @app.route("/product_detail/", methods = ["GET"])
 @returnHTML
-def product_detail():
+def product_detail_page():
     return "product_detail.html"
 
-#@app.route("/fz_detail/", method = ["GET"])
-#@returnHTML
-#def fz_detail():
-#    return "fz_detail.html"
+@app.route("/fz_detail_test/", methods = ["GET"])
+@jsut4test
+@returnjson
+def fz_detail_test():
+    from fz_detail import LocalChroniclesInfo
+    fz = LocalChroniclesInfo()
+    return fz.get_lc_info()
+
+@app.route("/fz_detail/", methods = ["GET"])
+@returnHTML
+def fz_detail_page():
+   return "fz_detail.html"
 
 # shanghai library other gj
 @app.route("/shlib/", methods = ["GET"])
@@ -106,6 +114,21 @@ def search_simple_action():
     from search import SearchHandler
     searchHandler = SearchHandler()
     return searchHandler.search(True)
+
+# statistics
+@app.route("/wcstat/", methods = ["GET", "POST"])
+@returnjson
+def wc_statistics_action():
+    from statistics import Statistics
+    stat = Statistics()
+    return stat.wc()
+
+@app.route("/fzstat/", methods = ["GET", "POST"])
+@returnjson
+def fz_statistics_action():
+    from statistics import Statistics
+    stat = Statistics()
+    return stat.fz()
 
 # poem
 @app.route("/poem/", methods=["GET", "POST"])

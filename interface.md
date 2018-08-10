@@ -60,6 +60,7 @@ http://localhost:2345/RESTfulWS/JL/wc/gjwc/?name=松子&current_page=1&year_star
 > count : 搜索结果总数  
 > data : 数据列表(10条)  
 > 按物产名排序
+> 查不到数据返回 {"count":0, "data":[]}
 
 # 2. 首页随机展示接口
 
@@ -431,6 +432,105 @@ http://localhost:2345/RESTfulWS/JL/jtwc/lyplace?place=六顺县
 > 返回值说明  
 > 地点名和经纬度信息
 > 经纬度信息是符合BaiduMap的经纬度格式
+
+# 13. 物产统计接口
+
+##  - 入参说明
+* wcname : 物产名称
+
+> 限制条件  
+> wcname必须有值, 精确查询
+
+`Sample URL:`
+http://localhost:2345/RESTfulWS/JL/wc/tjwc?wcname=松子
+
+## - 返回格式
+```
+{
+  "count": 121,
+  "data": [
+    {
+        "wc_id": "1",
+        "wc_name": "松子",
+        "source": "云南图经志书",
+        "time_c": "明景泰6年",
+        "time_w": "1455",
+        "category": "土产",
+        "area_record": "云南府",
+        "area_map": "云南府"
+    },
+    {
+        "wc_id": "111",
+        "wc_name": "松子",
+        "source": "云南志",
+        "time_c": "明正德5年",
+        "time_w": "1510",
+        "category": "土产",
+        "area_record": "云南府",
+        "area_map": "云南府"
+    }
+}
+```
+
+> 返回值说明  
+> (None)
+
+# 14. 方志统计接口
+
+##  - 入参说明
+* (None)
+
+> 限制条件  
+> (None)
+
+`Sample URL:`
+http://localhost:2345/RESTfulWS/JL/jtwc/allFZ
+
+## - 返回格式
+```
+[
+    {
+        "id": "1",
+        "bookname": "云南图经志书",
+        "type": "通志",
+        "area": "云南",
+        "longitude": "102.73",
+        "latitude": "25.04"
+    },
+    {
+        "id": "2",
+        "bookname": "云南志",
+        "type": "通志",
+        "area": "云南",
+        "longitude": "102.73",
+        "latitude": "25.04"
+    }
+]
+```
+
+> 返回值说明  
+> (None)
+
+# 15. 方志中物产数量统计接口
+
+##  - 入参说明
+* fzname : 方志名称
+
+> 限制条件  
+> fzname必须有值
+
+`Sample URL:`
+http://localhost:2345/RESTfulWS/JL/jtwc/wcTJ?fzname=云南图经志书
+
+## - 返回格式
+```
+{
+  "wc_count": 105
+}
+```
+
+> 返回值说明  
+> (None)
 
 # 0. TODO接口
 

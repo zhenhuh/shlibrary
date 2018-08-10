@@ -56,12 +56,7 @@ class SearchHandler:
         check_url_params(args, SearchParam)
 
     def __prepare_search_cond(self, is_simple = False):
-        if request.method == "POST":
-            request_params = request.form
-        elif request.method == "GET":
-            request_params = request.args
-        else:
-            abort(500, "method not support")
+        request_params = get_request_params()
 
         self.__check_search_params(request_params)
 

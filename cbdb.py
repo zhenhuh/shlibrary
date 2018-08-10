@@ -16,9 +16,11 @@ class CBDB:
             abort(500, "name must has a value")
 
     def get_cbdb_info(self):
-        self.__check_cbdb_params(request.args)
+        request_params = get_request_params()
 
-        name = request.args.get(CBDBParam.name.value)
+        self.__check_cbdb_params(request_params)
+
+        name = request_params.get(CBDBParam.name.value)
 
         return query_cbdb(name)
 

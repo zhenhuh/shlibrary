@@ -29,8 +29,11 @@ class ShlibDataMgr:
         return {f"{detail_key}" : book_info.get("data")}
 
     def get_gj_detail_info(self):
-        self.__check_shlib_params(request.args)
-        gj_name = request.args[ShlibParam.gj_name.value]
+        request_params = get_request_params()
+
+        self.__check_shlib_params(request_params)
+
+        gj_name = request_params[ShlibParam.gj_name.value]
         all_books = query_brief_info_for(gj_name)
         check_resp_status(all_books)
 
