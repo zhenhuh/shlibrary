@@ -67,11 +67,12 @@ def product_detail_test():
     return prod.get_product_info()
 
 @app.route("/product_detail/", methods = ["GET"])
-@returnHTML
+#@returnHTML
 def product_detail_page():
     from product_detail import ProdParam
     id, name = get_request_params().get(ProdParam.id.value), get_request_params().get(ProdParam.name.value)
-    return "product_detail.html", {f"{ProdParam.id.value}" : id, f"{ProdParam.name.value}" : name}
+    #return "product_detail.html", {f"{ProdParam.id.value}": id, f"{ProdParam.name.value}": name}
+    return render_template("product_detail.html", id = id, name = name)
 
 @app.route("/fz_detail_test/", methods = ["GET"])
 @jsut4test
@@ -82,19 +83,29 @@ def fz_detail_test():
     return fz.get_lc_info()
 
 @app.route("/fz_detail/", methods = ["GET"])
-@returnHTML
+#@returnHTML
 def fz_detail_page():
     from fz_detail import LCParams
     name, wtime = get_request_params().get(LCParams.name.value), get_request_params().get(LCParams.wtime.value)
-    return "fz_detail.html", {f"{LCParams.name.value}" : name, f"{LCParams.wtime.value}" : wtime}
+    #return "fz_detail.html", {f"{LCParams.name.value}" : name, f"{LCParams.wtime.value}" : wtime}
+    return render_template("fz_detail.html", name = name, wtime = wtime)
 
-# shanghai library other gj
+# shanghai library
+## other gj
 @app.route("/shlib/", methods = ["GET"])
 @returnjson
 def shlib_gj_action():
     from shlibrary import ShlibDataMgr
     shlib = ShlibDataMgr()
     return shlib.get_gj_detail_info()
+
+## person
+@app.route("/shlib/person/", methods = ["GET"])
+@returnjson
+def shlib_person_action():
+    from shlibrary import ShlibDataMgr
+    shlib = ShlibDataMgr()
+    return shlib.get_person_info()
 
 # wiki data
 @app.route("/wiki/", methods = ["GET"])
@@ -144,7 +155,7 @@ def poem_action():
     return poemHandler.get_poem_info()
 
 # CBDB
-@app.route("/cbdb/", methods = ["GET", "POST"])
+@app.route("/cbdb/", methods=["GET", "POST"])
 @returnjson
 def cbdb_action():
     from cbdb import CBDB
