@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- begin::Head -->
+
+<head>
+    <meta charset="utf-8" />
+    <title>
+        方志明细页面
+    </title>
+    <meta name="description" content="Scrollable examples">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--begin::Web font -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script> -->
+    <script>
+        //   WebFont.load({
+        //     google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},
+        //     active: function() {
+        //         sessionStorage.fonts = true;
+        //     }
+        //   });
+    </script>
+    <!--end::Web font -->
+    <!--begin::Base Styles -->
+    <link href="/static/assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="/static/assets/demo/default/base/style.bundle.css" rel="stylesheet" type="text/css" />
+    <!--自定义css文件-->
+    <link href="/static/css/common.css" rel="stylesheet" type="text/css" />
+    <!--end::Base Styles -->
+    <link rel="shortcut icon" href="/static/assets/demo/default/media/img/logo/favicon.ico" />
+</head>
+<!-- end::Head -->
+<!-- end::Body -->
+
+<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+    <!-- begin:: Page -->
+    <div class="m-grid m-grid--hor m-grid--root m-page">
+        <!-- BEGIN: Header -->
+        {% include '/frame/header.html' %}
+        <!-- END: Header -->
+        <!-- begin::Body -->
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+            <div class="m-grid__item m-grid__item--fluid m-wrapper">
+                <div class="m-content">
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <!--begin::Portlet-->
+                            <div class="m-portlet">
+                                <div class="m-portlet__body">
+                                    <!--begin::Section-->
+                                    <div class="m-section m-section--last">
+                                        <div class="m-section__content">
+                                            <!--begin::Preview-->
+                                            <div class="m-demo">
+                                                <div class="row">
+                                                    <div class="m-demo__preview col-lg-12">
+                                                        <div class="m-list-search">
+                                                            <div class="m-list-search__results">
+                                                                <div class="zd_detail_tag">编纂信息</div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        志书题名
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.bookname }}
+                                                                    </span>
+                                                                </div>
+                                                                
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        主要责任者
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.author}}
+                                                                    </span>
+                                                                </div>
+                                                            
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        其他责任者1
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.author1}}
+                                                                    </span>
+                                                                </div>
+                                                            
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        其他责任者2
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.author2}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        作者-修
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.writer_x}}
+                                                                    </span>
+                                                                </div>
+                                                            
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        作者-撰(纂)
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.writer_z}}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="m-demo__preview col-lg-6">
+                                                        <div class="m-list-search">
+                                                            <div class="m-list-search__results">
+                                                                <div class="zd_detail_tag">出版信息</div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        卷次
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.column}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        作者小传
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.author_xz}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        摘要
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.abs}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        出版人
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.publish_p}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        出版地
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.publish_a}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        编纂日期
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.time_b}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        刻版日期
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.time_k}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        重印、增补日期
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.time_c}}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="m-demo__preview col-lg-6">
+                                                        <div class="m-list-search">
+                                                            <div class="m-list-search__results">
+                                                                <div class="zd_detail_tag">馆藏信息</div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        类型
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.type}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        馆藏地1
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.library1}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        馆藏地2
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.library2}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        馆藏地3
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.library3}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        电子书URL
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.url}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        收录库
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.database}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        分类号
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.class_number}}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="m-demo__preview col-lg-6">
+                                                        <div class="m-list-search">
+                                                            <div class="m-list-search__results">
+                                                                <div class="zd_detail_tag">地理信息</div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        地名
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.area}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        经度
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.longitude}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        纬度
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.latitude}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        朝代
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.dynasty}}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        年号
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.year_c}}
+                                                                    </span>
+                                                                </div>
+                                                            
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title">
+                                                                        时间纪年(西)
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {{fzdetail.year_w}}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="m-demo__preview col-lg-6">
+                                                        <div class="m-list-search">
+                                                            <div class="m-list-search__results">
+                                                                <div class="zd_detail_tag">藏录信息</div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title_l">
+                                                                        地方志联合目录
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {%if fzdetail.catelog_u=="有"%}
+                                                                            已收藏
+                                                                        {%else%}
+                                                                            尚未收藏
+                                                                        {%endif%}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title_l">
+                                                                        云南省图书馆馆藏地方志目录
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {%if fzdetail.category_y=="有"%}
+                                                                            已收藏
+                                                                        {%else%}
+                                                                            尚未收藏
+                                                                        {%endif%}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title_l">
+                                                                        中国地方志综录
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {%if fzdetail.category_z=="有"%}
+                                                                            已收藏
+                                                                        {%else%}
+                                                                            尚未收藏
+                                                                        {%endif%}
+                                                                    </span>
+                                                                </div>
+                                                                <div class="m-list-search__result-item zs_detail_line">
+                                                                    <span class="zd_detail_title_l">
+                                                                        中国地方志总目提要
+                                                                    </span>
+                                                                    <span class="zd_detail_value">
+                                                                        {%if fzdetail.category_t=="有"%}
+                                                                            已收藏
+                                                                        {%else%}
+                                                                            尚未收藏
+                                                                        {%endif%}
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--end::Preview-->
+                                        </div>
+                                    </div>
+                                    <!--end::Section-->
+                                </div>
+                            </div>
+                            <!--end::Portlet-->
+                        </div>
+
+                        <div class="col-lg-5">
+                            <!--begin::Portlet-->
+                            <div class="m-portlet">
+                                <div class="m-portlet__body">
+                                    <div id="relate_place" style="width:100%;height:50px">相关产地</div>
+                                    <div id="yn_map" style="width:420px;height:450px"></div>
+                                </div>
+                            </div>
+                            <!--end::Portlet-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end:: Body -->
+        <!-- begin::Footer -->
+        {% include '/frame/footer.html' %}
+        <!-- end::Footer -->
+    </div>
+    <!-- end:: Page -->
+    <!-- start:plugins -->
+    {% include '/frame/plugins.html' %}
+    <!-- end:plugins -->
+    <!--begin::Base Scripts -->
+    <script src="/static/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="/static/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+    <script src="/static/assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
+    <!--end::Base Scripts -->
+    <!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/AreaRestriction/1.2/src/AreaRestriction_min.js"></script> -->
+    <!-- <script src="/static/js/BMap.js"></script> -->
+    <!-- <script src="/static/js/detail.js" type="text/javascript"></script> -->
+</body>
+<!-- end::Body -->
+
+</html>

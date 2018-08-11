@@ -2,12 +2,17 @@ var advancedPageData = {};  //高级检索
 
 $(function(){
     /**
+     * 隐藏分页插件
+     */
+    $(".dataTables_wrapper").hide();
+
+    /**
      * 默认检索所有的物产
      */
     getDataList();
 
     //加载右侧部分内容
-    getRightDataList();
+    index_right.getList();
 
     /**
      * 简单搜索
@@ -46,7 +51,8 @@ $(function(){
             year_end: $("#year_end_id").val(),
             source_lc: $("#source_lc_id").val(),
             yn_region: $("#yn_region_id").val(),
-            current_page: 1
+            current_page: 1,
+            url:'/search/'
         };
         if((advancedPageData.name==null || advancedPageData.name=="") &&
             (advancedPageData.year_start==null || advancedPageData.year_start=="") &&
@@ -57,92 +63,8 @@ $(function(){
             return;
         }
         $("#m-list-search_results_id").empty();
-        searchByParam(advancedPageData,'/search/');
+        searchByParam(advancedPageData);
     });
-
-    /**
-     * 首页右侧部分内容检索
-     */
-    function getRightDataList(){
-        var t = 400;
-        $.ajax({
-            url:"/index/rightfrm",
-            type:"post",
-            dataType:"json",
-            success:function(data){
-                if(data == null){
-
-                }else{
-                    //首字母
-                    var letterContent = "<p>";
-                    $(data.letter).each(function(index,ele){
-                        if(index % 4 == 0){
-                            letterContent +='</p><p>';
-                        }
-                        letterContent += '<i style="margin-left:20px;">'+ele.letter+'('+ ele.count+')</i>';
-                    });
-                    $("#firstLetter_id").append(letterContent);
-                    $("#firstLetter_id").append("</p>");
-                    //隐藏三行之后的数据
-                    $("#firstLetter_id").find("p:gt(3)").hide(t);
-                    //动态显隐
-                    $("#firstLetter_more_id").click(function(){
-                        if($("#firstLetter_id").find("p:eq(4)").is(":hidden")){
-                            $("#firstLetter_id").find("p:gt(3)").show(t);
-                        }else{
-                            $("#firstLetter_id").find("p:gt(3)").hide(t);
-                        }
-                    });
-
-                    //分类标签
-                    var taxonomyContent = "<p>";
-                    $(data.taxonomy).each(function(index,ele){
-                        if(index % 4 == 0){
-                            taxonomyContent +='</p><p>';
-                        }
-                        taxonomyContent += '<i style="margin-left:20px;">'+ele.taxonomy+'</i>';
-                    });
-                    $("#taxonomy_id").append(taxonomyContent);
-                    $("#taxonomy_id").append("</p>");
-                    //隐藏三行之后的数据
-                    $("#taxonomy_id").find("p:gt(3)").hide(t);
-                    //动态显隐
-                    $("#taxonomy_more_id").click(function(){
-                        if($("#taxonomy_id").find("p:eq(4)").is(":hidden")){
-                            $("#taxonomy_id").find("p:gt(3)").show(t);
-                        }else{
-                            $("#taxonomy_id").find("p:gt(3)").hide(t);
-                        }
-                    });
-
-
-                    //云南地区
-                    var regionContent = "<p>";
-                    $(data.region).each(function(index,ele){
-                        if(index % 3 == 0){
-                            regionContent +='</p><p>';
-                        }
-                        regionContent += '<i style="margin-left:20px;">'+ele.region+'</i>';
-                    });
-                    $("#region_id").append(regionContent);
-                    $("#region_id").append("</p>");
-                    //隐藏三行之后的数据
-                    $("#region_id").find("p:gt(3)").hide(t);
-                    //动态显隐
-                    $("#region_more_id").click(function(){
-                        if($("#region_id").find("p:eq(4)").is(":hidden")){
-                            $("#region_id").find("p:gt(3)").show(t);
-                        }else{
-                            $("#region_id").find("p:gt(3)").hide(t);
-                        }
-                    });
-                }
-            },
-            error:function(data){
-                alert("error");
-            }
-        });
-    }
 
     /**
      * 默认检索数据
@@ -161,7 +83,7 @@ $(function(){
                     $(data.data).each(function(index,ele){
                         var content ='<ul class="m-nav m-nav--inline">'+
                                 '<li class="m-nav__item">'+
-                                    '<a href="/product_detail" target="_blank" class="m-nav__link">'+
+                                    '<a href="/product_detail/?id='+ele.uid+'&name='+ele.product_name+'" target="_blank" class="m-nav__link">'+
                                         '<i class="flaticon-paper-plane m--font-info" style="padding-right:10px;"></i>'+
                                         '<span class="m-nav__link-text" style="font-size:16px;">'+
                                             ele.product_name +
@@ -189,7 +111,10 @@ $(function(){
      * 根据查询条件检索数据
      */
     function searchByParam(jsonData){
-        
+        /**
+         * 显示分页插件
+         */
+        $(".dataTables_wrapper").show();
         var tempdata = {};
         $.extend(tempdata, jsonData);
         delete tempdata.url; 
@@ -209,7 +134,7 @@ $(function(){
                     $(data.data).each(function(index,ele){
                         var content ='<ul class="m-nav m-nav--inline">'+
                                 '<li class="m-nav__item">'+
-                                    '<a href="/product_detail" target="_blank" class="m-nav__link">'+
+                                    '<a href="/product_detail/?id='+ele.uid+'&name='+ele.product_name+'" target="_blank" class="m-nav__link">'+
                                         '<i class="flaticon-paper-plane m--font-info" style="padding-right:10px;"></i>'+
                                         '<span class="m-nav__link-text" style="font-size:16px;">'+
                                             ele.product_name +

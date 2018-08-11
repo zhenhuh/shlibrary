@@ -47,7 +47,7 @@ def index_rightfrm_letter_click():
 @app.route("/index/rightfrm_taxonomy_click/", methods = ["POST", "GET"])
 @returnjson
 def index_rightfrm_taxonomy_click():
-    from index_page_click import Chessboard, ChessboardTypeChessboardType
+    from index_page_click import Chessboard, ChessboardType
     chess = Chessboard(ChessboardType.taxonomy)
     return chess.get_chessboard_data()
 
