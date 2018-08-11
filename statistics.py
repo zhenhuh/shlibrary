@@ -41,7 +41,7 @@ class Statistics:
 
         def wc_count_in_area():
             if wcstat_info_data:
-                return stat_count_with_same("area_map")
+                return stat_count_with_same("area_record")
             return {}
 
         def wc_count_in_category():
