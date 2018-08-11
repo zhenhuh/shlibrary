@@ -93,7 +93,7 @@ def pick(count):
         @wraps(func)
         def wrapper(*args, **kwargs):
             lst = func(*args, **kwargs)
-            if len(lst) == count:
+            if len(lst) <= count:
                 return lst
 
             random.shuffle(lst)
