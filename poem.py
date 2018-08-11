@@ -33,48 +33,60 @@ class PoemHandler:
         return self.__prepare_poem(poem_resp, key)
 
     def __prepare_poem(self, json_data, key):
+
+        def get_poem_data(poem_list, show_count):
+            poem_data = {}
+            poem_count = len(poem_list) if len(poem_list) < show_count else show_count
+            poem_data[f"{poem_count_key}"] = poem_count
+
+            @pick(poem_count)
+            def get_poem_author_title_clause():
+                poem_data_list = []
+                for poem in poem_list:
+                    author = poem.get(r"Author")
+                    if author is None:
+                        continue
+
+                    title = poem.get(r"Title")
+                    if title is None:
+                        continue
+                    title = title.get(r"Content")
+                    if title is None:
+                        continue
+
+                    clauses = poem.get(r"Clauses")
+                    if clauses is None:
+                        continue
+                    idx = 0
+                    last_ju = ""
+                    for clause in clauses:
+                        ju = clause.get(r"Content")
+                        last_ju = ju if idx == 0 else last_ju
+
+                        if idx % 2 == ODD and ju.find(f"{key}") != -1:
+                            last_ju = last_ju + ju
+                            break
+                        else:
+                            if last_ju.find(f"{key}") != -1:
+                                last_ju = last_ju + ju
+                                break
+
+                        last_ju = ju
+                        idx += 1
+
+                    poem_data_list.append({f"{poem_author}": author, f"{poem_title}": title, f"{poem_clause}": last_ju})
+
+                return poem_data_list
+
+            poem_data[f"{poem_data_key}"] = get_poem_author_title_clause()
+
+            return poem_data
+
         poems = json_data.get(r"ShiData")
         if poems is None:
-            return {f"{no_data}" : ""}
+            return {f"{no_data}": ""}
 
-        poem_data = {}
-        poem_data[f"{poem_count_key}"] = len(poems)
-        poem_data[f"{poem_data_key}"] = []
-        for poem in poems:
-            author = poem.get(r"Author")
-            if author is None:
-                continue
-
-            title = poem.get(r"Title")
-            if title is None:
-                continue
-            title = title.get(r"Content")
-            if title is None:
-                continue
-
-            clauses = poem.get(r"Clauses")
-            if clauses is None:
-                continue
-            idx = 0
-            last_ju = ""
-            for clause in clauses:
-                ju = clause.get(r"Content")
-                last_ju = ju if idx == 0 else last_ju
-
-                if idx % 2 == ODD and ju.find(f"{key}") != -1:
-                    last_ju = last_ju + ju
-                    break
-                else:
-                    if last_ju.find(f"{key}") != -1:
-                        last_ju = last_ju + ju
-                        break
-
-                last_ju = ju
-                idx += 1
-
-            poem_data[f"{poem_data_key}"].append({f"{poem_author}": author, f"{poem_title}": title, f"{poem_clause}": last_ju})
-
-        return poem_data
+        return get_poem_data(poems, 5)
 
 @cache
 @respjson()
