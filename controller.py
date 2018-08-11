@@ -69,7 +69,9 @@ def product_detail_test():
 @app.route("/product_detail/", methods = ["GET"])
 @returnHTML
 def product_detail_page():
-    return "product_detail.html"
+    from product_detail import ProdParam
+    id, name = get_request_params().get(ProdParam.id.value), get_request_params().get(ProdParam.name.value)
+    return "product_detail.html", {f"{ProdParam.id.value}" : id, f"{ProdParam.name.value}" : name}
 
 @app.route("/fz_detail_test/", methods = ["GET"])
 @jsut4test
@@ -82,7 +84,9 @@ def fz_detail_test():
 @app.route("/fz_detail/", methods = ["GET"])
 @returnHTML
 def fz_detail_page():
-   return "fz_detail.html"
+    from fz_detail import LCParams
+    name, wtime = get_request_params().get(LCParams.name.value), get_request_params().get(LCParams.wtime.value)
+    return "fz_detail.html", {f"{LCParams.name.value}" : name, f"{LCParams.wtime.value}" : wtime}
 
 # shanghai library other gj
 @app.route("/shlib/", methods = ["GET"])
