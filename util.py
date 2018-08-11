@@ -44,11 +44,15 @@ gj_desc_key = "gjdesc"
 wiki_info_key = "wiki_info"
 related_poems_key = "poems"
 map_location_key = "map_location"
+wtime_key = "wtime"
+
 
 ## statistics
 stat_fz_count_key = "count"
 stat_fz_data_key = "data"
 stat_map_location_key = "map_location"
+stat_area_wccount_key = "stat_area_wccount"
+stat_category_wccount_key = "stat_category_wccount"
 
 ## wiki type
 baidu = "baidubaike"

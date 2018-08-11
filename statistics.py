@@ -28,6 +28,30 @@ class Statistics:
                 map_location = query_map_location_from_local(map_place)
                 each_info[f"{stat_map_location_key}"] = map_location
 
+        def stat_count_with_same(prop):
+            stat_result = {}
+            for each_wc in wcstat_info_data:
+                curr_prop_val = each_wc.get(prop)
+                if curr_prop_val:
+                    if curr_prop_val not in stat_result:
+                        stat_result[curr_prop_val] = 1
+                    else:
+                        stat_result[curr_prop_val] += 1
+            return stat_result
+
+        def wc_count_in_area():
+            if wcstat_info_data:
+                return stat_count_with_same("area_map")
+            return {}
+
+        def wc_count_in_category():
+            if wcstat_info_data:
+                return stat_count_with_same("category")
+            return {}
+
+        wcstat_info[f"{stat_area_wccount_key}"] = wc_count_in_area()
+        wcstat_info[f"{stat_category_wccount_key}"] = wc_count_in_category()
+
         return wcstat_info
 
     def fz(self):
