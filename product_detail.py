@@ -1,6 +1,6 @@
 from flask import request, abort
 from enum import Enum, unique
-from wiki import query_wiki_info
+from wiki import Wiki, query_wiki_info
 from poem import PoemHandler
 from util import *
 import requests
@@ -40,7 +40,7 @@ class ProductInfo:
             wc_desc_in_gj = {}
 
         detail_info[f"{gj_desc_key}"] = wc_desc_in_gj
-        detail_info[f"{wiki_info_key}"] = query_wiki_info(name)
+        detail_info[f"{wiki_info_key}"] = Wiki.get_wiki_info_according2props(name, "abstracts", "relatedImage") # query_wiki_info(name)
 
         poemHandler = PoemHandler()
         detail_info[f"{related_poems_key}"] = poemHandler.get_poem_info_from_key(name)

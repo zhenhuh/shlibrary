@@ -32,6 +32,38 @@ class Wiki:
 
         return query_wiki_info(name, wikitype, field)
 
+    @classmethod
+    def get_wiki_info_according2props(self, name, *props):
+        result_list = []
+        for each_prop in props:
+            try:
+                each_result = query_wiki_info(name = name, field = each_prop)
+                if f"{resp_error_code}" in each_result:
+                    continue
+            except:
+                continue
+
+            result_list.append(each_result)
+
+        def cmp_to_wiki_count(next_item):
+            return len(next_item)
+
+        result_list.sort(key = cmp_to_wiki_count, reverse = True)
+
+        #print([len(e) for e in result_list])
+
+        if len(result_list) == 0:
+            return {}
+
+        most_wiki_kind_result = result_list[0]
+        for curr_wiki in most_wiki_kind_result:
+            for result_item in result_list:
+                curr_prop = result_item.get(curr_wiki)
+                if curr_prop:
+                    most_wiki_kind_result[curr_wiki].update(curr_prop)
+
+        return most_wiki_kind_result
+
 @cache
 @respjson()
 def query_wiki_info(name, wikitype = None, field = None):

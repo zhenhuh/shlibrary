@@ -47,7 +47,7 @@ def index_rightfrm_letter_click():
 @app.route("/index/rightfrm_taxonomy_click/", methods = ["POST", "GET"])
 @returnjson
 def index_rightfrm_taxonomy_click():
-    from index_page_click import Chessboard, ChessboardType
+    from index_page_click import Chessboard, ChessboardTypeChessboardType
     chess = Chessboard(ChessboardType.taxonomy)
     return chess.get_chessboard_data()
 
@@ -58,7 +58,7 @@ def index_rightfrm_region_click():
     chess = Chessboard(ChessboardType.region)
     return chess.get_chessboard_data()
 
-@app.route("/product_detail_test/", methods = ["GET"])
+@app.route("/product_detail_test/", methods = ["POST", "GET"])
 @jsut4test
 @returnjson
 def product_detail_test():
@@ -74,7 +74,7 @@ def product_detail_page():
     #return "product_detail.html", {f"{ProdParam.id.value}": id, f"{ProdParam.name.value}": name}
     return render_template("product_detail.html", id = id, name = name)
 
-@app.route("/fz_detail_test/", methods = ["GET"])
+@app.route("/fz_detail_test/", methods = ["POST", "GET"])
 @jsut4test
 @returnjson
 def fz_detail_test():
@@ -85,10 +85,9 @@ def fz_detail_test():
 @app.route("/fz_detail/", methods = ["GET"])
 #@returnHTML
 def fz_detail_page():
-    from fz_detail import LCParams
-    name, wtime = get_request_params().get(LCParams.name.value), get_request_params().get(LCParams.wtime.value)
-    #return "fz_detail.html", {f"{LCParams.name.value}" : name, f"{LCParams.wtime.value}" : wtime}
-    return render_template("fz_detail.html", name = name, wtime = wtime)
+    from fz_detail import LocalChroniclesInfo
+    fz = LocalChroniclesInfo()
+    return render_template("fz_detail.html", fzdetail = fz.get_lc_info())
 
 # shanghai library
 ## other gj
