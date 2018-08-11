@@ -87,6 +87,21 @@ wc_count_in_fz_info = "RESTfulWS/JL/jtwc/wcTJ"
 
 # region decorator
 
+def pick(count):
+    def inner(func):
+        import random
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            lst = func(*args, **kwargs)
+            if len(lst) <= count:
+                return lst
+
+            random.shuffle(lst)
+            return lst[:count]
+
+        return wrapper
+    return inner
+
 def jsut4test(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
