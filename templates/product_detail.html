@@ -42,98 +42,126 @@
         <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
             <div class="m-grid__item m-grid__item--fluid m-wrapper">
                 <div class="m-content">
-
+                    <input type="text" hidden id="product_id" value={{ id }} >
+                    <input type="text" hidden id="product_name" value={{ name }} >
                     <div class="row">
                         <div class="col-lg-7">
                             <!--begin::Portlet-->
                             <div class="m-portlet">
-
                                 <div class="m-portlet__body">
                                     <!--begin::Section-->
-                                    <div class="m-section m-section--last" data-scrollbar-shown="true" data-scrollable="true" data-max-height="600">
+                                    <div class="m-section m-section--last">
                                         <div class="m-section__content">
                                             <!--begin::Preview-->
                                             <div class="m-demo">
                                                 <div class="m-demo__preview">
                                                     <div>
-                                                        <span style="font-size:20px;color:#62460f;margin-right:20px;">松子</span>RDF | NT | XML | JSON
+                                                        <span id="product_name_id" style="font-size:20px;color:#62460f;margin-right:20px;">
+                                                            松子
+                                                        </span>RDF | NT | XML | JSON
                                                     </div>
                                                     <div class="m-list-search">
                                                         <div class="m-list-search__results">
-                                                            <span class="m-list-search__result-message m--hide">
-																	No record found
-																</span>
                                                             <div class="m-list-search__result-item" style="margin-top:20px;">
                                                                 <span class="m-list-search__result-item-icon">
-																		<i class="flaticon-file-1 m--font-warning"></i>
-																	</span>
+                                                                    <i class="flaticon-file-1 m--font-warning"></i>
+                                                                </span>
                                                                 <span style="vertical-align:middle;font-size:16px;color:#7d6c29;">
-																		物产来源方志
-																	</span>
+                                                                    物产来源方志
+                                                                </span>
                                                             </div>
-                                                            <span style="color:#00000;margin-bottom:30px;">
-																	方志一/方志二
-																</span>
+                                                            <span id="wcsource_fz_id" style="color:#000000;margin-bottom:30px;">
+                                                                
+                                                            </span>
 
                                                             <div class="m-list-search__result-item" style="margin-top:20px;">
                                                                 <span class="m-list-search__result-item-icon">
-																		<i class="flaticon-book m--font-warning"></i>
-																	</span>
+                                                                    <i class="flaticon-book m--font-warning"></i>
+                                                                </span>
                                                                 <span style="vertical-align:middle;font-size:16px;color:#7d6c29;">
-																		物产来源其他古籍
-																	</span>
+                                                                    物产来源其他古籍
+                                                                </span>
                                                             </div>
-                                                            <span>
-																	古籍一/古籍二
-																</span>
+                                                            <span id="wcsource_qt_id">
+																
+															</span>
 
                                                             <div class="m-list-search__result-item" style="margin-top:20px;">
                                                                 <span class="m-list-search__result-item-icon">
-																		<i class="flaticon-interface-10 m--font-warning"></i>
-																	</span>
+                                                                    <i class="flaticon-interface-10 m--font-warning"></i>
+                                                                </span>
                                                                 <span style="vertical-align:middle;font-size:16px;color:#7d6c29;">
-																		物产所属分类标签
-																	</span>
+                                                                    物产所属分类标签
+                                                                </span>
                                                             </div>
-                                                            <span>
-																	标签一/标签二
-																</span>
+                                                            <span id="category_qt_id">
+                                                                
+                                                            </span>
 
                                                             <div class="m-list-search__result-item" style="margin-top:20px;">
                                                                 <span class="m-list-search__result-item-icon">
-																		<i class="flaticon-list-1 m--font-warning"></i>
-																	</span>
+                                                                    <i class="flaticon-list-1 m--font-warning"></i>
+                                                                </span>
                                                                 <span style="vertical-align:middle;font-size:16px;color:#7d6c29;">
-																			物产描述
-																	</span>
+                                                                    物产描述
+                                                                </span>
                                                             </div>
-                                                            <span>
-																	出【L玉筍山下撫仙湖】中其魚形似鰍有鱗而無膽骨少而脆其味頗美常隱於淵夏秋則依岸浮於水面滃然若雲漁者捕而得之俗云食此魚可以禦瘴凡往廣西元江
-																</span>
+                                                            <span id="desc_id">
+                                                                
+                                                            </span><br>
+                                                            <span id="poems_id">
+                                                                
+                                                            </span>
 
                                                             <div class="m-list-search__result-item" style="margin-top:20px;">
                                                                 <span class="m-list-search__result-item-icon">
-																		<i class="flaticon-users m--font-warning"></i>
-																	</span>
+                                                                    <i class="flaticon-users m--font-warning"></i>
+                                                                </span>
                                                                 <span style="vertical-align:middle;font-size:16px;color:#7d6c29;">
-																			物产相关人物
-																	</span>
+                                                                    物产相关人物
+                                                                </span>
                                                             </div>
-                                                            <span>
-																	人物一、人物二
-																</span>
-
+                                                            <span id="Des_people_id">
+                                                                
+                                                            </span>
                                                             <div class="m-list-search__result-item" style="margin-top:20px;">
                                                                 <span class="m-list-search__result-item-icon">
-																		<i class="flaticon-folder-1 m--font-warning"></i>
-																	</span>
+                                                                    <i class="flaticon-folder-1 m--font-warning"></i>
+                                                                </span>
                                                                 <span style="vertical-align:middle;font-size:16px;color:#7d6c29;">
-																			百科
-																	</span>
+                                                                    百科数据
+                                                                </span>
                                                             </div>
-                                                            <span>
-																	百科内容
-																</span>
+                                                            <div id="wiki_info_id">
+                                                                <!-- <div style="margin-top:5px;">
+                                                                    <span>百度百科:</span>
+                                                                    <a href="http://zhishi.me/baidubaike/resource/松子（植物种子）" target="_blank">松子相关链接</a>
+                                                                </div>
+                                                                <div style="margin-top:5px;">
+                                                                    <span>互动百科:</span>
+                                                                    <a href="http://zhishi.me/hudongbaike/resource/海松子" target="_blank">松子相关链接</a>
+                                                                </div>
+                                                                <div style="margin-top:5px;">
+                                                                    <span>中国维基:</span>
+                                                                    <div>
+                                                                        <span>
+                                                                            摘要：松子（英语：pine nut、意大利语：pinoli）即松科植物的种子，又名松仁、松仁子或松子仁，可入药、做菜，炒熟后可作小吃。若想要直接食用，建议选择没有加工过的松子，平时便可当作零食食用，可以保护心血管健康，预防因胆固醇过高而引起的心血管疾病。 平日常食用的松子有从红松的种子，也有来自意大利石松的种子，其形状略有不同。
+                                                                        </span>
+                                                                        <span>
+                                                                            分类：松科, 小吃
+                                                                        </span>
+                                                                        <span>
+                                                                            分类：松科, 小吃
+                                                                        </span>
+                                                                        <span>
+                                                                            相关图片：
+                                                                        </span>
+                                                                        <br/>
+                                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Pinoli.jpg/220px-Pinoli.jpg"/>
+                                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Shelled_pine_nuts.jpg/220px-Shelled_pine_nuts.jpg"/>
+                                                                    </div>
+                                                                </div> -->
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

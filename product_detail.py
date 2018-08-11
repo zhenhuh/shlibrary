@@ -35,7 +35,7 @@ class ProductInfo:
             wc_desc_in_gj = {detail["gjsource"]: detail["gjdesc"] for detail in detail_list if len(detail["gjdesc"]) != 0}
 
             beautify_gj_list = "《" + gj_list.strip(";").replace(";", "》 《") + "》"
-            detail_info[f"{gj_list_key}"] = beautify_gj_list
+            detail_info[f"{gj_beautify_gj_list_key}"] = beautify_gj_list
         else:
             wc_desc_in_gj = {}
 

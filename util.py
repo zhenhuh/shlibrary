@@ -40,6 +40,7 @@ category_key = "category"
 
 ## detail resp json key
 gj_list_key = "wcsource_qt"
+gj_beautify_gj_list_key = "beautify_wcsource_qt"
 gj_desc_key = "gjdesc"
 wiki_info_key = "wiki_info"
 related_poems_key = "poems"
