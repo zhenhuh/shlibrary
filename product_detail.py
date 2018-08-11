@@ -47,6 +47,13 @@ class ProductInfo:
 
         detail_info[f"{map_location_key}"] = query_map_location_from_local(place_name_in_map)
 
+        temporal = detail_info.get("temporal")
+        detail_info[f"{wtime_key}"] = ""
+        if temporal:
+            year = temporal.split("(")
+            if len(year) >= 2:
+                detail_info[f"{wtime_key}"] = year[-1].rstrip(")")
+
         return detail_info
 
 @cache
