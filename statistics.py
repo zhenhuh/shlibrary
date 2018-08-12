@@ -20,9 +20,23 @@ class Statistics:
         self.__check_statistics_params(get_request_params())
         wcname = get_request_params().get(StatisticsParams.wcname.value)
         wcstat_info = query_wc_statistics(wcname)
+
+        def sort_acccordingto_time_acs():
+
+            def cmp_to_time(next_info):
+                return next_info["time_w"]
+
+            if wcstat_info_data:
+                wcstat_info_data.sort(key = cmp_to_time, reverse = False)
+
+                return wcstat_info_data
+            else:
+                return None
+
         # need to add map info
         wcstat_info_data = wcstat_info.get("data")
         if wcstat_info_data:
+            wcstat_info["data"] = sort_acccordingto_time_acs()
             for each_info in wcstat_info_data:
                 map_place = each_info.get("area_map")
                 map_location = query_map_location_from_local(map_place)
