@@ -57,8 +57,10 @@
                                                 <div class="m-demo__preview">
                                                     <div>
                                                         <span id="product_name_id" style="font-size:20px;color:#62460f;margin-right:20px;">
-                                                            松子
-                                                        </span>RDF | NT | XML | JSON
+                                                        </span>XML | JSON
+                                                        <button type="button" class="btn btn-metal" data-toggle="modal" data-target="#m_modal_1_2">
+                                                            时空展现
+                                                        </button>
                                                     </div>
                                                     <div class="m-list-search">
                                                         <div class="m-list-search__results">
@@ -133,34 +135,7 @@
                                                                 </span>
                                                             </div>
                                                             <div id="wiki_info_id">
-                                                                <!-- <div style="margin-top:5px;">
-                                                                    <span>百度百科:</span>
-                                                                    <a href="http://zhishi.me/baidubaike/resource/松子（植物种子）" target="_blank">松子相关链接</a>
-                                                                </div>
-                                                                <div style="margin-top:5px;">
-                                                                    <span>互动百科:</span>
-                                                                    <a href="http://zhishi.me/hudongbaike/resource/海松子" target="_blank">松子相关链接</a>
-                                                                </div>
-                                                                <div style="margin-top:5px;">
-                                                                    <span>中国维基:</span>
-                                                                    <div>
-                                                                        <span>
-                                                                            摘要：松子（英语：pine nut、意大利语：pinoli）即松科植物的种子，又名松仁、松仁子或松子仁，可入药、做菜，炒熟后可作小吃。若想要直接食用，建议选择没有加工过的松子，平时便可当作零食食用，可以保护心血管健康，预防因胆固醇过高而引起的心血管疾病。 平日常食用的松子有从红松的种子，也有来自意大利石松的种子，其形状略有不同。
-                                                                        </span>
-                                                                        <span>
-                                                                            分类：松科, 小吃
-                                                                        </span>
-                                                                        <span>
-                                                                            分类：松科, 小吃
-                                                                        </span>
-                                                                        <span>
-                                                                            相关图片：
-                                                                        </span>
-                                                                        <br/>
-                                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Pinoli.jpg/220px-Pinoli.jpg"/>
-                                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Shelled_pine_nuts.jpg/220px-Shelled_pine_nuts.jpg"/>
-                                                                    </div>
-                                                                </div> -->
+                                                                
                                                             </div>
                                                         </div>
                                                     </div>
@@ -189,6 +164,9 @@
                 </div>
             </div>
         </div>
+        <!--弹出层-->
+        {% include '/product_map.html' %}
+        
         <!-- end:: Body -->
         <!-- begin::Footer -->
         {% include '/frame/footer.html' %}
@@ -207,6 +185,8 @@
     <script type="text/javascript" src="http://api.map.baidu.com/library/AreaRestriction/1.2/src/AreaRestriction_min.js"></script>
     <!-- <script src="/static/js/BMap.js"></script> -->
     <script src="/static/js/detail.js" type="text/javascript"></script>
+    <script src="/static/js/detail_map.js" type="text/javascript"></script>
+    <script src="/static/js/timeline.js" type="text/javascript"></script>
 </body>
 <!-- end::Body -->
 

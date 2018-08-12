@@ -125,7 +125,6 @@ $(function(){
             data: tempdata,
             dataType:"json",
             success:function(data){
-                console.log(data);
                 $.callbackPageinfo(data);
                 if(data==null || data.count==0){
                     $("#m-list-search_results_id").append("<span class='m-list-search__result-message'>对不起，没有检索到相关数据 </span>");

@@ -15,7 +15,10 @@ $(function() {
                 name:$("#product_name").val()
             },
         success:function(data){
+            //设置详细信息
             setDetailData(data);
+            //展示地图
+            showDetailPlace(data.map_location);
         },
         error:function(data){
 
@@ -27,25 +30,39 @@ $(function() {
      * @param  data 
      */
     function setDetailData(data){
-        console.log(data);
         $("#product_name_id").text(data.product_name);//物产名
         //物产来源方志
         var wcsource_fz = "";
         if(data.wcsource_fz != null && data.wcsource_fz!=""){
             wcsource_fz = "<a href='/fz_detail/?name="+data.wcsource_fz+"&wtime="+data.wtime+"' target='_blank'>"+data.wcsource_fz+"</a>";
         }else{
-            wcsource_fz = data.wcsource_fz;
+            wcsource_fz = "无";
         }
-        $("#wcsource_fz_id").append(wcsource_fz);    
-        $("#wcsource_qt_id").text(data.beautify_wcsource_qt);//物产来源其他古籍
-        $("#category_qt_id").text(data.category_qt);//物产所属分类标签
+        $("#wcsource_fz_id").append(wcsource_fz); 
+        //物产来源其他古籍
+        var wcsource_qt = "";
+        if(data.beautify_wcsource_qt != null && data.beautify_wcsource_qt!=""){
+            wcsource_qt = data.beautify_wcsource_qt;
+        }else{
+            wcsource_qt = "无";
+        }
+        $("#wcsource_qt_id").text(wcsource_qt);
+
+        //物产所属分类标签
+        var category_qt = "";
+        if(data.category_qt != null && data.category_qt!=""){
+            category_qt = data.category_qt;
+        }else{
+            category_qt = "无";
+        }
+        $("#category_qt_id").text(category_qt);
+
         //物产相关人物-格式问题 -todo
         if(data.Des_people != null && data.Des_people != ""){
             $("#Des_people_id").append("<a href='/shlib/person/?person='"+data.Des_people+">");
         }else{
-
+            $("#Des_people_id").append("无");
         }
-        
         
         //物产描述
         if(data.desc != null && data.desc != ""){
@@ -56,7 +73,7 @@ $(function() {
         }
 
         //其他古籍描述
-        if(data.gjdesc != null && data.gjdesc.toString().length > 0){
+        if(!jQuery.isEmptyObject(data.gjdesc)){
             //描述信息
             $("#desc_id").append("<br/><h6>其他古籍物产描述:</h6>");
             for(var key in data.gjdesc){
@@ -79,7 +96,7 @@ $(function() {
         /**
          * 百科字段
          */
-        if(data.wiki_info != null){
+        if(!jQuery.isEmptyObject(data.wiki_info)){
             var wiki_info = "";
             //百度百科
             if(data.wiki_info.baidubaike != null){
@@ -123,18 +140,26 @@ $(function() {
                     }
                 }
             }
+        }else{
+            $("#wiki_info_id").text("无");
         }
     }
-    //百度地图API功能	
-    var map = new BMap.Map("yn_map");
-    map.centerAndZoom(new BMap.Point(101.88, 25.7), 8); //经度、维度、精确度（3-19，数字越大，越精确）
-    map.enableScrollWheelZoom();
-    //加载一个矩形区域地图
-    var b = new BMap.Bounds(new BMap.Point(96.037928, 19.802862), //西南角经纬度
-        new BMap.Point(107.536239, 29.537083));
-    try {
-        BMapLib.AreaRestriction.setBounds(map, b);
-    } catch (e) {
-        alert(e);
+
+    function showDetailPlace(data){
+        var map = new BMap.Map("yn_map");
+        var point = new BMap.Point(data.longitude,data.latitude);
+        map.centerAndZoom(point, 8);
+        map.enableScrollWheelZoom();
+        var marker = new BMap.Marker(point);  // 创建标注
+        
+        map.addOverlay(marker);               // 将标注添加到地图中
+        marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+    
+        var opts = {
+            position :point,    // 指定文本标注所在的地理位置
+            offset   : new BMap.Size(20, -10)    //设置文本偏移量
+        }
+        var label = new BMap.Label(data.place,opts);
+        marker.setLabel(label);
     }
 });

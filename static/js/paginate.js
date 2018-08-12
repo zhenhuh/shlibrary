@@ -6,11 +6,14 @@ $.extend({
      */
     callbackPageinfo:function(data){
         var $obj = $(".dataTables_wrapper");
+        if(data.page_count == 0){
+            $obj.find("#page_data_info_id").text("");
+            return;
+        }
+
         //当前页码信息
         $obj.find("#page_data_info_id").text("共"+data.count+"条，当前页面从 "+(data.first_index+1)+" 条至 "+(data.last_index+1)+" 条");
-
-        //页码数
-        var pagenum = 5;
+        
         //当前分页数据信息
 
         //如果有下一页
@@ -168,6 +171,17 @@ $.extend({
             searchByPageIndex(advancedPageData);
         });
         
+        //页码数
+        var lastNo = $obj.find(".page_num").last().find("a").attr("data-dt-idx");
+        // var pageNo = data.page_count - data.current_page;
+        if(lastNo > data.page_count){
+            $obj.find(".page_num:gt("+(4+data.page_count-lastNo)+")").hide();
+        }else{
+            $obj.find(".page_num").show();
+        }
+
+        $obj.find(".page_num").removeClass("active");
+        $obj.find(".page_num").find("a[data-dt-idx="+data.current_page+"]").parent().addClass("active");
         // first_index
         // last_index
         // page_count
