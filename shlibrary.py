@@ -98,16 +98,23 @@ class ShlibDataMgr:
 
             return temp_name
 
-        resp = query_person_info(remove_other_info(request_params[ShlibParam.person.value]))
+        name = remove_other_info(request_params[ShlibParam.person.value])
+        resp = query_person_info(name)
 
-        person = resp["data"]
+        person_data = resp["data"]
 
-        if len(person) == 0:
+        if len(person_data) == 0:
             return ""
 
         # assume no duplicate
-        person_uri = person[0].get("uri", "")
-        return f"http://names.library.sh.cn/mrgf/service/work/persons?uri={person_uri}&dataType=1"
+        for person in person_data:
+            if person.get("fname", "") == name:
+                person_uri = person.get("uri", "")
+                if len(person_uri) == 0:
+                    break
+                return f"http://names.library.sh.cn/mrgf/service/work/persons?uri={person_uri}&dataType=1"
+
+        return ""
 
 @cache
 @respjson()
