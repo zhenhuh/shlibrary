@@ -3,7 +3,6 @@ from enum import Enum, unique
 from server import app
 from util import *
 import requests
-import re
 
 def get_userkey():
     with open(r"conf\key") as f:
