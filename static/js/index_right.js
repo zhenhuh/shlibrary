@@ -145,13 +145,11 @@ var index_right = {
                         wccontent +='<div class="col-md-12 col-lg-6 col-xl-3">'+
                                     '<div class="m-widget24">'+
                                         '<div class="m-widget24__item" style="text-align:center;"> '+
-                                            '<a href="javascript:;" wcname="'+ele.wcname+'" class="wc_list_link"><h4 class="m-widget24__title">'+
+                                            '<a href="javascript:;" wcname="'+ele.wcname+'" class="wc_list_link">'+
+                                            '<h4 class="jiugongge_css"><i class="flaticon-layers m--font-warning"></i>    '+
                                                 ele.wcname +
                                             '</h4></a>'+
                                             '<br>'+
-                                            '<span class="m-widget24__stats m--font-brand">'+
-                                                '365'+
-                                            '</span>'+
                                         '</div>'+
                                     '</div>'+
                                 '</div>';

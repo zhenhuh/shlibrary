@@ -2,10 +2,6 @@
  * 详细页面JS文件
  */
 $(function() {
-    
-    
-    
-    
     /**
      * 查询明细数据
      */
@@ -50,7 +46,6 @@ $(function() {
         }
         $(".m-timeline-2__item-cricle").first().addClass("active");
     }
-
 });
 
     /**
