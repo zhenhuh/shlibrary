@@ -87,16 +87,24 @@ class ShlibDataMgr:
             if len(temp_name) >= 2:
                 temp_name = temp_name[1]
             else:
-                temp_name = temp_name[0]
+                temp_name = temp_name[0].split("）")
+                if len(temp_name) >= 2:
+                    temp_name = temp_name[1]
+                else:
+                    temp_name = temp_name[0]
 
-            if temp_name.endswith("增修") and len(temp_name) > 3:
-                temp_name = temp_name.rstrip("增修")
-                return temp_name
-            if temp_name.endswith("修") and len(temp_name) > 2:
-                temp_name = temp_name.rstrip("修")
-                return temp_name
+            ends_dict = {
+                "ends3" : ["续纂修"],
+                "ends2" : ["增修", "纂修", "原纂", "续纂", "原修", "纂辑", "同纂", "增纂", "增订", "重校", "等纂"],
+                "ends1" : ["纂", "修", "撰", "辑", "编", "校"]
+            }
+            for _, ends in ends_dict.items():
+                for end in ends:
+                    if temp_name.endswith(end) and len(temp_name) > len(end) + 1:
+                        temp_name = temp_name.rstrip(end)
+                        return temp_name.strip()
 
-            return temp_name
+            return temp_name.strip()
 
         name = remove_other_info(request_params[ShlibParam.person.value])
         resp = query_person_info(name)
