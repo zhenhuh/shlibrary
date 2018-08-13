@@ -81,7 +81,7 @@ $(function(){
                     $("#m-list-search_results_id").html("<span class='m-list-search__result-message'>对不起，没有检索到相关数据 </span>");
                 }else{
                     $(data.data).each(function(index,ele){
-                        var content ='<ul class="m-nav m-nav--inline">'+
+                        var content ='<ul class="m-nav m-nav--inline" style="width:100%">'+
                                 '<li class="m-nav__item">'+
                                     '<a href="/product_detail/?id='+ele.uid+'&name='+ele.product_name+'" target="_blank" class="m-nav__link">'+
                                         '<i class="flaticon-paper-plane m--font-info" style="padding-right:10px;"></i>'+
@@ -131,7 +131,11 @@ $(function(){
                 }else{                    
                     //加载页面数据
                     $(data.data).each(function(index,ele){
-                        var content ='<ul class="m-nav m-nav--inline">'+
+                        var wc_or_gj = "无来源志书"
+                        if (ele.wcsource != "") {
+                            wc_or_gj = ele.wcsource + '<i style="margin-left:15px;">'+ele.temporal+'</i>'
+                        }
+                        var content ='<ul class="m-nav m-nav--inline" style="width:100%;">'+
                                 '<li class="m-nav__item">'+
                                     '<a href="/product_detail/?id='+ele.uid+'&name='+ele.product_name+'" target="_blank" class="m-nav__link">'+
                                         '<i class="flaticon-paper-plane m--font-info" style="padding-right:10px;"></i>'+
@@ -142,7 +146,7 @@ $(function(){
                                 '</li>'+
                                 '<li class="m-nav__item">'+
                                     '<span class="m-nav__link-text" style="padding-left:10px;">'+
-                                        ele.wcsource + '<i style="margin-left:15px;">'+ele.temporal+'</i>'+
+                                        wc_or_gj +
                                     '</span>'+
                                 '</li>'+
                             '</ul>';

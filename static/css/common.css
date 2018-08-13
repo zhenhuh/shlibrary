@@ -152,6 +152,14 @@
 .active i:before {
     background:red;
 }
+
+.jiugongge_css{
+    margin-top: 1.6rem;
+    margin-bottom: -0.5rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #9424a9;
+}
 /* #m_header_menu ul li {
     display: inline-block;
 }
