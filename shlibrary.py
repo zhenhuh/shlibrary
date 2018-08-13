@@ -13,6 +13,9 @@ userkey = get_userkey()
 @unique
 class ShlibParam(Enum):
     gj = "gj"
+    # redirect
+    place = "place"
+    dynasty = "dynasty"
     person = "person"
 
 class ShlibDataMgr:
@@ -52,14 +55,59 @@ class ShlibDataMgr:
                     book_infos.append(self.__make_detail_info(query_detail_info_for(book_uri)))
             return book_infos
 
-    def get_person_info(self):
+    # deal redirect
+    def get_redirect_url_for_place(self):
+        request_params = get_request_params()
+
+        self.__check_shlib_params(request_params, ShlibParam.place.value)
+        try:
+            # data format is not json when no data
+            resp = query_place_info(request_params[ShlibParam.place.value])
+        except ValueError:
+            return ""
+
+        return resp.get("@id", "")
+
+    def get_redirect_url_for_dynasty(self):
+        request_params = get_request_params()
+
+        self.__check_shlib_params(request_params, ShlibParam.dynasty.value)
+
+        resp = query_dynasty_info(request_params[ShlibParam.dynasty.value])
+
+        return resp["result"].get("uri", "")
+
+    def get_redirect_url_for_person(self):
         request_params = get_request_params()
 
         self.__check_shlib_params(request_params, ShlibParam.person.value)
 
-        person_name = request_params[ShlibParam.person.value]
+        def remove_other_info(person_name):
+            temp_name = person_name.split(")")
+            if len(temp_name) >= 2:
+                temp_name = temp_name[1]
+            else:
+                temp_name = temp_name[0]
 
-        return query_person_info(person_name)
+            if temp_name.endswith("增修") and len(temp_name) > 3:
+                temp_name = temp_name.rstrip("增修")
+                return temp_name
+            if temp_name.endswith("修") and len(temp_name) > 2:
+                temp_name = temp_name.rstrip("修")
+                return temp_name
+
+            return temp_name
+
+        resp = query_person_info(remove_other_info(request_params[ShlibParam.person.value]))
+
+        person = resp["data"]
+
+        if len(person) == 0:
+            return ""
+
+        # assume no duplicate
+        person_uri = person[0].get("uri", "")
+        return f"http://names.library.sh.cn/mrgf/service/work/persons?uri={person_uri}&dataType=1"
 
 @cache
 @respjson()
@@ -75,6 +123,16 @@ def query_detail_info_for(gj_uri):
 @respjson()
 def query_person_info(name):
     return requests.get(f"http://data1.library.sh.cn/persons/data?fname={name}&key={userkey}")
+
+@cache
+@respjson()
+def query_place_info(place):
+    return requests.get(f"http://data1.library.sh.cn/place/{place}?key={userkey}")
+
+@cache
+@respjson()
+def query_dynasty_info(dynasty):
+    return requests.get(f"http://data1.library.sh.cn/data/{dynasty}.json?key={userkey}")
 
 if __name__ == "__main__":
     #app.run(host = "0.0.0.0", port = 8080, debug=True)

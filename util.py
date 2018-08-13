@@ -1,4 +1,4 @@
-from flask import request, abort, jsonify, render_template
+from flask import request, abort, jsonify, render_template, redirect
 from functools import wraps, lru_cache
 from datetime import datetime, timedelta
 
@@ -129,6 +129,17 @@ def returnHTML(func):
         return render_template(func(*args, **kwargs))
 
     return wrapper
+
+def tryredirect(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        url = func(*args, **kwargs)
+        if url == "":
+            render_template("404.html")
+        return redirect(url)
+
+    return wrapper
+
 
 def respjson(ignoreJSONDecodeError = False):
     def inner(func):

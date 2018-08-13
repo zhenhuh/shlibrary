@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from server import app
 from util import *
 
@@ -98,13 +98,30 @@ def shlib_gj_action():
     shlib = ShlibDataMgr()
     return shlib.get_gj_detail_info()
 
+## redirect
 ## person
-@app.route("/shlib/person/", methods = ["GET"])
-@returnjson
+@app.route("/shlib/person/", methods=["GET"])
+@tryredirect
 def shlib_person_action():
     from shlibrary import ShlibDataMgr
     shlib = ShlibDataMgr()
-    return shlib.get_person_info()
+    return shlib.get_redirect_url_for_person()
+
+### place
+@app.route("/shlib/place/", methods=["GET"])
+@tryredirect
+def shlib_place_action():
+    from shlibrary import ShlibDataMgr
+    shlib = ShlibDataMgr()
+    return shlib.get_redirect_url_for_place()
+
+### dynasty
+@app.route("/shlib/dynasty/", methods=["GET"])
+@tryredirect
+def shlib_dynasty_action():
+    from shlibrary import ShlibDataMgr
+    shlib = ShlibDataMgr()
+    return shlib.get_redirect_url_for_dynasty()
 
 # wiki data
 @app.route("/wiki/", methods = ["GET"])
