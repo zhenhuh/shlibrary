@@ -74,6 +74,10 @@ class PoemHandler:
                         last_ju = ju
                         idx += 1
 
+                    if idx == len(clauses):
+                        if idx >= 2:
+                            last_ju = clauses[-2].get(r"Content", "") + last_ju
+
                     poem_data_list.append({f"{poem_author}": author, f"{poem_title}": title, f"{poem_clause}": last_ju})
 
                 return poem_data_list
@@ -81,6 +85,9 @@ class PoemHandler:
             poem_data[f"{poem_data_key}"] = get_poem_author_title_clause()
 
             return poem_data
+
+        if json_data is None:
+            return {f"{no_data}": ""}
 
         poems = json_data.get(r"ShiData")
         if poems is None:
