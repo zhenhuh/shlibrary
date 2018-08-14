@@ -6,7 +6,7 @@ $.extend({
      */
     callbackPageinfo:function(data){
         var $obj = $(".dataTables_wrapper");
-        if(data.page_count == 0){
+        if(data.count == 0){
             $obj.find("#page_data_info_id").text("");
             return;
         }
