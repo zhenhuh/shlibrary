@@ -23,7 +23,7 @@ class LocalChroniclesInfo:
         name = request_params.get(LCParams.name.value)
         wtime = request_params.get(LCParams.wtime.value)
 
-        return query_lc_detail(name, wtime)
+        return query_lc_detail(name.strip(), wtime)
 
 @cache
 @respjson()

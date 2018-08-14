@@ -39,6 +39,20 @@ class PoemHandler:
             poem_count = len(poem_list) if len(poem_list) < show_count else show_count
             poem_data[f"{poem_count_key}"] = poem_count
 
+            def add_comma(clause):
+                if not clause:
+                    return ""
+                if clause[-1] == "。" or clause[-1] == ".":
+                    return clause[:-1] + "，"
+                return clause
+
+            def add_period(clause):
+                if not clause:
+                    return ""
+                if clause[-1] == "。":
+                    return clause
+                return clause[:-1] + "。"
+
             @pick(poem_count)
             def get_poem_author_title_clause():
                 poem_data_list = []
@@ -64,11 +78,11 @@ class PoemHandler:
                         last_ju = ju if idx == 0 else last_ju
 
                         if idx % 2 == ODD and ju.find(f"{key}") != -1:
-                            last_ju = last_ju + ju
+                            last_ju = add_comma(last_ju) + ju
                             break
                         else:
                             if last_ju.find(f"{key}") != -1:
-                                last_ju = last_ju + ju
+                                last_ju = add_comma(last_ju) + ju
                                 break
 
                         last_ju = ju
@@ -76,9 +90,9 @@ class PoemHandler:
 
                     if idx == len(clauses):
                         if idx >= 2:
-                            last_ju = clauses[-2].get(r"Content", "") + last_ju
+                            last_ju = add_comma(clauses[-2].get(r"Content", "")) + last_ju
 
-                    poem_data_list.append({f"{poem_author}": author, f"{poem_title}": title, f"{poem_clause}": last_ju})
+                    poem_data_list.append({f"{poem_author}": author, f"{poem_title}": title, f"{poem_clause}": add_period(last_ju)})
 
                 return poem_data_list
 

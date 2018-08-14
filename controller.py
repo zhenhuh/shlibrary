@@ -161,6 +161,11 @@ def fz_statistics_action():
     stat = Statistics()
     return stat.fz()
 
+@app.route("/statistics/", methods = ["GET"])
+@returnHTML
+def fz_statistics_page():
+    return "statistics.html"
+
 # poem
 @app.route("/poem/", methods=["GET", "POST"])
 @jsut4test
