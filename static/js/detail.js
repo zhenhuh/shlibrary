@@ -34,8 +34,8 @@ $(function() {
         $("#product_name_id").text(data.product_name);//物产名
         //物产来源方志
         var wcsource_fz = "";
-        if(data.wcsource_fz != null && data.wcsource_fz!=""){
-            wcsource_fz = "<a href='/fz_detail/?name="+data.wcsource_fz+"&wtime="+data.wtime+"' target='_blank'>"+data.wcsource_fz+"</a>"+
+        if(data.wcsource_fz != null && data.wcsource_fz.trim()!=""){
+            wcsource_fz = "<a href='/fz_detail/?name="+data.wcsource_fz.trim()+"&wtime="+data.wtime+"' target='_blank'>"+data.wcsource_fz.trim()+"</a>"+
                 "——<span>"+data.temporal+"</span>";
         }else{
             wcsource_fz = "无";
@@ -94,7 +94,7 @@ $(function() {
                 var ps = data.Des_people.split(";");
                 for(var i in ps){
                     if(ps[i] != "" && strNew.indexOf(ps[i]) >= 0){
-                        strNew = strNew.replaceAll(ps[i],"<span style='background-color:#bcd246' title='相关人物："+ps[i]+"'>"+ps[i]+"</span>");
+                        strNew = strNew.replaceAll(ps[i],"<a href='/shlib/person/?person="+ps[i].trim()+"' target='_blank' style='background-color:#bcd246' title='相关人物："+ps[i]+"'>"+ps[i]+"</a>");
                     }
                 }
             }
@@ -104,7 +104,7 @@ $(function() {
                 var ds = data.Des_site.split(";");
                 for(var i in ps){
                     if(ds[i] != "" && strNew.indexOf(ds[i]) >= 0){
-                        strNew = strNew.replaceAll(ds[i],"<span style='background-color:#d279e2' title='产地："+ds[i]+"'>"+ds[i]+"</span>");
+                        strNew = strNew.replaceAll(ds[i],"<a href='/shlib/place/?place="+ds[i].trim()+"' target='_blank' style='background-color:#d279e2' title='产地："+ds[i]+"'>"+ds[i]+"</a>");
                     }
                 }
             }

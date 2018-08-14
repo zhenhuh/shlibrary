@@ -127,7 +127,7 @@ $(function(){
             success:function(data){
                 $.callbackPageinfo(data);
                 if(data==null || data.count==0){
-                    $("#m-list-search_results_id").append("<span class='m-list-search__result-message'>对不起，没有检索到相关数据 </span>");
+                    $("#m-list-search_results_id").html("<span class='m-list-search__result-message'>对不起，没有检索到相关数据 </span>");
                 }else{                    
                     //加载页面数据
                     $(data.data).each(function(index,ele){

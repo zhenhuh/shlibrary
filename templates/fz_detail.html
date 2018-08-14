@@ -71,7 +71,11 @@
                                                                         主要责任者
                                                                     </span>
                                                                     <span class="zd_detail_value">
-                                                                        {{fzdetail.author}}
+                                                                        {% if fzdetail.author != "" %}
+                                                                            {% for author in fzdetail.author.split(";")%}
+                                                                                <a href="/shlib/person/?person={{ author }}" target="_blank">{{ author }}</a>
+                                                                            {% endfor %}
+                                                                        {% endif %}
                                                                     </span>
                                                                 </div>
                                                             
@@ -80,7 +84,11 @@
                                                                         其他责任者1
                                                                     </span>
                                                                     <span class="zd_detail_value">
-                                                                        {{fzdetail.author1}}
+                                                                        {% if fzdetail.author1 != "" %}
+                                                                            {% for author in fzdetail.author1.split(";")%}
+                                                                                <a href="/shlib/person/?person={{ author }}" target="_blank">{{ author }}</a>
+                                                                            {% endfor %}
+                                                                        {% endif %}
                                                                     </span>
                                                                 </div>
                                                             
@@ -89,7 +97,11 @@
                                                                         其他责任者2
                                                                     </span>
                                                                     <span class="zd_detail_value">
-                                                                        {{fzdetail.author2}}
+                                                                        {% if fzdetail.author2 != "" %}
+                                                                            {% for author in fzdetail.author2.split(";")%}
+                                                                                <a href="/shlib/person/?person={{ author }}" target="_blank">{{ author }}</a>
+                                                                            {% endfor %}
+                                                                        {% endif %}
                                                                     </span>
                                                                 </div>
                                                                 <div class="m-list-search__result-item zs_detail_line">
@@ -97,7 +109,11 @@
                                                                         作者-修
                                                                     </span>
                                                                     <span class="zd_detail_value">
-                                                                        {{fzdetail.writer_x}}
+                                                                        {% if fzdetail.writer_x != "" %}
+                                                                            {% for author in fzdetail.writer_x.split(";")%}
+                                                                                <a href="/shlib/person/?person={{ author }}" target="_blank">{{ author }}</a>
+                                                                            {% endfor %}
+                                                                        {% endif %}
                                                                     </span>
                                                                 </div>
                                                             
@@ -106,7 +122,11 @@
                                                                         作者-撰(纂)
                                                                     </span>
                                                                     <span class="zd_detail_value">
-                                                                        {{fzdetail.writer_z}}
+                                                                        {% if fzdetail.writer_z != "" %}
+                                                                            {% for author in fzdetail.writer_z.split(";")%}
+                                                                                <a href="/shlib/person/?person={{ author }}" target="_blank">{{ author }}</a>
+                                                                            {% endfor %}
+                                                                        {% endif %}
                                                                     </span>
                                                                 </div>
                                                             </div>
@@ -259,7 +279,9 @@
                                                                         地名
                                                                     </span>
                                                                     <span class="zd_detail_value">
-                                                                        {{fzdetail.area}}
+                                                                        {% if fzdetail.area != "" %}
+                                                                            <a href="/shlib/place/?place={{ fzdetail.area }}" target="_blank">{{ fzdetail.area }}</a>
+                                                                        {% endif %}
                                                                     </span>
                                                                 </div>
                                                                 <div class="m-list-search__result-item zs_detail_line">
@@ -283,7 +305,9 @@
                                                                         朝代
                                                                     </span>
                                                                     <span class="zd_detail_value">
-                                                                        {{fzdetail.dynasty}}
+                                                                        {% if fzdetail.area != "" %}
+                                                                            <a href="/shlib/dynasty/?dynasty={{ fzdetail.dynasty }}" target="_blank">{{ fzdetail.dynasty }}</a>
+                                                                        {% endif %}
                                                                     </span>
                                                                 </div>
                                                                 <div class="m-list-search__result-item zs_detail_line">
@@ -376,8 +400,8 @@
                             <!--begin::Portlet-->
                             <div class="m-portlet">
                                 <div class="m-portlet__body">
-                                    <div id="relate_place" style="width:100%;height:50px">相关产地</div>
-                                    <div id="yn_map" style="width:420px;height:450px"></div>
+                                    <div id="relate_place" style="width:100%;height:50px">地理位置</div>
+                                    <div id="yn_map_fz" style="width:420px;height:450px"></div>
                                 </div>
                             </div>
                             <!--end::Portlet-->
@@ -400,10 +424,36 @@
     <script src="/static/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
     <script src="/static/assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
     <!--end::Base Scripts -->
-    <!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
-    <script type="text/javascript" src="http://api.map.baidu.com/library/AreaRestriction/1.2/src/AreaRestriction_min.js"></script> -->
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/library/AreaRestriction/1.2/src/AreaRestriction_min.js"></script>
     <!-- <script src="/static/js/BMap.js"></script> -->
-    <!-- <script src="/static/js/detail.js" type="text/javascript"></script> -->
+    <script type="text/javascript">
+        $(function() {
+            var map = new BMap.Map("yn_map_fz");
+            if("{{fzdetail.longitude}}" != "" && "{{fzdetail.latitude}}" != "" 
+                && "{{fzdetail.area}}" != "" && "{{fzdetail.area}}" != null){
+                var point = new BMap.Point("{{fzdetail.longitude}}", "{{fzdetail.latitude}}");
+                map.centerAndZoom(point, 8);
+
+                map.enableScrollWheelZoom();
+                var marker = new BMap.Marker(point);  // 创建标注
+                
+                map.addOverlay(marker);               // 将标注添加到地图中
+                marker.setAnimation(BMAP_ANIMATION_BOUNCE); //跳动的动画
+            
+                var opts = {
+                    position :point,    // 指定文本标注所在的地理位置
+                    offset   : new BMap.Size(20, -10)    //设置文本偏移量
+                }
+                var label = new BMap.Label("{{fzdetail.area}}",opts);
+                marker.setLabel(label);
+            }else{
+                //默认地图
+                var point = new BMap.Point(102.699, 25.06);
+                map.centerAndZoom(point, 8);
+            }
+        });
+    </script>
 </body>
 <!-- end::Body -->
 
