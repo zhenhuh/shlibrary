@@ -100,7 +100,7 @@ def shlib_gj_action():
 
 ## redirect
 ## person
-@app.route("/shlib/person/", methods=["GET"])
+@app.route("/shlib/person/", methods = ["GET"])
 @tryredirect
 def shlib_person_action():
     from shlibrary import ShlibDataMgr
@@ -108,7 +108,7 @@ def shlib_person_action():
     return shlib.get_redirect_url_for_person()
 
 ### place
-@app.route("/shlib/place/", methods=["GET"])
+@app.route("/shlib/place/", methods = ["GET"])
 @tryredirect
 def shlib_place_action():
     from shlibrary import ShlibDataMgr
@@ -116,7 +116,7 @@ def shlib_place_action():
     return shlib.get_redirect_url_for_place()
 
 ### dynasty
-@app.route("/shlib/dynasty/", methods=["GET"])
+@app.route("/shlib/dynasty/", methods = ["GET"])
 @tryredirect
 def shlib_dynasty_action():
     from shlibrary import ShlibDataMgr
@@ -171,12 +171,12 @@ def poem_action():
     return poemHandler.get_poem_info()
 
 # CBDB
-@app.route("/cbdb/", methods=["GET", "POST"])
-@returnjson
+@app.route("/cbdb/", methods = ["GET"])
+@tryredirect
 def cbdb_action():
     from cbdb import CBDB
     cbdb = CBDB()
-    return cbdb.get_cbdb_info()
+    return cbdb.get_redirect_url_for_person()
 
 if __name__ == "__main__":
     #app.run(host = "0.0.0.0", port = 8080, debug = True)

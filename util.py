@@ -229,3 +229,34 @@ def timed_cache(**timedelta_kwargs):
 cache = timed_cache(hours = 2)
 
 # endregion help function
+
+# region etl for data
+
+def remove_other_info_from_name(person_name):
+    if not person_name:
+        return ""
+
+    temp_name = person_name.split(")")
+    if len(temp_name) >= 2:
+        temp_name = temp_name[1]
+    else:
+        temp_name = temp_name[0].split("）")
+        if len(temp_name) >= 2:
+            temp_name = temp_name[1]
+        else:
+            temp_name = temp_name[0]
+
+    ends_dict = {
+        "ends3" : ["续纂修"],
+        "ends2" : ["增修", "纂修", "原纂", "续纂", "原修", "纂辑", "同纂", "增纂", "增订", "重校", "等纂"],
+        "ends1" : ["纂", "修", "撰", "辑", "编", "校"]
+    }
+    for _, ends in ends_dict.items():
+        for end in ends:
+            if temp_name.endswith(end) and len(temp_name) > len(end) + 1:
+                temp_name = temp_name.rstrip(end)
+                return temp_name.strip()
+
+    return temp_name.strip()
+
+# endregion etl for data

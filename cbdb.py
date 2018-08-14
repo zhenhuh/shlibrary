@@ -24,7 +24,19 @@ class CBDB:
 
         return query_cbdb(name)
 
+    def get_redirect_url_for_person(self):
+        request_params = get_request_params()
+
+        self.__check_cbdb_params(request_params)
+
+        name = remove_other_info_from_name(request_params.get(CBDBParam.name.value))
+
+        return query_cbdb_redirect_url(name)
+
 @cache
 @respjson()
 def query_cbdb(name):
     return requests.get(f"https://cbdb.fas.harvard.edu/cbdbapi/person.php?name={name}&o=json")
+
+def query_cbdb_redirect_url(name):
+    return f"https://cbdb.fas.harvard.edu/cbdbapi/person.php?name={name}"
