@@ -27,7 +27,7 @@ class ProductInfo:
 
         detail_info = query_product_detail_from_local(id)
 
-        place_name_in_map = detail_info["mapPlace"]
+        place_name_in_map = detail_info.get("mapPlace", "")
 
         gj_list = detail_info.get(f"{gj_list_key}")
         if gj_list and len(gj_list) != 0:
