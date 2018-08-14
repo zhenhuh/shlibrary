@@ -26,31 +26,50 @@
     <!-- begin:: Page -->
     <div class="m-grid m-grid--hor m-grid--root m-page">
         <!-- BEGIN: Header -->
-        {% include '/frame/header.html' %}
+        {% include '/frame/header_1.html' %}
         <!-- END: Header -->
         <!-- begin::Body -->
         <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
             <div class="m-grid__item m-grid__item--fluid m-wrapper">
                 <div class="m-content">
                     <div class="row">
-                        <div class="col-lg-7">
-                            <!--begin::Portlet-->
-                            <div class="m-portlet">
+                        <div class="col-lg-12">
+                            <div class="m-portlet m-portlet--mobile">
+                                <div class="m-portlet__head">
+                                    <div class="m-portlet__head-caption">
+                                        <div class="m-portlet__head-title">
+                                            <h3 class="m-portlet__head-text">
+                                                方志列表
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="m-portlet__body">
-                                    <div id="yn_map" style="width:630px;height:650px"></div>
+                                    <!--begin: Search Form -->
+                                    <!-- <div class="m-form m-form--label-align-right m--margin-top-20 m--margin-bottom-30">
+                                        <div class="row align-items-center">
+                                            <div class="col-xl-8 order-2 order-xl-1">
+                                                <div class="form-group m-form__group row align-items-center">
+                                                    <div class="col-md-4">
+                                                        <div class="m-input-icon m-input-icon--left">
+                                                            <input type="text" class="form-control m-input" placeholder="Search..." id="generalSearch">
+                                                            <span class="m-input-icon__icon m-input-icon__icon--left">
+                                                                <span>
+                                                                    <i class="la la-search"></i>
+                                                                </span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <!--end: Search Form -->
+                                <!--begin: Datatable -->
+                                    <div class="m_datatable" id="ajax_data"></div>
+                                    <!--end: Datatable -->
                                 </div>
                             </div>
-                            <!--end::Portlet-->
-                        </div>
-
-                        <div class="col-lg-5">
-                            <!--begin::Portlet-->
-                            <div class="m-portlet">
-                                <div class="m-portlet__body">
-
-                                </div>
-                            </div>
-                            <!--end::Portlet-->
                         </div>
                     </div>
                 </div>
@@ -70,10 +89,7 @@
     <script src="/static/assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
     <script src="/static/assets/demo/default/base/scripts.bundle.js" type="text/javascript"></script>
     <!--end::Base Scripts -->
-    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
-    <script type="text/javascript" src="http://api.map.baidu.com/library/AreaRestriction/1.2/src/AreaRestriction_min.js"></script>
-    <!-- <script src="/static/js/BMap.js"></script> -->
-    <script src="/static/js/detail.js" type="text/javascript"></script>
+    <script src="/static/js/table-ajax.js" type="text/javascript"></script>
 </body>
 <!-- end::Body -->
 

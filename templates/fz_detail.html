@@ -36,7 +36,7 @@
     <!-- begin:: Page -->
     <div class="m-grid m-grid--hor m-grid--root m-page">
         <!-- BEGIN: Header -->
-        {% include '/frame/header.html' %}
+        {% include '/frame/header_1.html' %}
         <!-- END: Header -->
         <!-- begin::Body -->
         <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
@@ -56,7 +56,9 @@
                                                     <div class="m-demo__preview col-lg-12">
                                                         <div class="m-list-search">
                                                             <div class="m-list-search__results">
-                                                                <div class="zd_detail_tag">编纂信息</div>
+                                                                <div class="zd_detail_tag">
+                                                                    <span>编纂信息</span>
+                                                                </div>
                                                                 <div class="m-list-search__result-item zs_detail_line">
                                                                     <span class="zd_detail_title">
                                                                         志书题名
@@ -73,7 +75,9 @@
                                                                     <span class="zd_detail_value">
                                                                         {% if fzdetail.author != "" %}
                                                                             {% for author in fzdetail.author.split(";")%}
-                                                                                <a href="/shlib/person/?person={{ author }}" target="_blank">{{ author }}</a>
+                                                                                <a href="javascript:;" data-toggle="m-popover" data-trigger="focus"  
+                                                                                    title="" data-html="true"  
+                                                                                    data-content="<a href='/shlib/person/?person={{ author }}' target='_blank' >链接上图</a><br/><a href='/cbdb/?name={{ author }}' target='_blank'>链接CBDB</a>" >{{ author }}</a>
                                                                             {% endfor %}
                                                                         {% endif %}
                                                                     </span>
@@ -86,7 +90,9 @@
                                                                     <span class="zd_detail_value">
                                                                         {% if fzdetail.author1 != "" %}
                                                                             {% for author in fzdetail.author1.split(";")%}
-                                                                                <a href="/shlib/person/?person={{ author }}" target="_blank">{{ author }}</a>
+                                                                                <a href="javascript:;" data-toggle="m-popover" data-trigger="focus" 
+                                                                                    title="" data-html="true" 
+                                                                                    data-content="<a href='/shlib/person/?person={{ author }}' target='_blank' >链接上图</a><br/><a href='/cbdb/?name={{ author }}' target='_blank'>链接CBDB</a>" ></a>{{ author }}</a>
                                                                             {% endfor %}
                                                                         {% endif %}
                                                                     </span>
@@ -99,7 +105,9 @@
                                                                     <span class="zd_detail_value">
                                                                         {% if fzdetail.author2 != "" %}
                                                                             {% for author in fzdetail.author2.split(";")%}
-                                                                                <a href="/shlib/person/?person={{ author }}" target="_blank">{{ author }}</a>
+                                                                                <a href="javascript:;" data-toggle="m-popover" data-trigger="focus"
+                                                                                    title="" data-html="true"
+                                                                                    data-content="<a href='/shlib/person/?person={{ author }}' target='_blank' >链接上图</a><br/><a href='/cbdb/?name={{ author }}' target='_blank'>链接CBDB</a>" >{{ author }}</a>    
                                                                             {% endfor %}
                                                                         {% endif %}
                                                                     </span>
@@ -111,7 +119,9 @@
                                                                     <span class="zd_detail_value">
                                                                         {% if fzdetail.writer_x != "" %}
                                                                             {% for author in fzdetail.writer_x.split(";")%}
-                                                                                <a href="/shlib/person/?person={{ author }}" target="_blank">{{ author }}</a>
+                                                                                <a href="javascript:;" data-toggle="m-popover" data-trigger="focus" 
+                                                                                    title="" data-html="true"  
+                                                                                    data-content="<a href='/shlib/person/?person={{ author }}' target='_blank' >链接上图</a><br/><a href='/cbdb/?name={{ author }}' target='_blank'>链接CBDB</a>" >{{ author }}</a>    
                                                                             {% endfor %}
                                                                         {% endif %}
                                                                     </span>
@@ -124,7 +134,9 @@
                                                                     <span class="zd_detail_value">
                                                                         {% if fzdetail.writer_z != "" %}
                                                                             {% for author in fzdetail.writer_z.split(";")%}
-                                                                                <a href="/shlib/person/?person={{ author }}" target="_blank">{{ author }}</a>
+                                                                                <a href="javascript:;" data-toggle="m-popover" data-trigger="focus" 
+                                                                                    title="" data-html="true" 
+                                                                                    data-content="<a href='/shlib/person/?person={{ author }}' target='_blank' >链接上图</a><br/><a href='/cbdb/?name={{ author }}' target='_blank'>链接CBDB</a>" >{{ author }}</a>        
                                                                             {% endfor %}
                                                                         {% endif %}
                                                                     </span>
@@ -410,6 +422,7 @@
                 </div>
             </div>
         </div>
+           
         <!-- end:: Body -->
         <!-- begin::Footer -->
         {% include '/frame/footer.html' %}
@@ -426,7 +439,7 @@
     <!--end::Base Scripts -->
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
     <script type="text/javascript" src="http://api.map.baidu.com/library/AreaRestriction/1.2/src/AreaRestriction_min.js"></script>
-    <!-- <script src="/static/js/BMap.js"></script> -->
+    
     <script type="text/javascript">
         $(function() {
             var map = new BMap.Map("yn_map_fz");
