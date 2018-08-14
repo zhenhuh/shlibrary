@@ -141,9 +141,15 @@ $(function() {
             $("#desc_id").append("<br/><h6>相关诗句:</h6>");
             for(var i in poedata){
                 //诗句
-                $("#desc_id").append("<span style='margin-left:15px;'>"+poedata[i].author+"-《"+poedata[i].title+"》-"+poedata[i].clause+"</span>");
+                var href_a = '<a href="javascript:;" data-toggle="m-popover" data-trigger="click" '+
+                    ' title="" data-html="true"  '+
+                    ' data-content="<div id=\'popover_id\'><a href=\'/shlib/person/?person='+poedata[i].author+'\' target=\'_blank\'>链接上图</a><br/><a href=\'/cbdb/?name='+poedata[i].author+'\' target=\'_blank\'>链接CBDB</a></div>" >'+poedata[i].author+'</a>';
+                $("#desc_id").append(href_a);
+                $("#desc_id").append("<span style='margin-left:15px;'>《"+poedata[i].title+"》-"+poedata[i].clause+"</span>");
                 $("#desc_id").append("<br/>");
             }
+
+            $("[data-toggle='m-popover']").popover();
         }
         /**
          * 百科字段
