@@ -92,11 +92,17 @@ def fz_detail_page():
 # shanghai library
 ## other gj
 @app.route("/shlib/gj/", methods = ["GET"])
-#@returnHTML
+@returnHTML
 def shlib_gj_page():
+    return "gj_detail.html"
+
+## other gj detail
+@app.route("/shlib/gj/detail/", methods = ["GET"])
+@returnjson
+def shlib_gj_action():
     from shlibrary import ShlibDataMgr
     shlib = ShlibDataMgr()
-    return render_template("gj_detail.html", gjdetail = shlib.get_gj_detail_info())
+    return shlib.get_gj_detail_info()
 
 ## redirect
 ### gj person
