@@ -92,9 +92,11 @@ def fz_detail_page():
 # shanghai library
 ## other gj
 @app.route("/shlib/gj/", methods = ["GET"])
-@returnHTML
+#@returnHTML
 def shlib_gj_page():
-    return "gj_detail.html"
+    from shlibrary import ShlibParam
+    gj = get_request_params().get(ShlibParam.gj.value)
+    return render_template("gj_detail.html", gj = gj)
 
 ## other gj detail
 @app.route("/shlib/gj/detail/", methods = ["GET"])
