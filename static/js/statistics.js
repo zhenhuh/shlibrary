@@ -42,7 +42,7 @@ var DatatableRemoteAjax = {
                 field: "count_wc",
                 filterable: !0,
                 sortable: !1,
-                title: "物产总量"
+                title: "物产种类"
             },
             {
                 field: "type",
