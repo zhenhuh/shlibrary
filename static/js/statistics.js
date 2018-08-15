@@ -23,13 +23,8 @@ var DatatableRemoteAjax = {
                 scroll: !1,
                 footer: !1
             },
-            sortable: !0,
+            sortable: !1,
             pagination: !0,
-            
-            // search: {
-            //     input: $("#generalSearch")
-            // },
-            
             columns: [{
                 field: "area",
                 filterable: !0,
@@ -56,11 +51,6 @@ var DatatableRemoteAjax = {
                 title: "志书类型"
             }]
         })
-                
-        // $("#generalSearch").on("change",
-        // function() {
-        //     t.search($(this).val(), "bookname")
-        // })   
     }
 };
 jQuery(document).ready(function() {
