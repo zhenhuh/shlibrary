@@ -18,6 +18,8 @@ resp_error_code = "error_code"
 no_data = "no_data"
 breif_key = "breif"
 detail_key = "detail"
+gjdetail_count_key = "count"
+gjdetail_data_key = "data"
 
 ## index right
 first_letter_key = "letter"

@@ -17,6 +17,8 @@ class ShlibParam(Enum):
     place = "place"
     dynasty = "dynasty"
     person = "person"
+    instanceOfUri = "instanceOfUri"
+    person = "personUri"
 
 class ShlibDataMgr:
 
@@ -33,7 +35,7 @@ class ShlibDataMgr:
         # get "data" part from { "result": "0", "data": {} }
         return {f"{detail_key}" : book_info.get("data")}
 
-    def get_gj_detail_info(self):
+    def get_gj_detail_info(self, less = True):
         request_params = get_request_params()
 
         self.__check_shlib_params(request_params, ShlibParam.gj.value)
@@ -46,14 +48,15 @@ class ShlibDataMgr:
         if books is None:
             return {f"{no_data}" : ""}
         else:
+            less = True # use less data now
             book_infos = []
             for each_book in books:
-                book_uri = each_book.get("uri")
-                if book_uri is None or len(book_uri) == 0:
+                book_uri = each_book.get("uri", "")
+                if less or len(book_uri) == 0:
                     book_infos.append(self.__make_brief_info(each_book))
                 else:
                     book_infos.append(self.__make_detail_info(query_detail_info_for(book_uri)))
-            return book_infos
+            return {f"{gjdetail_count_key}" : len(book_infos), f"{gjdetail_data_key}" : book_infos}
 
     # deal redirect
     def get_redirect_url_for_place(self):
@@ -99,6 +102,20 @@ class ShlibDataMgr:
                 return f"http://names.library.sh.cn/mrgf/service/work/persons?uri={person_uri}&dataType=1"
 
         return ""
+
+    def get_redirect_url_for_instanceOf_from_uri(self):
+        request_params = get_request_params()
+
+        self.__check_shlib_params(request_params, ShlibParam.instanceOfUri.value)
+
+        return f"http://gj.library.sh.cn/gjxz/service/work/instance#uri={ShlibParam.instanceOfUri.value}&type=1"
+
+    def get_redirect_url_for_perosn_from_uri(self):
+        request_params = get_request_params()
+
+        self.__check_shlib_params(request_params, ShlibParam.personUri.value)
+
+        return f"http://names.library.sh.cn/mrgf/service/work/persons?uri={ShlibParam.personUri.value}&dataType=1"
 
 @cache
 @respjson()

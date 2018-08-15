@@ -91,15 +91,31 @@ def fz_detail_page():
 
 # shanghai library
 ## other gj
-@app.route("/shlib/", methods = ["GET"])
-@returnjson
-def shlib_gj_action():
+@app.route("/shlib/gj/", methods = ["GET"])
+#@returnHTML
+def shlib_gj_page():
     from shlibrary import ShlibDataMgr
     shlib = ShlibDataMgr()
-    return shlib.get_gj_detail_info()
+    return render_template("gj_detail.html", gjdetail = shlib.get_gj_detail_info())
 
 ## redirect
-## person
+### gj person
+@app.route("/shlib/gj/person/", methods = ["GET"])
+@tryredirect
+def shlib_gj_person_action():
+    from shlibrary import ShlibDataMgr
+    shlib = ShlibDataMgr()
+    return shlib.get_redirect_url_for_perosn_from_uri()
+
+### gj instanceOf
+@app.route("/shlib/gj/instanceOf/", methods = ["GET"])
+@tryredirect
+def shlib_gj_instanceOf_action():
+    from shlibrary import ShlibDataMgr
+    shlib = ShlibDataMgr()
+    return shlib.get_redirect_url_for_instanceOf_from_uri()
+
+### person
 @app.route("/shlib/person/", methods = ["GET"])
 @tryredirect
 def shlib_person_action():
