@@ -41,23 +41,28 @@ $(function() {
             wcsource_fz = "无";
         }
         $("#wcsource_fz_id").append(wcsource_fz); 
+        console.log(data);
         //物产来源其他古籍
-        var wcsource_qt = "";
-        if(data.beautify_wcsource_qt != null && data.beautify_wcsource_qt!=""){
-            wcsource_qt = data.beautify_wcsource_qt;
+        var wcsource_qt = data.wcsource_qt;
+        if(wcsource_qt != null && wcsource_qt.length>0){
+            var wcs_arr = wcsource_qt.split(";");
+            for(var i in wcs_arr){
+                if(wcs_arr[i].length > 0){
+                    $("#wcsource_qt_id").append("<a href='/shlib/gj/?gj="+wcs_arr[i]+"' target='_blank'>《"+wcs_arr[i]+"》</a>");
+                }
+            }
         }else{
-            wcsource_qt = "无";
+            $("#wcsource_qt_id").text("无");
         }
-        $("#wcsource_qt_id").text(wcsource_qt);
 
         //物产所属分类标签
         var category_qt = "";
         if(data.category_fz != null && data.category_fz!=""){
-            category_qt += data.category_fz+",";
+            category_qt += data.category_fz;
         }
-        if(data.category_qt != null && data.category_qt!=""){
-            category_qt += data.category_qt;
-        }
+        // if(data.category_qt != null && data.category_qt!=""){
+        //     category_qt += data.category_qt;
+        // }
         if(category_qt == ""){
             category_qt = "无";
         }
