@@ -94,17 +94,9 @@ def fz_detail_page():
 @app.route("/shlib/gj/", methods = ["GET"])
 #@returnHTML
 def shlib_gj_page():
-    from shlibrary import ShlibParam
-    gj = get_request_params().get(ShlibParam.gj.value)
-    return render_template("gj_detail.html", gj = gj)
-
-## other gj detail
-@app.route("/shlib/gj/detail/", methods = ["GET"])
-@returnjson
-def shlib_gj_action():
     from shlibrary import ShlibDataMgr
     shlib = ShlibDataMgr()
-    return shlib.get_gj_detail_info()
+    return render_template("gj_detail.html", gjdetail = shlib.get_gj_detail_info())
 
 ## redirect
 ### gj person
