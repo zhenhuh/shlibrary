@@ -143,13 +143,18 @@ def tryredirect(func):
     return wrapper
 
 
-def respjson(ignoreJSONDecodeError = False):
+def respjson(ignoreJSONDecodeError_UntilGetData = False, ignoreJSONDecodeError_Onetime = True):
     def inner(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
             resp = func(*args, **kwargs)
             if resp.status_code == 200:
-                if not ignoreJSONDecodeError:
+                if not ignoreJSONDecodeError_UntilGetData:
+                    if ignoreJSONDecodeError_Onetime:
+                        try:
+                            return resp.json()
+                        except ValueError: # from simplejson import JSONDecodeError
+                            return {}
                     return resp.json()
                 else:
                     def consume_exceptions(gen):
