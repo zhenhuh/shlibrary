@@ -22,7 +22,7 @@ $(function(){
     $("#single_search_btn_id").click(function(){
         var val = $("#wc_or_zs_name_id").val();
         if(val==null || val.trim() == ""){
-            alert("请输入检索词!");
+            swal("请输入检索词!", "", "warning");
             return;
         }
         //清空查询结果列表
@@ -59,7 +59,7 @@ $(function(){
             (advancedPageData.year_end==null || advancedPageData.year_end=="") &&
             (advancedPageData.source_lc==null || advancedPageData.source_lc=="") &&
             (advancedPageData.yn_region==null || advancedPageData.yn_region=="")){
-            alert("请至少输入一个检索词!");
+            swal("请至少输入一个检索词!", "", "warning");
             return;
         }
         $("#m-list-search_results_id").empty();
@@ -101,7 +101,7 @@ $(function(){
                 }
             },
             error:function(data){
-                alert("error");
+                swal("出错了!", "请联系我站，我们会尽快为您解决，给您带来的不便请谅解！", "error");
             }
         });
     }
@@ -155,7 +155,7 @@ $(function(){
                 }
             },
             error:function(data){
-                alert("error");
+                swal("出错了!", "请联系我站，我们会尽快为您解决，给您带来的不便请谅解！", "error");
             }
         });
     }

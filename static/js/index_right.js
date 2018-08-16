@@ -115,7 +115,7 @@ var index_right = {
                 }
             },
             error:function(data){
-                alert("error");
+                swal("出错了!", "请联系我站，我们会尽快为您解决，给您带来的不便请谅解！", "error");
             }
         });
     },
@@ -165,7 +165,7 @@ var index_right = {
                 }
             },
             error:function(data){
-                alert("error");
+                swal("出错了!", "请联系我站，我们会尽快为您解决，给您带来的不便请谅解！", "error");
             }
         });
     }
