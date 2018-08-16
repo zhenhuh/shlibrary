@@ -8,7 +8,7 @@
                 </button> -->
                 <div style="width:100px;float:left;">
                     <a href="/" class="m-brand__logo-wrapper" >
-                        <img alt="" src="/static/assets/img/logo.png" style="height:70px;margin-top:12px;">
+                        <img alt="" src="/static/assets/img/logo.png" style="height:70px;margin-top:12px;margin-left:30px;">
                     </a>
                 </div>
                 
@@ -57,7 +57,7 @@
                                                         物产名:
                                                     </label>
                                                     <div class="col-lg-8">
-                                                        <input type="text" id="name_id" class="form-control m-input" placeholder="请输入物产名">
+                                                        <input type="text" id="name_id" class="form-control m-input gjss" placeholder="请输入物产名">
                                                     </div>
                                                 </div>
                                                     
@@ -67,7 +67,7 @@
                                                     </label>
                                                     <div class="col-lg-4">
                                                         <div class="input-group date">
-                                                            <input type="text" id="year_start_id" class="form-control m-input" placeholder="开始年份" />
+                                                            <input type="text" id="year_start_id" class="form-control m-input gjss" placeholder="开始年份" />
                                                             <div class="input-group-append">
                                                                 <span class="input-group-text">
                                                                     <i class="la la-calendar-check-o" style="padding:0px;"></i>
@@ -77,7 +77,7 @@
                                                     </div>
                                                     <div class="col-lg-4">
                                                         <div class="input-group date">
-                                                            <input type="text" id="year_end_id" class="form-control m-input" placeholder="结束年份" />
+                                                            <input type="text" id="year_end_id" class="form-control m-input gjss" placeholder="结束年份" />
                                                             <div class="input-group-append">
                                                                 <span class="input-group-text">
                                                                     <i class="la la-calendar-check-o"></i>
@@ -93,7 +93,7 @@
                                                         来源志书:
                                                     </label>
                                                     <div class="col-lg-8">
-                                                        <input type="text" id="source_lc_id" class="form-control m-input" placeholder="请输入来源志书">
+                                                        <input type="text" id="source_lc_id" class="form-control m-input gjss" placeholder="请输入来源志书">
                                                     </div>
                                                 </div>
                                                     
@@ -102,7 +102,7 @@
                                                         行政区域:
                                                     </label>
                                                     <div class="col-lg-8">
-                                                        <input type="text" id="yn_region_id" class="form-control m-input" placeholder="请输入行政区域">
+                                                        <input type="text" id="yn_region_id" class="form-control m-input gjss" placeholder="请输入行政区域">
                                                     </div>
                                                 </div>
                                                     
@@ -139,4 +139,25 @@
         </div>
     </div>
 </header>
+<script src="/static/jquery-1.11.3.min.js" type="text/javascript"></script>
 <script src="/static/js/util.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(function() {
+        $('input').bind('keydown', function(event) {
+            var theEvent = event || window.event;    
+            var code = theEvent.keyCode || theEvent.which || theEvent.charCode;  
+
+            if (code == "13") {
+                //回车执行查询
+                //简单查询
+                if("wc_or_zs_name_id" == $(this).attr("id")){
+                    $("#single_search_btn_id").click();//简单搜索
+                }else if($(this).hasClass("gjss")){
+                    $("#advanced_seache_btn_id").click();//高级搜索
+                }
+                return false;
+            }
+        });
+    });
+</script>
