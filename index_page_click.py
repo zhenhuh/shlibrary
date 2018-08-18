@@ -68,6 +68,8 @@ class Chessboard:
 @cache
 @respjson()
 def query_first_letter_info(letter, page):
+    if letter == "#":
+        letter = "%23"
     return requests.get(f"{data_server}/{first_letter_info}/?letter={letter}&current_page={page}")
 
 @cache
