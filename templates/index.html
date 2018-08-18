@@ -8,18 +8,15 @@
     <title>
         古云南物语
     </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+
     <meta name="description" content="Scrollable examples">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
     <!--begin::Web font -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script> -->
-    <script>
-        //   WebFont.load({
-        //     google: {"families":["Poppins:300,400,500,600,700","Roboto:300,400,500,600,700"]},
-        //     active: function() {
-        //         sessionStorage.fonts = true;
-        //     }
-        //   });
+    <script type="text/javascript">
+        
     </script>
     <!--end::Web font -->
     <!--begin::Base Styles -->
@@ -36,9 +33,14 @@
 
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
     <!-- begin:: Page -->
-    <div class="m-grid m-grid--hor m-grid--root m-page">
+    <div class="m-grid m-grid--hor m-grid--root m-page" id="loadHeader_id">
         <!-- BEGIN: Header -->
-        {% include '/frame/header.html' %}
+        {% if ismobile == false %}
+           {% include '/frame/header.html' %} 
+
+        {% else %}
+            {% include '/frame/header2.html' %} 
+        {% endif %}
         <!-- END: Header -->
         <!-- begin::Body -->
         <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
@@ -63,7 +65,7 @@
                                         <div class="m-section__content">
                                             <!--begin::Preview-->
                                             <div class="m-demo">
-                                                <div class="m-demo__preview" style="padding-top: 10px;border-top: none;">
+                                                <div class="m-demo__preview" style="padding-top: 10px;border-top:none;">
                                                     <div class="m-list-search" id="m-list-search_results_id">
                                                         <!-- <div id="m-list-search_results_id" class="m-list-search__results"> -->
                                                         <!-- ajax get content -->

@@ -39,7 +39,7 @@ $(function() {
                 '<div class="m-timeline-2__item-cricle" data-index="'+i+'"><i class="fa fa-genderless m--font-brand"></i></div>'+
                 '<div class="m-timeline-2__item-text  m--padding-top-5">'+
                     '<span>'+tempD.time_c+'在'+tempD.source+'中记载</span>'+
-                    '<span>产自' + tempD.area_record+',现今'+tempD.area_map+'</span>'+
+                    '<span>出自:' +((tempD.area_record==null || tempD.area_record == "")?"不详":tempD.area_record)+'</span>'+
                     '<span>所属分类为:'+tempD.category+'</span>'+
                 '</div></div>';
             $("#wc_name_details").append(conTemp);

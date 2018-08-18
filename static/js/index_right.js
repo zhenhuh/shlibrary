@@ -124,6 +124,8 @@ var index_right = {
      * 右侧部分点击事件
      */
     index_right_click:function(jsonData){
+        //显示换一批
+        $(".paginate-getother-css").show();
         $.ajax({
             url:jsonData.url,
             type:"post",
@@ -161,6 +163,25 @@ var index_right = {
                         var wcname = $(this).attr("wcname");
                         $("#wc_or_zs_name_id").val(wcname);
                         $("#single_search_btn_id").click();
+                    });
+                    //隐藏分页插件
+                    $(".dataTables_wrapper").hide();
+                    //换一批
+                    $(".paginate-getother-css").unbind();
+                    $(".paginate-getother-css").click(function(){
+                        var current_page = data.current_page;
+                        if(data.page_next == true){
+                            current_page = parseInt(current_page,10) + 1;
+                        }else{
+                            current_page = 1;
+                        }
+
+                        jsonData.data.current_page = current_page;
+                        index_right.index_right_click({
+                            url:jsonData.url,
+                            data:jsonData.data
+                        });
+
                     });
                 }
             },

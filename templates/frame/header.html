@@ -6,20 +6,20 @@
                 <!-- <button class="m-aside-header-menu-mobile-close  m-aside-header-menu-mobile-close--skin-dark " id="m_aside_header_menu_mobile_close_btn">
                     <i class="la la-close"></i>
                 </button> -->
-                <div style="width:100px;float:left;">
+                <div class="logo_class">
                     <a href="/" class="m-brand__logo-wrapper" >
-                        <img alt="" src="/static/assets/img/logo.png" style="height:70px;margin-top:12px;margin-left:30px;">
+                        <img alt="" src="/static/assets/img/logo.png">
                     </a>
                 </div>
                 
                 <!-- BEGIN: Topbar -->
                 <div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general m-stack--fluid header_background_color" style="margin:auto;" >
                     <div class="m-stack__item m-topbar__nav-wrapper">
-                        <ul class="m-topbar__nav m-nav m-nav--inline">
-                            <li id="m_quick_sidebar_toggle" class="m-nav__item">
+                        <ul class="m-topbar__nav m-nav m-nav--inline" style="flex-wrap: wrap;">
+                            <li id="m_quick_sidebar_toggle" class="m-nav__item" style="min-width:260px;">
                                 <form class="m-form m-form--fit m-form--label-align-right m-form--group-seperator-dashed">
                                     <div class="m-portlet__body">
-                                        <div class="form-group m-form__group row">
+                                        <div class="form-group m-form__group row" style="flex-wrap:nowrap;">
                                             <div class="col-lg-8">
                                                 <input type="text" id="wc_or_zs_name_id" class="form-control m-input" placeholder="请输入物产名">
                                             </div>
@@ -34,7 +34,7 @@
                             </li>
                             
                             <li class="
-                m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light	m-list-search m-list-search--skin-light" 
+                m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light m-list-search m-list-search--skin-light" 
                 m-dropdown-toggle="click" id="m_quicksearch" m-quicksearch-mode="dropdown" m-dropdown-persistent="1">
                                 <a href="javascript:;" class="m-nav__link m-dropdown__toggle">
                                     <i class="m-nav__link-icon flaticon-search-1" style="width:30px;"></i>
@@ -42,7 +42,7 @@
                                         高级搜索
                                     </span>
                                 </a>
-                                <div class="m-dropdown__wrapper"style="width:500px;">
+                                <div class="m-dropdown__wrapper"style="min-width:500px;width:100%;">
                                     <span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
                                     <div class="m-dropdown__inner ">
                                         <div class="m-dropdown__header">
@@ -144,7 +144,7 @@
 
 <script type="text/javascript">
     $(function() {
-        $('input').bind('keydown', function(event) {
+        $('input').bind('keydown',function(event) {
             var theEvent = event || window.event;    
             var code = theEvent.keyCode || theEvent.which || theEvent.charCode;  
 
