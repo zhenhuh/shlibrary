@@ -30,7 +30,6 @@ $(function() {
      * @param  data 
      */
     function setDetailData(data){
-        console.log(data);
         $("#product_name_id").text(data.product_name);//物产名
         //物产来源方志
         var wcsource_fz = "";
@@ -41,7 +40,6 @@ $(function() {
             wcsource_fz = "无";
         }
         $("#wcsource_fz_id").append(wcsource_fz); 
-        console.log(data);
         //物产来源其他古籍
         var wcsource_qt = data.wcsource_qt;
         if(wcsource_qt != null && wcsource_qt.length>0){
@@ -60,15 +58,13 @@ $(function() {
         if(data.category_fz != null && data.category_fz!=""){
             category_qt += data.category_fz;
         }
-        // if(data.category_qt != null && data.category_qt!=""){
-        //     category_qt += data.category_qt;
-        // }
+
         if(category_qt == ""){
             category_qt = "无";
         }
         $("#category_qt_id").append(category_qt);
 
-        //物产相关人物-格式问题 -todo
+        //物产相关人物
         if(data.Des_people != "" && data.Des_people != null){
             var ps = data.Des_people.split(";");
             for(var i in ps){
@@ -90,7 +86,7 @@ $(function() {
                 for(var i in anames){
                     if(anames[i] != "" && strNew.indexOf(anames[i]) >= 0){
                         strNew = strNew.replaceAll(anames[i],
-                            "<span style='background-color:#3cc54d' title='别名："+anames[i]+"'>"+anames[i]+"</span>");
+                            '<span class="detail_alias_tip" data-container="body" data-toggle="m-tooltip" data-placement="top" data-original-title="别名：'+anames[i]+'">'+anames[i]+'</span>');
                     }
                 }
             }
@@ -99,7 +95,9 @@ $(function() {
                 var ps = data.Des_people.split(";");
                 for(var i in ps){
                     if(ps[i] != "" && strNew.indexOf(ps[i]) >= 0){
-                        strNew = strNew.replaceAll(ps[i],"<a href='/shlib/person/?person="+ps[i].trim()+"' target='_blank' style='background-color:#bcd246' title='相关人物："+ps[i]+"'>"+ps[i]+"</a>");
+                        strNew = strNew.replaceAll(ps[i],
+                            "<a href='/shlib/person/?person="+ps[i].trim()+"' target='_blank' class='detail_relate_people_tip' " +
+                            " data-container='body' data-toggle='m-tooltip' data-placement='top' data-original-title='相关人物："+ps[i]+"'>"+ps[i]+"</a>");
                     }
                 }
             }
@@ -109,7 +107,9 @@ $(function() {
                 var ds = data.Des_site.split(";");
                 for(var i in ps){
                     if(ds[i] != "" && strNew.indexOf(ds[i]) >= 0){
-                        strNew = strNew.replaceAll(ds[i],"<a href='/shlib/place/?place="+ds[i].trim()+"' target='_blank' style='background-color:#d279e2' title='产地："+ds[i]+"'>"+ds[i]+"</a>");
+                        strNew = strNew.replaceAll(ds[i],
+                            "<a href='/shlib/place/?place="+ds[i].trim()+"' target='_blank' class='detail_wccd_tip' "+
+                            " data-container='body' data-toggle='m-tooltip' data-placement='top' data-original-title='产地："+ds[i]+"'>"+ds[i]+"</a>");
                     }
                 }
             }
@@ -118,23 +118,27 @@ $(function() {
                 var dc = data.Des_cite.split(";");
                 for(var i in dc){
                     if(dc[i] != "" && strNew.indexOf(dc[i]) >= 0){
-                        strNew = strNew.replaceAll(dc[i],"<span style='background-color:#dc6f45' title='引书："+dc[i]+"'>"+dc[i]+"</span>");
+                        strNew = strNew.replaceAll(dc[i],
+                            '<span class="detail_ys_tip" data-container="body" data-toggle="m-tooltip" data-placement="top" data-original-title="引书：'+dc[i]+'">'+dc[i]+'</span>');
                     }
                 }
             }
 
             //描述信息
-            $("#desc_id").append("<h6>方志物产描述:</h6>");
+            $("#desc_id").append("<h6 style='font-weight: bold;'>方志物产描述:</h6>");
             $("#desc_id").append(strNew);
             $("#desc_id").append("<br/>");
+
+            //展示tip
+            $("[data-toggle='m-tooltip']").tooltip();
         }
 
         //其他古籍描述
         if(!jQuery.isEmptyObject(data.gjdesc)){
             //描述信息
-            $("#desc_id").append("<br/><h6>其他古籍物产描述:</h6>");
+            $("#desc_id").append("<br/><h6 style='font-weight: bold;'>其他古籍物产描述:</h6>");
             for(var key in data.gjdesc){
-                $("#desc_id").append("<span style='margin-left:15px;'>"+key+":</span><span>"+data.gjdesc[key]+"</span>");
+                $("#desc_id").append("<span style='margin-left:15px;margin-right:5px;'>"+key+":</span><span>"+data.gjdesc[key]+"</span>");
                 $("#desc_id").append("<br/>");
             }
         }
@@ -143,14 +147,14 @@ $(function() {
         if(data.poems != null && data.poems.count > 0){
             var poems = "";
             var poedata = data.poems.data;
-            $("#desc_id").append("<br/><h6>相关诗句:</h6>");
+            $("#desc_id").append("<br/><h6 style='font-weight: bold;'>相关诗句:</h6>");
             for(var i in poedata){
                 //诗句
-                var href_a = '<a href="javascript:;" data-toggle="m-popover" data-trigger="click" '+
+                var href_a = '<div class="poems_title_width"><a href="javascript:;" data-toggle="m-popover" data-trigger="click" '+
                     ' title="" data-html="true"  '+
-                    ' data-content="<div id=\'popover_id\'><a href=\'/shlib/person/?person='+poedata[i].author+'\' target=\'_blank\'>链接上图</a><br/><a href=\'/cbdb/?name='+poedata[i].author+'\' target=\'_blank\'>链接CBDB</a></div>" >'+poedata[i].author+'</a>';
+                    ' data-content="<div id=\'popover_id\'><a href=\'/shlib/person/?person='+poedata[i].author+'\' target=\'_blank\'>链接上图</a><br/><a href=\'/cbdb/?name='+poedata[i].author+'\' target=\'_blank\'>链接CBDB</a></div>" >'+poedata[i].author+'</a></div>';
                 $("#desc_id").append(href_a);
-                $("#desc_id").append("<span style='margin-left:15px;'>《"+poedata[i].title+"》-"+poedata[i].clause+"</span>");
+                $("#desc_id").append("<span style='margin-left:5px;'>《"+poedata[i].title+"》-"+poedata[i].clause+"</span>");
                 $("#desc_id").append("<br/>");
             }
 
@@ -163,7 +167,7 @@ $(function() {
             var wiki_info = "";
             //百度百科
             if(data.wiki_info.baidubaike != null){
-                $("#wiki_info_id").append("<h6>百度百科:</h6>");
+                $("#wiki_info_id").append("<h6 style='font-weight: bold;'>百度百科:</h6>");
                 var baidu = data.wiki_info.baidubaike;
                 //abstracts relatedImage
                 if(baidu.abstracts != null){
@@ -177,7 +181,7 @@ $(function() {
             }
             //互动百科
             if(data.wiki_info.hudongbaike != null){
-                $("#wiki_info_id").append("<h6>互动百科:</h6>");
+                $("#wiki_info_id").append("<h6 style='font-weight: bold;'>互动百科:</h6>");
                 var hudong = data.wiki_info.hudongbaike;
                 
                 if(hudong.abstracts != null){
@@ -191,7 +195,7 @@ $(function() {
             }
             //中国维基
             if(data.wiki_info.zhwiki != null){
-                $("#wiki_info_id").append("<h6>中国维基:</h6>");
+                $("#wiki_info_id").append("<h6 style='font-weight: bold;'>中国维基:</h6>");
                 var wiki = data.wiki_info.zhwiki;
                 
                 if(wiki.abstracts != null){

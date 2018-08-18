@@ -9,6 +9,17 @@
     background-color:#4f8bb5 !important;
 }
 
+.logo_class{
+    max-width: 100px;
+    float:left;
+}
+
+.logo_class img{
+    height:60px;
+    margin-top:12px;
+    margin-left:30px;
+}
+
 .btn-personal{
     background-color:#af8435;
     border-color:#af8435;
@@ -94,27 +105,54 @@
     display:block;
     line-height: 26px;
 }
+/* 诗句标题长度 */
+.poems_title_width{
+    float:left;
+    width:50px;
+    margin-left:15px;
+}
 
+.wc_detail_title{
+    vertical-align:middle;
+    font-size:16px;
+    color:#7d6c29;
+}
 
-/*时间轴样式*/
-/* .heatMapTimer {
-    position: absolute;
-    width: 100%;
-    z-index: 1;
-    text-align: center;
-    top: 40px;
-} */
+.wc_detail_value{
+    margin-left:15px;
+}
+/* 物产详细信息描述字段-关系展示-别名 */
+.detail_alias_tip{
+    border-bottom: 1px solid green;
+    padding-bottom: 2px;
+    color:blue;
+}
+/* 相关人物 */
+.detail_relate_people_tip{
+    border-bottom: 1px solid green;
+    padding-bottom: 2px;
+    color:red;
+}
+/* 物产产地 */
+.detail_wccd_tip{
+    border-bottom: 1px solid green;
+    padding-bottom: 2px;
+    color:yellowgreen;
+}
+/* 相关引书 */
+.detail_ys_tip{
+    border-bottom: 1px solid green;
+    padding-bottom: 2px;
+    color:burlywood;
+}
+
 .time-item{
     width: 25px;
     height: 25px;
     border-radius: 50%;
     margin: 0 10px;
 }
-/* .time-item, .time-btn {
-    display: inline-block;
-    background: #fff;
-    cursor: pointer;
-} */
+
 .time-btn {
     border-radius: 3px;
     width: 30px;
@@ -169,11 +207,15 @@
 #left_frame_body_id {
     font-size:15px;
 }
-/* #m_header_menu ul li {
-    display: inline-block;
+
+.m-input{
+    min-width: 120px;
+}
+.paginate-getother-css{
+    margin-top:-10px;
+    float:right;
 }
 
-#m_header_menu .m-menu__nav {
-    display: block !important;
-    white-space: nowrap;
-} */
+.full_width_li{
+    width:100% !important;
+}

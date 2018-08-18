@@ -44,19 +44,26 @@ class Chessboard:
 
         self.__check_chessboard_params(request_params)
 
-        current_page = request_params.get(ChessboardParam.current_page.value)
+        current_page = int(request_params.get(ChessboardParam.current_page.value))
+
+        chessboard_data = {}
 
         if ChessboardType.letter == self.type:
             letter = request_params.get(ChessboardParam.current_letter.value)
-            return query_first_letter_info(letter, current_page)
+            chessboard_data.update(query_first_letter_info(letter, current_page))
         elif ChessboardType.taxonomy == self.type:
             taxonomy = request_params.get(ChessboardParam.current_taxonomy.value)
-            return query_taxonomy_info(taxonomy, current_page)
+            chessboard_data.update(query_taxonomy_info(taxonomy, current_page))
         elif ChessboardType.region == self.type:
             region = request_params.get(ChessboardParam.current_region.value)
-            return query_yn_region_info(region, current_page)
+            chessboard_data.update(query_yn_region_info(region, current_page))
         else:
             pass
+
+        paginate_info = get_paginate_info(chessboard_data["count"], chessboard_page_size, current_page)
+        chessboard_data.update(paginate_info)
+
+        return chessboard_data
 
 @cache
 @respjson()

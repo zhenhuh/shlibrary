@@ -5,6 +5,7 @@ $(function(){
      * 隐藏分页插件
      */
     $(".dataTables_wrapper").hide();
+    $(".paginate-getother-css").hide();
 
     /**
      * 默认检索所有的物产
@@ -81,8 +82,8 @@ $(function(){
                     $("#m-list-search_results_id").html("<span class='m-list-search__result-message'>对不起，没有检索到相关数据 </span>");
                 }else{
                     $(data.data).each(function(index,ele){
-                        var content ='<ul class="m-nav m-nav--inline" style="width:100%">'+
-                                '<li class="m-nav__item">'+
+                        var content ='<ul class="m-nav m-nav--inline full_width_li">'+
+                                '<li class="m-nav__item full_width_li">'+
                                     '<a href="/product_detail/?id='+ele.uid+'&name='+ele.product_name+'" target="_blank" class="m-nav__link">'+
                                         '<i class="flaticon-paper-plane m--font-info" style="padding-right:10px;"></i>'+
                                         '<span class="m-nav__link-text" style="font-size:16px;">'+
@@ -115,9 +116,10 @@ $(function(){
          * 显示分页插件
          */
         $(".dataTables_wrapper").show();
+        $(".paginate-getother-css").hide();
         var tempdata = {};
         $.extend(tempdata, jsonData);
-        delete tempdata.url; 
+        delete tempdata.url;
 
         $.ajax({
             url:jsonData.url,
@@ -125,6 +127,7 @@ $(function(){
             data: tempdata,
             dataType:"json",
             success:function(data){
+                //加载分页信息
                 $.callbackPageinfo(data);
                 if(data==null || data.count==0){
                     $("#m-list-search_results_id").html("<span class='m-list-search__result-message'>对不起，没有检索到相关数据 </span>");
@@ -135,8 +138,8 @@ $(function(){
                         if (ele.wcsource != "") {
                             wc_or_gj = ele.wcsource + '<i style="margin-left:15px;">'+ele.temporal+'</i>'
                         }
-                        var content ='<ul class="m-nav m-nav--inline" style="width:100%;">'+
-                                '<li class="m-nav__item">'+
+                        var content ='<ul class="m-nav m-nav--inline full_width_li">'+
+                                '<li class="m-nav__item full_width_li">'+
                                     '<a href="/product_detail/?id='+ele.uid+'&name='+ele.product_name+'" target="_blank" class="m-nav__link">'+
                                         '<i class="flaticon-paper-plane m--font-info" style="padding-right:10px;"></i>'+
                                         '<span class="m-nav__link-text" style="font-size:16px;">'+

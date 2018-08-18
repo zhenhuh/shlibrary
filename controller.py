@@ -3,15 +3,16 @@ from server import app
 from util import *
 
 @app.route("/")
-@returnHTML
+#@returnHTML
 def index():
-    return "index.html"
+    user_agent = request.headers.get("User-Agent")
+    return render_template("index.html", ismobile = is_mobile(user_agent))
 
 @app.route("/index/leftfrm", methods = ["POST", "GET"])
 @returnjson
 def index_leftfrm():
     from index_page import query_random_list
-    return {"count" : page_size, "data" : query_random_list()}
+    return {"count" : search_page_size, "data" : query_random_list()}
 
 @app.route("/index/rightfrm_letter", methods = ["POST", "GET"])
 @returnjson

@@ -78,17 +78,11 @@ class SearchHandler:
         search_cond = self.__prepare_search_cond(is_simple)
         search_data = do_search_simple(search_cond) if is_simple else do_search(search_cond)
         count = search_data.get(f"{search_count_key}")
-        pages = count // page_size + 1
         current_page = search_cond.get_current_page()
 
-        search_data[f"{page_count_key}"] = pages
-        search_data[f"{current_page_key}"] = current_page
-        search_data[f"{page_next_key}"] = pages > current_page
-        search_data[f"{page_prev_key}"] = current_page >= 2
-        if current_page <= pages:
-            search_data[f"{first_index_key}"], search_data[f"{last_index_key}"] = page_size * (current_page - 1), min(page_size * current_page - 1, count - 1)
-        else:
-            search_data[f"{first_index_key}"], search_data[f"{last_index_key}"] = -1, -1
+        paginate_info = get_paginate_info(count, search_page_size, current_page)
+
+        search_data.update(paginate_info)
 
         idx = 0
         def add_category_for_each_data(data_list):
