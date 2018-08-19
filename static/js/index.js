@@ -76,10 +76,9 @@ $(function(){
             type:"post",
             dataType:"json",
             success:function(data){
-                
                 $("#m-list-search_results_id").empty();
                 if(data==null){
-                    $("#m-list-search_results_id").html("<span class='m-list-search__result-message'>对不起，没有检索到相关数据 </span>");
+                    $("#m-list-search_results_id").html("<span class='m-list-search__result-message'>对不起，没有检索到相关物产 </span>");
                 }else{
                     $(data.data).each(function(index,ele){
                         var content ='<ul class="m-nav m-nav--inline full_width_li">'+

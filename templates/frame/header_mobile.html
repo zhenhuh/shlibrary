@@ -1,0 +1,128 @@
+<header id="m_header" class="m-grid__item m-header header_background_color" m-minimize-offset="200" m-minimize-mobile-offset="200">
+    <div class="m-container m-container--fluid m-container--full-height">
+        <div class="m-stack m-stack--ver m-stack--desktop">
+            <!-- BEGIN: Brand -->
+            <div class="m-stack__item m-brand  m-brand--skin-diy ">
+                <div class="m-stack m-stack--ver m-stack--general">
+                    <div class="m-stack__item m-stack__item--middle m-brand__logo" style="width:80px;">
+                        <a href="/" class="m-brand__logo-wrapper">
+                            <img alt="" src="/static/assets/img/logo-mobile.png" style="height:50px;">
+                        </a>
+                    </div>
+                    <div class="m-stack__item m-stack__item--middle m-brand__tools">
+                        <div style="display:inline-block">
+                            <input type="text" id="wc_or_zs_name_id" placeholder="请输入物产名" class="mobile_header_simple-input">
+                            <a id="single_search_btn_id" href="javascript:;" >
+                                <span class="mobile_header_simple-icon">
+                                    <i class="flaticon-search-1"></i>
+                                </span>
+                            </a>
+                            <!-- BEGIN: Topbar Toggler -->
+                            <a id="m_aside_header_topbar_mobile_toggle" href="javascript:;" class="m-brand__icon m--visible-tablet-and-mobile-inline-block">
+                                <i class="flaticon-more"></i>
+                            </a>
+                            <!-- BEGIN: Topbar Toggler -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END: Brand -->
+            <div class="m-stack__item m-stack__item--fluid m-header-head" id="m_header_nav">
+                <!-- BEGIN: Topbar -->
+                <div id="m_header_topbar" class="m-topbar  m-stack m-stack--ver m-stack--general m-stack--fluid"  style="float:right;">
+                    <div class="m-stack__item m-topbar__nav-wrapper" style="text-align:center;">
+                        <ul class="m-topbar__nav m-nav m-nav--inline" style="float:none;">
+                            <li class="
+                m-nav__item m-dropdown m-dropdown--large m-dropdown--arrow m-dropdown--align-center m-dropdown--mobile-full-width m-dropdown--skin-light m-list-search m-list-search--skin-light" 
+                m-dropdown-toggle="click" id="m_quicksearch" m-quicksearch-mode="dropdown" m-dropdown-persistent="1">
+                                <a href="javascript:;" class="m-nav__link m-dropdown__toggle">
+                                    <i class="m-nav__link-icon flaticon-search-1 mobile_header_complex-icon"></i>
+                                    <span class="mobile_header_span">
+                                        高级搜索
+                                    </span>
+                                </a>
+                                <div class="m-dropdown__wrapper"style="width:80%;">
+                                    <span class="m-dropdown__arrow m-dropdown__arrow--center"></span>
+                                    <div class="m-dropdown__inner ">
+                                        <div class="m-dropdown__header">
+                                            <form  class="m-list-search__form">
+                                                <div class="m-list-search__form-wrapper" >
+                                                    <span class="m-list-search__form-icon-close" id="m_quicksearch_close">
+                                                        <i class="la la-remove"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="m-list-search__form-wrapper form-group m-form__group row">
+                                                    <div class="col-lg-8">
+                                                        <input type="text" id="name_id" class="form-control m-mobile-input" placeholder="请输入物产名">
+                                                    </div>
+                                                </div>
+                                                    
+                                                <div class="m-list-search__form-wrapper form-group m-form__group row">
+                                                    <div class="col-lg-4">
+                                                        <div class="input-group date">
+                                                            <input type="text" id="year_start_id" class="form-control m-mobile-input" placeholder="开始年份" />
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <i class="la la-calendar-check-o" style="padding:0px;"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-4">
+                                                        <div class="input-group date">
+                                                            <input type="text" id="year_end_id" class="form-control m-mobile-input" placeholder="结束年份" />
+                                                            <div class="input-group-append">
+                                                                <span class="input-group-text">
+                                                                    <i class="la la-calendar-check-o"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                
+                                                <div class="m-list-search__form-wrapper form-group m-form__group row">
+                                                    <div class="col-lg-8">
+                                                        <input type="text" id="source_lc_id" class="form-control m-mobile-input" placeholder="请输入来源志书">
+                                                    </div>
+                                                </div>
+                                                    
+                                                <div class="m-list-search__form-wrapper form-group m-form__group row">
+                                                    <div class="col-lg-8">
+                                                        <input type="text" id="yn_region_id" class="form-control m-mobile-input" placeholder="请输入行政区域">
+                                                    </div>
+                                                </div>
+                                                    
+                                                <div class="m-list-search__form-wrapper form-group m-form__group row">
+                                                    <div class="col-lg-12" style="text-align:center;margin-top:20px;">
+                                                        <button type="button" id="advanced_seache_btn_id" class="btn btn-outline-success">
+                                                            确定
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="m-dropdown__body">
+                                            <div class="m-dropdown__scrollable m-scrollable" data-scrollable="true" data-max-height="300" data-mobile-max-height="200">
+                                                <div class="m-dropdown__content"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="m-nav__item m-topbar__notifications m-topbar__notifications--img m-dropdown m-dropdown--large m-dropdown--header-bg-fill m-dropdown--arrow m-dropdown--align-center 	m-dropdown--mobile-full-width" m-dropdown-toggle="click" m-dropdown-persistent="1">
+                                <a href="/statistics/" target="_blank" class="m-nav__link">
+                                    <i class="m-nav__link-icon flaticon-graphic-2 mobile_header_complex-icon"></i>
+                                    <span class="mobile_header_span">
+                                        方志统计
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- END: Topbar -->
+            </div>
+        </div>
+    </div>
+</header>

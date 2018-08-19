@@ -211,6 +211,11 @@
 .m-input{
     min-width: 120px;
 }
+
+.m-mobile-input{
+    width: 96%;
+}
+
 .paginate-getother-css{
     margin-top:-10px;
     float:right;
@@ -218,4 +223,40 @@
 
 .full_width_li{
     width:100% !important;
+}
+
+.mobile_header_span{
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    font-size: 1.1rem;
+    color: #3f50d8;
+    text-align: left;
+    margin-left: 3px;
+}
+
+.mobile_header_simple-input{
+    border-color: #ebedf2;
+    color: #575962;
+    border-radius: .25rem;
+    font-family: sans-serif,Arial;
+    width: 110px;
+    padding: .35rem 0.1rem;
+    font-size: 1rem;
+    line-height: 1.25;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-right: 5px;
+}
+
+.mobile_header_simple-icon{
+    color:#ffffff;
+}
+
+.mobile_header_complex-icon{
+    width:30px !important;
+    color:#3f50d8 !important;
+    padding:5px !important;
 }

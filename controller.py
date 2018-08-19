@@ -71,9 +71,10 @@ def product_detail_test():
 #@returnHTML
 def product_detail_page():
     from product_detail import ProdParam
+    user_agent = request.headers.get("User-Agent")
     id, name = get_request_params().get(ProdParam.id.value), get_request_params().get(ProdParam.name.value)
     #return "product_detail.html", {f"{ProdParam.id.value}": id, f"{ProdParam.name.value}": name}
-    return render_template("product_detail.html", id = id, name = name)
+    return render_template("product_detail.html", id = id, name = name, ismobile = is_mobile(user_agent))
 
 @app.route("/fz_detail_test/", methods = ["POST", "GET"])
 @jsut4test
@@ -87,8 +88,9 @@ def fz_detail_test():
 #@returnHTML
 def fz_detail_page():
     from fz_detail import LocalChroniclesInfo
+    user_agent = request.headers.get("User-Agent")
     fz = LocalChroniclesInfo()
-    return render_template("fz_detail.html", fzdetail = fz.get_lc_info())
+    return render_template("fz_detail.html", fzdetail = fz.get_lc_info(), ismobile = is_mobile(user_agent))
 
 # shanghai library
 ## other gj
@@ -96,8 +98,9 @@ def fz_detail_page():
 #@returnHTML
 def shlib_gj_page():
     from shlibrary import ShlibDataMgr
+    user_agent = request.headers.get("User-Agent")
     shlib = ShlibDataMgr()
-    return render_template("gj_detail.html", gjdetail = shlib.get_gj_detail_info())
+    return render_template("gj_detail.html", gjdetail = shlib.get_gj_detail_info(), ismobile = is_mobile(user_agent))
 
 ## redirect
 ### gj person
@@ -179,9 +182,10 @@ def fz_statistics_action():
     return stat.fz()
 
 @app.route("/statistics/", methods = ["GET"])
-@returnHTML
+#@returnHTML
 def fz_statistics_page():
-    return "statistics.html"
+    user_agent = request.headers.get("User-Agent")
+    return render_template("statistics.html", ismobile = is_mobile(user_agent))
 
 # poem
 @app.route("/poem/", methods=["GET", "POST"])
