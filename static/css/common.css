@@ -1,8 +1,6 @@
 /**
 *   自定义css文件
 */
-
-
 /*header part */
 
 .header_background_color {
@@ -191,8 +189,7 @@
     background-color: #34b93d;
 }
 
-
-.active i:before {
+#wc_name_details .active i:before {
     background:red;
 }
 
@@ -259,4 +256,26 @@
     width:30px !important;
     color:#3f50d8 !important;
     padding:5px !important;
+}
+
+.change_other_datas.dropdown-toggle{
+    background-color: #7fadd0;
+    border-color: #7fadd0;
+}
+
+.change_other_datas:hover:not(:disabled) {
+    color: #fff!important;
+}
+
+.change_other_datas:hover {
+    border-color: #7fadd0;
+    background: #7fadd0;
+    color: #fff;
+}
+
+.change_other_datas {
+    color: #7fadd0;
+    background-color: transparent;
+    background-image: none;
+    border-color: #7fadd0;
 }

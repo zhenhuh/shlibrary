@@ -71,6 +71,8 @@ $(function(){
      * 默认检索数据
      */
     function getDataList(){
+        //显示换一批
+        $(".paginate-getother-css").show();
         $.ajax({
             url:"/index/leftfrm",
             type:"post",
@@ -97,6 +99,14 @@ $(function(){
                                 '</li>'+
                             '</ul>';
                         $("#m-list-search_results_id").append(content);
+
+                        //隐藏分页插件
+                        $(".dataTables_wrapper").hide();
+                        //换一批
+                        $(".paginate-getother-css").unbind();
+                        $(".paginate-getother-css").click(function(){
+                            getDataList();
+                        });
                     });
                 }
             },
