@@ -167,7 +167,7 @@ $(function() {
             var wiki_info = "";
             //百度百科
             if(data.wiki_info.baidubaike != null){
-                $("#wiki_info_id").append("<h6 style='font-weight: bold;'>百度百科:</h6>");
+                $("#wiki_info_id").append("<br/><h6 style='font-weight: bold;'>百度百科:</h6>");
                 var baidu = data.wiki_info.baidubaike;
                 //abstracts relatedImage
                 if(baidu.abstracts != null){
@@ -175,13 +175,13 @@ $(function() {
                 }
                 if(baidu.relatedImage != null){
                     for(var i in baidu.relatedImage){
-                        $("#wiki_info_id").append("<img src='"+baidu.relatedImage[i]+"' />");
+                        $("#wiki_info_id").append("<img src='"+baidu.relatedImage[i]+"' style='max-width:500px;min-width:200px;'/>");
                     }
                 }
             }
             //互动百科
             if(data.wiki_info.hudongbaike != null){
-                $("#wiki_info_id").append("<h6 style='font-weight: bold;'>互动百科:</h6>");
+                $("#wiki_info_id").append("<br/><h6 style='font-weight: bold;'>互动百科:</h6>");
                 var hudong = data.wiki_info.hudongbaike;
                 
                 if(hudong.abstracts != null){
@@ -189,13 +189,13 @@ $(function() {
                 }
                 if(hudong.relatedImage != null){
                     for(var i in hudong.relatedImage){
-                        $("#wiki_info_id").append("<img src='"+hudong.relatedImage[i]+"' />");
+                        $("#wiki_info_id").append("<img src='"+hudong.relatedImage[i]+"' style='max-width:500px;min-width:200px;'/>");
                     }
                 }
             }
             //中国维基
             if(data.wiki_info.zhwiki != null){
-                $("#wiki_info_id").append("<h6 style='font-weight: bold;'>中国维基:</h6>");
+                $("#wiki_info_id").append("<br/><h6 style='font-weight: bold;'>中国维基:</h6>");
                 var wiki = data.wiki_info.zhwiki;
                 
                 if(wiki.abstracts != null){
@@ -203,7 +203,7 @@ $(function() {
                 }
                 if(wiki.relatedImage != null){
                     for(var i in wiki.relatedImage){
-                        $("#wiki_info_id").append("<img src='"+wiki.relatedImage[i]+"' />");
+                        $("#wiki_info_id").append("<img src='"+wiki.relatedImage[i]+"' style='max-width:500px;min-width:200px;' />");
                     }
                 }
             }
