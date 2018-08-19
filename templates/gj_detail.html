@@ -26,7 +26,11 @@
     <!-- begin:: Page -->
     <div class="m-grid m-grid--hor m-grid--root m-page">
         <!-- BEGIN: Header -->
-        {% include '/frame/header_1.html' %}
+        {% if ismobile == true %}
+            {% include '/frame/header_mobile_other.html' %} 
+        {% else %}
+            {% include '/frame/header_other.html' %} 
+        {% endif %}
         <!-- END: Header -->
         <!-- begin::Body -->
         <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
@@ -134,7 +138,7 @@
     <!--end::Base Scripts -->
     <script type="text/javascript">
         jQuery(document).ready(function() {
-            $("#m_table_1").DataTable({
+            $("#m_table_1").mDatatable({
                 responsive: !0
             })
         });

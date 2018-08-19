@@ -31,15 +31,14 @@
 <!-- end::Head -->
 <!-- end::Body -->
 
-<body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+<body style="min-width:1080px;overflow:hidden;position:relative;" class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
     <!-- begin:: Page -->
     <div class="m-grid m-grid--hor m-grid--root m-page" id="loadHeader_id">
         <!-- BEGIN: Header -->
-        {% if ismobile == false %}
-           {% include '/frame/header.html' %} 
-
+        {% if ismobile == true %}
+            {% include '/frame/header_mobile.html' %} 
         {% else %}
-            {% include '/frame/header2.html' %} 
+            {% include '/frame/header.html' %} 
         {% endif %}
         <!-- END: Header -->
         <!-- begin::Body -->
@@ -127,7 +126,11 @@
     </div>
     <!-- end:: Page -->
     <!-- start:plugins -->
-    {% include '/frame/plugins.html' %}
+    {% if ismobile == true %}
+        {% include '/frame/plugins_mobile.html' %} 
+    {% else %}
+        {% include '/frame/plugins.html' %}
+    {% endif %}
     <!-- end:plugins -->
 
     <!--begin::Base Scripts -->

@@ -36,7 +36,11 @@
     <!-- begin:: Page -->
     <div class="m-grid m-grid--hor m-grid--root m-page">
         <!-- BEGIN: Header -->
-        {% include '/frame/header_1.html' %}
+        {% if ismobile == true %}
+            {% include '/frame/header_mobile_other.html' %} 
+        {% else %}
+            {% include '/frame/header_other.html' %} 
+        {% endif %}
         <!-- END: Header -->
         <!-- begin::Body -->
         <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
@@ -430,7 +434,11 @@
     </div>
     <!-- end:: Page -->
     <!-- start:plugins -->
-    {% include '/frame/plugins.html' %}
+    {% if ismobile == true %}
+        {% include '/frame/plugins_mobile.html' %} 
+    {% else %}
+        {% include '/frame/plugins.html' %}
+    {% endif %}
     <!-- end:plugins -->
     <!--begin::Base Scripts -->
     <script src="/static/jquery-1.11.3.min.js" type="text/javascript"></script>
