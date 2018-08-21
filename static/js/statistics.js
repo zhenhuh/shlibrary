@@ -25,17 +25,21 @@ var DatatableRemoteAjax = {
             },
             sortable: !1,
             pagination: !0,
-            columns: [{
-                field: "area",
-                filterable: !0,
-                sortable: !1,
-                title: "地理位置"
-            },
+            columns: [
             {
                 field: "bookname",
                 filterable: !0,
                 sortable: !1,
-                title: "志书名称"
+                title: "志书名称",
+                template:function(t){
+                    return "<a href='/fz_detail/?name="+t.bookname+"&wtime="+t.year_w+"' target='_blank'>"+t.bookname+"</a>";
+                }
+            },
+            {
+                field: "year_c",
+                filterable: !0,
+                sortable: !1,
+                title: "版本"
                 
             },
             {
@@ -43,6 +47,7 @@ var DatatableRemoteAjax = {
                 filterable: !0,
                 sortable: !1,
                 title: "物产种类"
+                
             },
             {
                 field: "type",
