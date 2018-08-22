@@ -13,12 +13,12 @@ $(function() {
                 wcname:$("#product_name").val()
             },
         success:function(data){
-            //展示地图
+            //展示所有物产的地图
             showProductDataOnMap(data.data);
 
             //展示明细数据
             showProductDataOnTime(data);
-
+            //时间轴展示数据
             timeClick(data.data);
             
         },
@@ -71,6 +71,9 @@ $(function() {
             }
             var label = new BMap.Label(tempD.place,opts);
             marker.setLabel(label);
+            if(i == 0){
+                map.centerAndZoom(pt, 8);
+                map.enableScrollWheelZoom();
+            }
         }
-        
     }
