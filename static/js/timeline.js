@@ -14,9 +14,15 @@ function timeClick(data) {
         index=Number($timeParent.find(".m-timeline-2__item-cricle.active").attr("data-index"));//将字符串强制转换为数字类型
         
         timer=setInterval(function () {
+            //判断页面是否已被关闭，如果关闭则不做循环
+            if("true" == $("#m_modal_1_2").attr("aria-hidden")){
+                $("#wc_detail_body_id .time-pause").removeClass("time-pause").addClass("time-play");
+                clearInterval(timer);//清除定时器
+                return;
+            }
             //判断当前索引的位置，如果在最后一位则从第一个时间点开始，反之则按顺序播放
             if(lenCount==index+1){
-                $timeParent.find(".m-timeline-2__item-cricle:eq('"+lenCount+"')").removeClass("active");
+                $timeParent.find(".m-timeline-2__item-cricle:eq('"+index+"')").removeClass("active");
                 $timeParent.find(".m-timeline-2__item-cricle:eq(0)").addClass("active");
             }else{
                 $(".m-timeline-2__item-cricle.active").parent().next().find(".m-timeline-2__item-cricle").addClass("active").siblings().removeClass("active");
@@ -48,6 +54,8 @@ function timeClick(data) {
         var index=$(this).data("index");
         $(".m-timeline-2__item-cricle").removeClass("active");
         $(this).addClass("active");
+        //更改到在暂停状态
+        $("#wc_detail_body_id .time-pause").removeClass("time-pause").addClass("time-play");
         clearInterval(timer);//清除定时器
         var timeStr = $(this).parent().find("span").first().text().trim();
         
@@ -57,7 +65,16 @@ function timeClick(data) {
                 setMapData(data,timeInt);
             }
         }
-    })
+    });
+
+    //默认显示第一条数据地图
+    // var firstTime = $(".m-timeline-2 .m-timeline-2__item").first().find("span").first().text().trim();
+    // if(firstTime != null && firstTime != ""){
+    //     var timeInt = parseInt(firstTime,10);
+    //     if(timeInt){
+    //         setMapData(data,timeInt);
+    //     }
+    // }
 }
 
 /**
