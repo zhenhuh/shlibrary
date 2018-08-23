@@ -12,7 +12,7 @@ DEBUG_ONLY = True
 
 search_page_size = 10
 chessboard_page_size = 24
-timeout_secound = 5
+timeout_secound = 30
 
 ## data server ip
 def get_data_server():
