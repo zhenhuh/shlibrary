@@ -4,10 +4,10 @@
 $(function() {
 
     /**
-     * 查询明细数据
+     * 查询明细数据-不带百科数据
      */
     $.ajax({
-        url:"/product_detail_data/",
+        url:"/product_detail_data/nowiki/",
         type:"post",
         dataType:"json",
         data:{
@@ -19,6 +19,26 @@ $(function() {
             setDetailData(data);
             //展示地图
             showDetailPlace(data.map_location);
+        },
+        error:function(data){
+
+        }
+    });
+
+    /**
+     * 查询百科数据
+     */
+    $.ajax({
+        url:"/product_detail_data/wiki/",
+        type:"post",
+        dataType:"json",
+        data:{
+                id:$("#product_id").val(),
+                name:$("#product_name").val()
+            },
+        success:function(data){
+            //设置百科数据详细信息
+            setWikiDetailData(data);
         },
         error:function(data){
 
@@ -148,7 +168,13 @@ $(function() {
             var poems = "";
             var poedata = data.poems.data;
             $("#desc_id").append("<br/><h6 style='font-weight: bold;'>相关诗句:</h6>");
+            var name_len = 2;
             for(var i in poedata){
+                if(null == poedata[i].author || poedata[i].author==""){
+                    continue;
+                }
+                name_len = poedata[i].author.length>name_len?poedata[i].author.length:name_len;
+                
                 //诗句
                 var href_a = '<div class="poems_title_width"><a href="javascript:;" data-toggle="m-popover" data-trigger="click" '+
                     ' title="" data-html="true"  '+
@@ -158,8 +184,20 @@ $(function() {
                 $("#desc_id").append("<br/>");
             }
 
+            if(name_len>5){
+                name_len = 5;
+            }
+            var width_ = name_len * 14 + "px";
+            $(".poems_title_width").css("width",width_);
             $("[data-toggle='m-popover']").popover();
         }
+    }
+
+    /**
+     * 百科数据详细信息
+     * @param  data 
+     */
+    function setWikiDetailData(data){
         /**
          * 百科字段
          */
@@ -211,7 +249,11 @@ $(function() {
             $("#wiki_info_id").text("无");
         }
     }
-
+    
+    /**
+     * 地图展示
+     * @param data 
+     */
     function showDetailPlace(data){
         var map = new BMap.Map("yn_map");
         if(data.longitude != "" && data.latitude != "" 

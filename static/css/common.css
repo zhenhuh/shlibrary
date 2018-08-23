@@ -106,7 +106,7 @@
 /* 诗句标题长度 */
 .poems_title_width{
     float:left;
-    width:50px;
+    max-width:70px;
     margin-left:15px;
 }
 
