@@ -1,7 +1,10 @@
 from flask import request, abort, jsonify, render_template, redirect
 from functools import wraps, lru_cache
 from datetime import datetime, timedelta
+import eventlet
 import re
+
+eventlet.monkey_patch()
 
 DEBUG_ONLY = True
 
@@ -9,6 +12,7 @@ DEBUG_ONLY = True
 
 search_page_size = 10
 chessboard_page_size = 24
+timeout_secound = 5
 
 ## data server ip
 def get_data_server():
@@ -17,6 +21,7 @@ def get_data_server():
 data_server = get_data_server() # "http://47.97.124.135" # "http://localhost:2345"
 
 resp_error_code = "error_code"
+resp_timeout = "timeout"
 no_data = "no_data"
 breif_key = "breif"
 detail_key = "detail"
@@ -96,6 +101,19 @@ wc_count_in_fz_info = "RESTfulWS/JL/jtwc/wcTJ"
 # endregion data
 
 # region decorator
+
+def timeout(second):
+    def inner(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            try:
+                with eventlet.Timeout(second):
+                    return func(*args, **kwargs)
+            except eventlet.Timeout:
+                return {f"{resp_timeout}" : f"{resp_timeout}: {second}"}
+
+        return wrapper
+    return inner
 
 def pick(count):
     def inner(func):
@@ -207,9 +225,17 @@ def check_url_params(args, whichdict):
         if each_arg not in [item.value for item in whichdict]:
             abort(400, f"{each_arg} is not supported. Params supported: " + " ".join(enum.value for enum in whichdict))
 
-def check_resp_status(content_json):
+def check_resp_status(content_json, abort_when_fail = False):
+    def abort_for(reason_key):
+        if abort_when_fail:
+            abort(500, "raw response status code: " + str(content_json.get(reason_key)))
+        else:
+            return False
+
     if f"{resp_error_code}" in content_json:
-        abort(500, "raw response status code: " + str(content_json.get(f"{resp_error_code}")))
+        abort_for(resp_error_code)
+    elif f"{resp_timeout}" in content_json:
+        abort_for(resp_timeout)
 
 # https://gist.github.com/Morreski/c1d08a3afa4040815eafd3891e16b945
 def timed_cache(**timedelta_kwargs):
