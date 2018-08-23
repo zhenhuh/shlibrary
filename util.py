@@ -110,7 +110,7 @@ def timeout(second):
                 with eventlet.Timeout(second):
                     return func(*args, **kwargs)
             except eventlet.Timeout:
-                return {f"{resp_timeout}" : second}
+                return {f"{resp_timeout}" : f"{resp_timeout}: {second}"}
 
         return wrapper
     return inner
