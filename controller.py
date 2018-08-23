@@ -59,13 +59,27 @@ def index_rightfrm_region_click():
     chess = Chessboard(ChessboardType.region)
     return chess.get_chessboard_data()
 
-@app.route("/product_detail_test/", methods = ["POST", "GET"])
+@app.route("/product_detail_data/", methods = ["POST", "GET"])
 @jsut4test
 @returnjson
-def product_detail_test():
+def product_detail_data_action():
     from product_detail import ProductInfo
     prod = ProductInfo()
     return prod.get_product_info()
+
+@app.route("/product_detail_data/nowiki", methods = ["POST", "GET"])
+@returnjson
+def product_detail_data_without_wiki_action():
+    from product_detail import ProductInfo
+    prod = ProductInfo()
+    return prod.get_product_info(ignore_wiki = True)
+
+@app.route("/product_detail_data/wiki", methods = ["POST", "GET"])
+@returnjson
+def product_detail_wiki_action():
+    from product_detail import ProductInfo
+    prod = ProductInfo()
+    return prod.wiki_info()
 
 @app.route("/product_detail/", methods = ["GET"])
 #@returnHTML

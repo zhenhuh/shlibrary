@@ -7,7 +7,7 @@ $(function() {
      * 查询明细数据
      */
     $.ajax({
-        url:"/product_detail_test/",
+        url:"/product_detail_data/",
         type:"post",
         dataType:"json",
         data:{
