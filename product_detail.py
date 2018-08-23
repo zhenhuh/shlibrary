@@ -17,7 +17,7 @@ class ProductInfo:
         if ProdParam.id.value not in args or ProdParam.name.value not in args:
             abort(500, "id and name must have value")
 
-    def get_product_info(self):
+    def get_product_info(self, ignore_wiki = False):
         request_params = get_request_params()
 
         self.__check_prod_params(request_params)
@@ -40,7 +40,9 @@ class ProductInfo:
             wc_desc_in_gj = {}
 
         detail_info[f"{gj_desc_key}"] = wc_desc_in_gj
-        detail_info[f"{wiki_info_key}"] = Wiki.get_wiki_info_according2props(name, "abstracts", "relatedImage") # query_wiki_info(name)
+
+        if not ignore_wiki:
+            detail_info[f"{wiki_info_key}"] = Wiki.get_wiki_info_according2props(name, "abstracts", "relatedImage") # query_wiki_info(name)
 
         poemHandler = PoemHandler()
         detail_info[f"{related_poems_key}"] = poemHandler.get_poem_info_from_key(name)
@@ -55,6 +57,15 @@ class ProductInfo:
                 detail_info[f"{wtime_key}"] = year[-1].rstrip(")")
 
         return detail_info
+
+    def wiki_info(self):
+        request_params = get_request_params()
+
+        self.__check_prod_params(request_params)
+
+        name = request_params.get(ProdParam.name.value)
+
+        return Wiki.get_wiki_info_according2props(name, "abstracts", "relatedImage")
 
 @cache
 @respjson()
