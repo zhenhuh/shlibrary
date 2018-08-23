@@ -67,14 +67,14 @@ def product_detail_data_action():
     prod = ProductInfo()
     return prod.get_product_info()
 
-@app.route("/product_detail_data/nowiki", methods = ["POST", "GET"])
+@app.route("/product_detail_data/nowiki/", methods = ["POST", "GET"])
 @returnjson
 def product_detail_data_without_wiki_action():
     from product_detail import ProductInfo
     prod = ProductInfo()
     return prod.get_product_info(ignore_wiki = True)
 
-@app.route("/product_detail_data/wiki", methods = ["POST", "GET"])
+@app.route("/product_detail_data/wiki/", methods = ["POST", "GET"])
 @returnjson
 def product_detail_wiki_action():
     from product_detail import ProductInfo
