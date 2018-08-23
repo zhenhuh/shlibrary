@@ -41,7 +41,8 @@ class ShlibDataMgr:
 
         gj_name = request_params[ShlibParam.gj.value]
         all_books = query_brief_info_for(gj_name)
-        check_resp_status(all_books)
+        if not check_resp_status(all_books):
+            return {f"{no_data}" : ""}
 
         books = all_books.get("data")
         if books is None:

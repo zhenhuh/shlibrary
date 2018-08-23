@@ -110,9 +110,10 @@ class PoemHandler:
         return get_poem_data(poems, 5)
 
 @cache
+@timeout(timeout_secound)
 @respjson()
 def query_poem(key):
-    return requests.get(f"https://api.sou-yun.com/api/poem/?key={key}&jsontype=true")
+    return requests.get(f"https://api.sou-yun.com/api/poem/?key={key}&jsontype=true", verify = False)
 
 if __name__ == "__main__":
     pass

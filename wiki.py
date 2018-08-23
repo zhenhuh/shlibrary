@@ -37,8 +37,8 @@ class Wiki:
         result_list = []
         for each_prop in props:
             try:
-                each_result = query_wiki_info(name = name, field = each_prop)
-                if f"{resp_error_code}" in each_result:
+                each_result = query_wiki_info(name=name, field=each_prop)
+                if not check_resp_status(each_result):
                     continue
             except:
                 continue
@@ -65,6 +65,7 @@ class Wiki:
         return most_wiki_kind_result
 
 @cache
+@timeout(timeout_secound)
 @respjson()
 def query_wiki_info(name, wikitype = None, field = None):
     url = f"http://zhishi.me/api/entity/{name}" if wikitype is None and field is None else f"http://zhishi.me/api/entity/{name}?"
@@ -79,7 +80,7 @@ def query_wiki_info(name, wikitype = None, field = None):
         # no wikitype and no field
         pass
 
-    return requests.get(url)
+    return requests.get(url, verify = False)
 
 if __name__ == "__main__":
     #app.run(host = "0.0.0.0", port = 8080, debug=True)
