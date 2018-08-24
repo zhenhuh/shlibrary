@@ -65,7 +65,7 @@ class Wiki:
         return most_wiki_kind_result
 
 @cache
-@timeout(timeout_secound)
+#@timeout(timeout_secound)
 @respjson()
 def query_wiki_info(name, wikitype = None, field = None):
     url = f"http://zhishi.me/api/entity/{name}" if wikitype is None and field is None else f"http://zhishi.me/api/entity/{name}?"
@@ -80,7 +80,7 @@ def query_wiki_info(name, wikitype = None, field = None):
         # no wikitype and no field
         pass
 
-    return requests.get(url, verify = False)
+    return requests.get(url, verify = False, timeout = timeout_secound)
 
 if __name__ == "__main__":
     #app.run(host = "0.0.0.0", port = 8080, debug=True)
