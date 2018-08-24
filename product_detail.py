@@ -65,7 +65,7 @@ class ProductInfo:
 
         name = request_params.get(ProdParam.name.value)
 
-        return Wiki.get_wiki_info_according2props(name, "abstracts", "relatedImage")
+        return {f"{wiki_info_key}" : Wiki.get_wiki_info_according2props(name, "abstracts", "relatedImage")}
 
 @cache
 @respjson()
