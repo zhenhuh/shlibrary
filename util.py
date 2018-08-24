@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 import eventlet
 import re
 
-eventlet.monkey_patch()
+#eventlet.monkey_patch()
 
 DEBUG_ONLY = True
 
@@ -236,6 +236,8 @@ def check_resp_status(content_json, abort_when_fail = False):
         abort_for(resp_error_code)
     elif f"{resp_timeout}" in content_json:
         abort_for(resp_timeout)
+    else:
+        return True
 
 # https://gist.github.com/Morreski/c1d08a3afa4040815eafd3891e16b945
 def timed_cache(**timedelta_kwargs):
