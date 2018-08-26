@@ -29,8 +29,8 @@ $(function(){
         var paraname = $("#wc_or_zs_name_id").val();
         if(paraname == "无限手套"){
             window.open("/amazing");
+            return ;
         }
-
         //清空查询结果列表
         $("#m-list-search_results_id").empty();
         advancedPageData = {
@@ -78,6 +78,9 @@ $(function(){
     function getDataList(){
         //显示换一批
         $(".paginate-getother-css").show();
+        //隐藏分页插件
+        $(".dataTables_wrapper").hide();
+
         $.ajax({
             url:"/index/leftfrm",
             type:"post",
@@ -105,8 +108,6 @@ $(function(){
                             '</ul>';
                         $("#m-list-search_results_id").append(content);
 
-                        //隐藏分页插件
-                        $(".dataTables_wrapper").hide();
                         //换一批
                         $(".paginate-getother-css").unbind();
                         $(".paginate-getother-css").click(function(){
@@ -126,11 +127,8 @@ $(function(){
      * 根据查询条件检索数据
      */
     function searchByParam(jsonData){
-        /**
-         * 显示分页插件
-         */
-        $(".dataTables_wrapper").show();
-        $(".paginate-getother-css").hide();
+        //隐藏换一批
+        $(".paginate-getother-css").hide(); 
         var tempdata = {};
         $.extend(tempdata, jsonData);
         delete tempdata.url;
@@ -141,11 +139,16 @@ $(function(){
             data: tempdata,
             dataType:"json",
             success:function(data){
-                //加载分页信息
-                $.callbackPageinfo(data);
                 if(data==null || data.count==0){
                     $("#m-list-search_results_id").html("<span class='m-list-search__result-message'>对不起，没有检索到相关数据 </span>");
-                }else{                    
+                }else{
+                    /**
+                     * 显示分页插件
+                     */
+                    //加载分页信息
+                    $.callbackPageinfo(data);
+                    $(".dataTables_wrapper").show();
+                             
                     //加载页面数据
                     $(data.data).each(function(index,ele){
                         var wc_or_gj = "无来源志书"
