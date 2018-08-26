@@ -1,0 +1,339 @@
+/* Generic transition properties */
+ul#planets {
+	-moz-transition: 0.5s all linear;
+	-webkit-transition: 0.5s all linear;
+	-o-transition: 0.5s all linear;
+	transition: 0.5s all linear;
+}
+.content, .content h1, #dock, .window {
+	-moz-transition: 0.5s all ease-out;
+	-webkit-transition: 0.5s all ease-out;
+	-o-transition: 0.5s all ease-out;
+	transition: 0.5s all ease-out;
+}
+.reflect {
+	-moz-transition: 0.5s all ease-in;
+	-moz-transition-delay:0.2s;
+	-webkit-transition: 0.5s all ease-in;
+	-webkit-transition-delay:0.2s;
+	-o-transition: 0.5s all ease-in;
+	-o-transition-delay:0.2s;
+	transition: 0.5s all ease-in;
+	transition-delay:0.2s;
+}
+
+/* 简介 */
+#info {
+	-moz-transition: 1s box-shadow linear, 1s color linear, 0.2s background-color linear, 0.2s top ease;
+	-webkit-transition: 1s -webkit-box-shadow linear, 1s color linear, 0.2s background-color linear, 0.2s top ease;
+	-o-transition: 1s box-shadow linear, 1s color linear, 0.2s background-color linear, 0.2s top ease;
+	transition: 1s box-shadow linear, 1s color linear, 0.2s background-color linear, 0.2s top ease;
+}
+
+#glow {
+	-moz-transition:0.5s all ease;
+	-webkit-transition:0.5s all ease;
+	-o-transition:0.5s all ease;
+	transition:0.5s all ease;
+}
+
+/* Fonts and color */
+
+.bebas {
+	font: 25px 'Bebas', Arial, sans-serif;
+	word-spacing:5px;
+}
+.carto {
+	font:18px 'CartoGothicStd-Book', Arial, sans-serif;
+}
+.marketing {
+	font:51px 'MarketingScript', serif;
+}
+.mass {
+	color:#75d0ff;
+}
+.perimeter {
+	color:#fff075;
+}
+
+h1 {
+	color:#eee;
+	-moz-transform-origin:center center;
+	-webkit-transform-origin:center center;
+	-o-transform-origin:center center;
+	transform-origin:center center;
+	font-size:10em;
+}
+h1.bebas {
+	font-size:72px;
+	font-weight:normal;
+	color:#ddd;
+}
+h2.bebas {
+	font-size:14px;
+	color:#eee;
+	margin-left:30px;
+	margin-top:20px;
+	font-weight:normal;
+	color:#ccc;
+}
+#gui.visible #dock {
+	-moz-transform:translateY(-200px);
+	-webkit-transform:translateY(-200px);
+	-o-transform:translateY(-200px);
+	transform:translateY(-200px);
+}
+
+#info {
+	position:absolute;
+	height:150px;
+	width:300px;
+	border-radius:10px;
+	top:-150px;
+	background:rgba(255, 255, 255, 0.1);
+	left:50%;
+	margin-left:-150px;
+	text-align:center;
+	color:#ccc;
+}
+#info span {
+	text-transform:uppercase;
+	position:relative;
+	top:100px;
+	font-size:20px;
+}
+#info:hover {
+	cursor:pointer;
+	background-color:rgba(255, 255, 255, 0.2);
+}
+.visible #info {
+	top:-75px;
+}
+#info.glowing {
+	color:#eee;
+	box-shadow:0px 0px 5px #999;
+	-webkit-box-shadow:0px 0px 5px #999;
+}
+#info:hover, #info.glowing:hover {
+	color:#eee;
+}
+.visible .content {
+	pointer-events:none;
+}
+
+/* Planet content generic layout */
+
+.content {
+	opacity:1;
+	display:inline;
+	position:absolute;
+	left:100px;
+	height:500px;
+	top:50%;
+	margin-top:-250px;
+	pointer-events:none;
+}
+.content article {
+	padding-top:0;
+}
+.content .reflect {
+	padding:5px 30px;
+	border-radius:10px;
+}
+.content .window {
+	background:rgba(255, 255, 255, 0.1);
+	width:550px;
+	margin:0;
+	border-radius:10px;
+	border:1px solid rgba(255, 255, 255, 0.2);
+	-moz-transform:scale(1);
+	-webkit-transform:scale(1);
+	-o-transform:scale(1);
+	transform:scale(1);
+}
+.content .window h1 {
+	float:left;
+	padding:0 15px 0 0;
+	margin:0;
+	position:relative;
+	top:5px;
+	left:-2px;
+	height:100px;
+}
+.content .window p {
+	font-size:18px;
+	line-height:30px;
+	padding-top:0px;
+	color:#ccc;
+	font-size:18px;
+	font-family:'CartoGothicStd-Book', sans-serif;
+}
+.content ul {
+	list-style-type:none;
+	position:relative;
+	top:-5px;
+	margin-left:-18px;
+}
+.content ul li {
+	position:relative;
+	float:none;
+	margin:10px 0;
+	opacity:1;
+}
+
+/* Venus Content */
+
+ul#venus-atmosphere {
+	margin-top:20px;
+}
+ul#venus-atmosphere li {
+	width:660px;
+	font-size:18px;
+	padding:15px 0 10px 0;
+	margin:0;
+	border-bottom:1px solid #999;
+}
+
+ul#venus-atmosphere li span{
+	display:table-cell;
+}
+
+.shrink .content ul#venus-atmosphere li {
+	-moz-transform:translateY(500px) scaleX(0) scaleY(0);
+	-webkit-transform:translateY(500px) scaleX(0) scaleY(0);
+	-o-transform:translateY(500px) scaleX(0) scaleY(0);
+	transform:translateY(500px) scaleX(0) scaleY(0);
+}
+/* Starfield */
+#starfield {
+	background: url('./img/bg.jpg') repeat center center;
+	width:5000px;
+	height:200%;
+	left:50%;
+	margin-left:-2500px;
+	z-index:-1;
+	pointer-events:none;
+	-moz-transition:0.5s -moz-transform ease;
+	-webkit-transition:0.5s -webkit-transform ease;
+	-o-transition:0.5s -o-transform ease;
+	transition:0.5s transform ease;
+}
+.mercury #starfield {
+	-moz-transform:translateX(250px);
+	-webkit-transform:translateX(250px);
+	-o-transform:translateX(250px);
+	transform:translateX(250px);
+}
+/* General Layout */
+html, body {
+	height:100%;
+	width:100%;
+	margin:0;
+	padding:0;
+}
+body {
+	background:#000;
+	overflow:hidden;
+	font-family:Georgia, sans-serif;
+	color:#f4f4f4;
+	background-position:0 0;
+}
+#container {
+	position:absolute;
+	left:0;
+	top:0;
+	pointer-events:none;
+}
+ul#planets {
+	list-style-type:none;
+	height:100px;
+	width:50%;
+}
+ul#planets li {
+	position:absolute;
+	right:16%;
+	top:0px;
+	-moz-transform-origin:center center;
+	-webkit-transform-origin:center center;
+	-o-transform-origin:center center;
+	transform-origin:center center;
+	background:transparent;
+}
+
+.planet {
+	overflow:visible;
+	-moz-transform-origin:center center;
+	-webkit-transform-origin:center center;
+	-o-transform-origin:center center;
+	transform-origin:center center;
+}
+.planet .clipmask {
+	border-radius:50%;
+	-webkit-border-radius:300px;
+	-o-border-radius:300px;
+	overflow:hidden;
+	vertical-align: middle;
+	height:100%;
+}
+.planet:hover {
+	cursor:pointer;
+}
+.planet {
+	pointer-events:none;
+	z-index:0;
+}
+
+/* Media Queries */
+@media screen and (min-width: 2000px) {
+ 
+	#starfield {
+		width:10000px;
+		margin-left:-5000px;
+	}
+}
+@media screen and (max-width: 1500px) {
+	section.content {
+		-moz-transform:scale(0.9);
+		-moz-transform-origin:0 center;
+		-webkit-transform:scale(0.9);
+		-webkit-transform-origin:0 center;
+		-o-transform:scale(0.9);
+		-o-transform-origin:0 center;
+		transform:scale(0.9);
+		transform-origin:0 center;
+	}
+}
+ @media screen and (max-width: 1300px) {
+	section.content {
+		-moz-transform:scale(0.8);
+		-moz-transform-origin:0 center;
+		-webkit-transform:scale(0.8);
+		-webkit-transform-origin:0 center;
+		-o-transform:scale(0.8);
+		-o-transform-origin:0 center;
+		transform:scale(0.8);
+		transform-origin:0 center;
+	}
+}
+ @media screen and (max-width: 1100px) {
+	section.content {
+		-moz-transform:scale(0.6);
+		-moz-transform-origin:0 center;
+		-webkit-transform:scale(0.6);
+		-webkit-transform-origin:0 center;
+		-o-transform:scale(0.6);
+		-o-transform-origin:0 center;
+		transform:scale(0.6);
+		transform-origin:0 center;
+	}
+	#title, #credits {
+		-moz-transform:scale(0.7);
+		-moz-transform-origin:center 0;
+		-webkit-transform:scale(0.7);
+		-webkit-transform-origin:center 0;
+		-o-transform:scale(0.7);
+		-o-transform-origin:center 0;
+		transform:scale(0.7);
+		transform-origin:center 0;
+	}
+}

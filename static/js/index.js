@@ -26,6 +26,11 @@ $(function(){
             swal("请输入检索词!", "", "warning");
             return;
         }
+        var paraname = $("#wc_or_zs_name_id").val();
+        if(paraname == "无限手套"){
+            window.open("/amazing");
+        }
+
         //清空查询结果列表
         $("#m-list-search_results_id").empty();
         advancedPageData = {
