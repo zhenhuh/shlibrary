@@ -8,6 +8,11 @@ def index():
     user_agent = request.headers.get("User-Agent")
     return render_template("index.html", ismobile = is_mobile(user_agent))
 
+@app.route("/amazing")
+#@returnHTML
+def amazing():
+    return render_template("amazing.html")
+
 @app.route("/index/leftfrm", methods = ["POST", "GET"])
 @returnjson
 def index_leftfrm():
