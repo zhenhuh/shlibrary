@@ -90,7 +90,7 @@ class ShlibDataMgr:
         person_data = resp["data"]
 
         if len(person_data) == 0:
-            return ""
+            return "/404/?info=上图还未收录"
 
         # assume no duplicate
         for person in person_data:
@@ -100,7 +100,7 @@ class ShlibDataMgr:
                     break
                 return f"http://names.library.sh.cn/mrgf/service/work/persons?uri={person_uri}&dataType=1"
 
-        return ""
+        return "/404/?info=上图还未收录"
 
     def get_redirect_url_for_instanceOf_from_uri(self):
         request_params = get_request_params()

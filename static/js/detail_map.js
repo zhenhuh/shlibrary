@@ -60,6 +60,9 @@ $(function() {
 
         for(var i in data){
             var tempD = data[i].map_location;
+            if(tempD == null || tempD.place == null){
+                continue;
+            }
             var pt = new BMap.Point(tempD.longitude,tempD.latitude);
             var marker = new BMap.Marker(pt);  // 创建标注
             map.addOverlay(marker);               // 将标注添加到地图中

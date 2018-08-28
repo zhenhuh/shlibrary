@@ -3,15 +3,17 @@ from server import app
 from util import *
 
 @app.route("/")
-#@returnHTML
 def index():
     user_agent = request.headers.get("User-Agent")
     return render_template("index.html", ismobile = is_mobile(user_agent))
 
 @app.route("/amazing")
-#@returnHTML
 def amazing():
     return render_template("amazing.html")
+
+@app.route("/404/")
+def error():
+    return render_template("404.html", info = get_request_params().get("info"))
 
 @app.route("/index/leftfrm", methods = ["POST", "GET"])
 @returnjson
