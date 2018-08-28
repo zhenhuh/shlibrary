@@ -139,7 +139,8 @@ $(function() {
                 for(var i in dc){
                     if(dc[i] != "" && strNew.indexOf(dc[i]) >= 0){
                         strNew = strNew.replaceAll(dc[i],
-                            '<span class="detail_ys_tip" data-container="body" data-toggle="m-tooltip" data-placement="top" data-original-title="引书：'+dc[i]+'">'+dc[i]+'</span>');
+                            "<a href='/shlib/gj/?gj="+dc[i].trim()+"' target='_blank' class='detail_ys_tip' "+
+                            " data-container='body' data-toggle='m-tooltip' data-placement='top' data-original-title='引书："+dc[i]+"'>"+dc[i]+"</a>");
                     }
                 }
             }
@@ -209,7 +210,7 @@ $(function() {
                 var baidu = data.wiki_info.baidubaike;
                 //abstracts relatedImage
                 if(baidu.abstracts != null){
-                    $("#wiki_info_id").append("<span>"+baidu.abstracts+"</span>");
+                    $("#wiki_info_id").append("<div style='float:left;'><span>"+baidu.abstracts+"</span></div>");
                 }
                 if(baidu.relatedImage != null){
                     for(var i in baidu.relatedImage){
@@ -223,7 +224,7 @@ $(function() {
                 var hudong = data.wiki_info.hudongbaike;
                 
                 if(hudong.abstracts != null){
-                    $("#wiki_info_id").append("<span>"+hudong.abstracts+"</span>");
+                    $("#wiki_info_id").append("<div style='float:left;'><span>"+hudong.abstracts+"</span></div>");
                 }
                 if(hudong.relatedImage != null){
                     for(var i in hudong.relatedImage){
@@ -237,7 +238,7 @@ $(function() {
                 var wiki = data.wiki_info.zhwiki;
                 
                 if(wiki.abstracts != null){
-                    $("#wiki_info_id").append("<span>"+wiki.abstracts+"</span>");
+                    $("#wiki_info_id").append("<div style='float:left;'><span>"+wiki.abstracts+"</span></div>");
                 }
                 if(wiki.relatedImage != null){
                     for(var i in wiki.relatedImage){

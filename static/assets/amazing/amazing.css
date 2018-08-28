@@ -151,6 +151,28 @@ h2.bebas {
 	-o-transform:scale(1);
 	transform:scale(1);
 }
+
+.focus_reflect {
+	padding:5px 30px;
+	border-radius:10px;
+}
+.focus_window {
+	display: none;
+	float:right;
+	background:rgba(255, 255, 255, 0.1);
+	width:300px;
+	position: fixed;
+	margin-top: -420px;
+    margin-left:350px;
+	border-radius:10px;
+	border:1px solid rgba(255, 255, 255, 0.2);
+	-moz-transform:scale(1);
+	-webkit-transform:scale(1);
+	-o-transform:scale(1);
+	transform:scale(1);
+}
+
+
 .content .window h1 {
 	float:left;
 	padding:0 15px 0 0;
@@ -279,7 +301,7 @@ ul#planets li {
 	cursor:pointer;
 }
 .planet {
-	pointer-events:none;
+	/* pointer-events:none; */
 	z-index:0;
 }
 
