@@ -97,10 +97,10 @@ def product_detail_page():
     #return "product_detail.html", {f"{ProdParam.id.value}": id, f"{ProdParam.name.value}": name}
     return render_template("product_detail.html", id = id, name = name, ismobile = is_mobile(user_agent))
 
-@app.route("/fz_detail_test/", methods = ["POST", "GET"])
-@jsut4test
+@app.route("/fz_detail_data/", methods = ["POST", "GET"])
+#@jsut4test
 @returnjson
-def fz_detail_test():
+def fz_detail_data():
     from fz_detail import LocalChroniclesInfo
     fz = LocalChroniclesInfo()
     return fz.get_lc_info()
@@ -114,6 +114,14 @@ def fz_detail_page():
     return render_template("fz_detail.html", fzdetail = fz.get_lc_info(), ismobile = is_mobile(user_agent))
 
 # shanghai library
+## other gj only data
+@app.route("/shlib/gj_data/", methods = ["POST", "GET"])
+@returnjson
+def shlib_gj_data():
+    from shlibrary import ShlibDataMgr
+    shlib = ShlibDataMgr()
+    return shlib.get_gj_detail_info()
+
 ## other gj
 @app.route("/shlib/gj/", methods = ["GET"])
 #@returnHTML
