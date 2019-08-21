@@ -1,6 +1,6 @@
-from databases import Databases
-from preload import *
-from util import *
+from sparql.databases import Databases
+from sparql.preload import *
+from sparql.util import *
 from SPARQLWrapper import SPARQLWrapper, JSON, XML, RDFXML
 
 def fzwc_sparql_query(produce_uri, clause, output_type):
