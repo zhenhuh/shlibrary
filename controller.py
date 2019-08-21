@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect
+from flask_cors import CORS
 from server import app
 from util import *
 
@@ -255,4 +256,5 @@ def fzwc_produce_json_action():
 if __name__ == "__main__":
     #app.run(host = "0.0.0.0", port = 8080, debug = True)
     import server
+    CORS(app, supports_credentials = True)
     server.run()
