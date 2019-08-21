@@ -10,14 +10,14 @@ class Printjson:
         else:
             print("Debug output:" + "\n" + str(msg) + "\n")
 
-def query_sparql(sparql, clause, output_type):
+def query_sparql(sparql, clause, output_type, uri):
     sparql.setQuery(clause)
     sparql.setReturnFormat(output_type)
     results = sparql.query().convert()
 
-    return normalize_format(results, output_type)
+    return normalize_format(results, output_type, uri)
 
-def normalize_format(raw_data, output_type):
+def normalize_format(raw_data, output_type, uri):
     # dispatchers
     def json_it():
         import os
@@ -25,14 +25,12 @@ def normalize_format(raw_data, output_type):
         for data in raw_data["results"]["bindings"]:
             key = data["property"]["value"]
             value = {"type" : data["value"]["type"], "value" : data["value"]["value"]}
-            print(value)
-            os.system("pause")
             if key in property_dict:
                 property_dict[key].append(value)
             else:
                 property_dict[key] = [value]
 
-        return property_dict
+        return {uri: property_dict}
 
     def xml_it():
         return raw_data

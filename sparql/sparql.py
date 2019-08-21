@@ -4,7 +4,7 @@ from util import *
 from SPARQLWrapper import SPARQLWrapper, JSON, XML
 
 def fzwc_produce_query(id, output_type = JSON):
-    sparql = SPARQLWrapper(Databases.fzwc_server)
+    sparql_server = SPARQLWrapper(Databases.fzwc_server)
 
     produce_uri = f"http://www.fzwc.online/entity/produce/{wc_cache[id]}"
     clause = """
@@ -16,7 +16,7 @@ def fzwc_produce_query(id, output_type = JSON):
         #OFFSET 0
     """.format(produce_uri = produce_uri)
 
-    return {produce_uri: query_sparql(sparql, clause, output_type)}
+    return query_sparql(sparql_server, clause, output_type, produce_uri)
 
 if __name__ == "__main__":
     load_sparql_internal_data()
