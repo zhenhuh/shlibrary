@@ -1,4 +1,4 @@
-from SPARQLWrapper import JSON, XML
+from SPARQLWrapper import JSON, XML, RDFXML
 
 class Printjson:
     #__debug_flag = "debug"
@@ -33,11 +33,17 @@ def normalize_format(raw_data, output_type, uri):
         return {uri: property_dict}
 
     def xml_it():
-        return raw_data
+        return raw_data.toxml()
+
+    def rdfxml_it():
+        from rdflib import Graph
+        return raw_data.serialize(format = 'xml')
 
     if output_type == JSON:
         return json_it()
     elif output_type == XML:
         return xml_it()
+    elif output_type == RDFXML:
+        return rdfxml_it()
     else:
         return raw_data
