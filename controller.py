@@ -233,6 +233,12 @@ def cbdb_action():
     cbdb = CBDB()
     return cbdb.get_redirect_url_for_person()
 
+@app.rouute("/produce/json/<id>", methods = ["GET"])
+@returnjson
+def fzwc_produce_json_action():
+    from sparql.sparql import fzwc_produce_query
+    return fzwc_produce_query(id)
+
 if __name__ == "__main__":
     #app.run(host = "0.0.0.0", port = 8080, debug = True)
     import server
