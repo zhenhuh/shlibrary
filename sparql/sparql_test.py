@@ -52,4 +52,6 @@ def shlib_test():
     print(results)
 
 if __name__ == "__main__":
+    """SELECT * WHERE { GRAPH <http://www.fzwc.online/ontology> { ?s ?p ?o} } """ # all data in http://www.fzwc.online/ontology graph(database)
+
     fzwc_test()

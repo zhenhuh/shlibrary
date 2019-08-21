@@ -233,11 +233,24 @@ def cbdb_action():
     cbdb = CBDB()
     return cbdb.get_redirect_url_for_person()
 
-@app.rouute("/produce/json/<id>", methods = ["GET"])
+@app.rouute("/produce/<string:showtype>/<int:id>", methods = ["GET"])
 @returnjson
 def fzwc_produce_json_action():
-    from sparql.sparql import fzwc_produce_query
-    return fzwc_produce_query(id)
+    from sparql.sparql import fzwc_produce_data_select, fzwc_produce_data_construct
+    JSON   = "json"
+    JSONLD = "json-ld"
+    XML    = "xml"
+    TURTLE = "turtle"
+    N3     = "n3"
+    RDF    = "rdf"
+    RDFXML = "rdf+xml"
+    CSV    = "csv"
+    TSV    = "tsv"
+    output_type = str.upper(showtype)
+    if output_type in set(JSON, XML):
+        return fzwc_produce_data_select(id, output_type)
+    elif output_type in set(RDFXML):
+        return fzwc_produce_data_construct(id, output_type)
 
 if __name__ == "__main__":
     #app.run(host = "0.0.0.0", port = 8080, debug = True)
