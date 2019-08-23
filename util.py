@@ -1,8 +1,7 @@
 from flask import request, abort, jsonify, render_template, redirect
 from functools import wraps, lru_cache
 from datetime import datetime, timedelta
-import eventlet
-import re
+import eventlet, re, os
 
 #eventlet.monkey_patch()
 
@@ -16,7 +15,7 @@ timeout_secound = 30
 
 ## data server ip
 def get_data_server():
-    with open(r"conf\datasrv") as f:
+    with open(os.path.join(os.path.abspath(os.path.dirname(__file__)), r"conf\datasrv")) as f:
         return f.readline()
 data_server = get_data_server() # "http://47.97.124.135" # "http://localhost:2345"
 

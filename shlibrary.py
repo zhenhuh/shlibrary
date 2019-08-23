@@ -2,10 +2,10 @@ from flask import request, abort
 from enum import Enum, unique
 from server import app
 from util import *
-import requests
+import requests, os
 
 def get_userkey():
-    with open(r"conf\key") as f:
+    with open(os.path.join(os.path.abspath(os.path.dirname(__file__)), r"conf\key")) as f:
         return f.readline()
 
 userkey = get_userkey()
