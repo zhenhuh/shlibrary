@@ -1,6 +1,6 @@
 from sparql.databases import Databases
 from sparql.preload import *
-from sparql.util import *
+from sparql.util4sparql import *
 from SPARQLWrapper import SPARQLWrapper, JSON, XML, RDFXML
 
 def fzwc_sparql_query(produce_uri, clause, output_type):
@@ -26,7 +26,7 @@ def fzwc_produce_data_construct(id, output_type = RDFXML):
     produce_uri = f"http://www.fzwc.online/entity/produce/{wc_cache[id]}"
     clause = f"""
         CONSTRUCT {{
-            <{produce_uri}> ?p ?o.
+            <{produce_uri}> ?p ?o .
         }}
         WHERE {{
             <{produce_uri}> ?p ?o .

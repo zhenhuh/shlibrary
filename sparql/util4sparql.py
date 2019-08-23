@@ -20,7 +20,6 @@ def query_sparql(sparql, clause, output_type, uri):
 def normalize_format(raw_data, output_type, uri):
     # dispatchers
     def json_it():
-        import os
         property_dict = dict()
         for data in raw_data["results"]["bindings"]:
             key = data["property"]["value"]
