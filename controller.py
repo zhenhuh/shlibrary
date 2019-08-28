@@ -234,6 +234,11 @@ def cbdb_action():
     cbdb = CBDB()
     return cbdb.get_redirect_url_for_person()
 
+@app.route("/produce/uri/<int:id>", methods = ["GET"])
+def fzwc_produce_uri_action(id):
+    from sparql.sparql import fzwc_produce_data_uri
+    return fzwc_produce_data_uri(id)
+
 @app.route("/produce/<string:showtype>/<int:id>", methods = ["GET"])
 #@returnjson
 def fzwc_produce_json_action(showtype, id):

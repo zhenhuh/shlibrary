@@ -7,9 +7,12 @@ def fzwc_sparql_query(produce_uri, clause, output_type):
     sparql_server = SPARQLWrapper(Databases.fzwc_server)
     return query_sparql(sparql_server, clause, output_type, produce_uri)
 
+def fzwc_produce_data_uri(id):
+    return f"http://www.fzwc.online/entity/produce/{wc_cache[id]}"
+
 def fzwc_produce_data_select(id, output_type = JSON):
 
-    produce_uri = f"http://www.fzwc.online/entity/produce/{wc_cache[id]}"
+    produce_uri = fzwc_produce_data_uri(id)
     clause = f"""
         SELECT DISTINCT ?property ?value
         WHERE {{
@@ -23,7 +26,7 @@ def fzwc_produce_data_select(id, output_type = JSON):
 
 def fzwc_produce_data_construct(id, output_type = RDFXML):
 
-    produce_uri = f"http://www.fzwc.online/entity/produce/{wc_cache[id]}"
+    produce_uri = fzwc_produce_data_uri(id)
     clause = f"""
         CONSTRUCT {{
             <{produce_uri}> ?p ?o .
