@@ -29,7 +29,7 @@ def load_from_txt():
         with open(fz_uuid, "r", encoding = "utf8") as fz:
             for line in fz.readlines():
                 id, _, _, _, internal_uuid, external_uuid = line.split(";", 5)
-                fz_cache[int(id)] = [internal_uuid, external_uuid]
+                fz_cache[int(id)] = [internal_uuid, external_uuid.strip()]
 
     load_wc()
     load_fz()

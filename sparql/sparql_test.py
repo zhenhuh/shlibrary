@@ -55,3 +55,38 @@ if __name__ == "__main__":
     """SELECT * WHERE { GRAPH <http://www.fzwc.online/ontology> { ?s ?p ?o} } """ # all data in http://www.fzwc.online/ontology graph(database)
 
     fzwc_test()
+
+""" ecnu fz
+select DISTINCT ?p ?o
+where {
+ <http://fangzhi.ecnu.edu.cn/entity/work/68a72a10ac274986aca1cb30ffb1c02a> ?p ?o .
+}
+
+
+select DISTINCT ?p ?o
+where {
+ <http://fangzhi.ecnu.edu.cn/entity/work/68a72a10ac274986aca1cb30ffb1c02a> ?p ?o FILTER isBlank(?o) .
+}
+
+
+select *
+where {
+    {
+        select DISTINCT ?p ?o
+        where {
+            <nodeID://b1044002> ?p ?o .
+    }
+    } union {
+        select DISTINCT ?p ?o
+        where {
+            <nodeID://b1044001> ?p ?o .
+        }
+    }
+}
+
+https://github.com/openlink/virtuoso-opensource/issues/126
+
+
+// 递归Blank Node
+http://fangzhi.ecnu.edu.cn/entity/work/bc2ac6c1a9bc4094861811d9c87068c2
+"""
