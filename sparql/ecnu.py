@@ -8,7 +8,7 @@ import sys
 sys.path.append("..")
 from util import cache
 
-class ECNU:
+class ECNU_WEBGRAB:
     def __init__(self, uri):
         self.uri = uri
         self.root = None
@@ -69,5 +69,5 @@ def query_fz_from_ecnu(uri):
 if __name__ == "__main__":
     # recursive unfolder
     # http://sinopedia.library.sh.cn/ecnu/entity/work/bc2ac6c1a9bc4094861811d9c87068c2
-    ecnu = ECNU(r"http://sinopedia.library.sh.cn/ecnu/entity/work/68a72a10ac274986aca1cb30ffb1c02a")
+    ecnu = ECNU_WEBGRAB(r"http://sinopedia.library.sh.cn/ecnu/entity/work/68a72a10ac274986aca1cb30ffb1c02a")
     print(ecnu.get_fz_data())
