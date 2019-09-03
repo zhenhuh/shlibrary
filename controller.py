@@ -241,7 +241,7 @@ def fzwc_produce_uri_action(id):
 
 @app.route("/produce/<string:showtype>/<int:id>", methods = ["GET"])
 #@returnjson
-def fzwc_produce_json_action(showtype, id):
+def fzwc_produce_data_action(showtype, id):
     from sparql.sparql import fzwc_produce_data_select, fzwc_produce_data_construct
     JSON   = "json"
     JSONLD = "json-ld"
@@ -257,6 +257,18 @@ def fzwc_produce_json_action(showtype, id):
         return fzwc_produce_data_select(id, output_type)
     elif output_type in set([RDFXML]):
         return fzwc_produce_data_construct(id, output_type)
+    else:
+        return {}
+
+@app.route("/fz/<string:showtype>/<int:id>", methods = ["GET"])
+def fz_data_action(showtype, id):
+    from sparql.chronicle import Chronicle
+    JSON   = "json"
+
+    output_type = str.lower(showtype)
+    if output_type == JSON:
+        fz = Chronicle()
+        return fz.query_fz_data(id)
     else:
         return {}
 
