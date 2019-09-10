@@ -18,7 +18,7 @@ class FuseUtil:
 
     def get_blank_nodes(self, blank_nodes_data):
         if self.fuse_type == JSON:
-            return FuseUtil.__get_blank_nodes(blank_nodes_data)
+            return FuseUtil.__get_blank_nodes_json(list(blank_nodes_data.values())[0])
         else:
             raise RuntimeError("Fuse type not support")
 
@@ -38,7 +38,7 @@ class FuseUtil:
         fuesd_props = list(to_data.values())[0]
         fuesd_props.update(list(from_data.values())[0])
 
-        return {list(to_data.keys())[0] : fuesd_props}, FuseUtil.__get_blank_nodes(list(from_data.values())[0])
+        return {list(to_data.keys())[0] : fuesd_props}, FuseUtil.__get_blank_nodes_json(list(from_data.values())[0])
 
     @staticmethod
     def __fuse_append_json(acc, data):
@@ -46,7 +46,7 @@ class FuseUtil:
         return acc
 
     @staticmethod
-    def __get_blank_nodes(blank_nodes_data):
+    def __get_blank_nodes_json(blank_nodes_data):
         blank_nodes = []
         for k, v in blank_nodes_data.items():
             for k in v:
