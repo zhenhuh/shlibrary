@@ -1,14 +1,14 @@
 from sparql.databases import Databases
 from sparql.preload import *
 from sparql.util4sparql import *
-from sparql.fuseutil import *
+from sparql.fusefactory import *
 from SPARQLWrapper import SPARQLWrapper, JSON, RDFXML
 
 class Chronicle:
     def __init__(self, output_type = JSON):
         self.ecnu_sparql_server = SPARQLWrapper(Databases.ecnu_server)
         self.fzwc_sparql_server = SPARQLWrapper(Databases.fzwc_server)
-        self.fusefactory = FuseUtil(output_type)
+        self.fusefactory = FuseFactory(output_type)
         self.output_type = output_type
 
     @staticmethod
