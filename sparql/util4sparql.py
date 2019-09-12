@@ -6,7 +6,7 @@ class Printjson:
         import json
         #if os.getenv(self.__debug_flag):
         if auto_json_format and isinstance(msg, dict):
-            print("Debug output:" + "\n" + json.dumps(msg, indent = 2) + "\n")
+            print("Debug output:" + "\n" + json.dumps(msg, indent = 2, ensure_ascii = False) + "\n")
         else:
             print("Debug output:" + "\n" + str(msg) + "\n")
 
@@ -36,7 +36,7 @@ def normalize_format(raw_data, output_type, uri):
 
     def rdfxml_it():
         from rdflib import Graph
-        return raw_data.serialize(format = 'xml')
+        return raw_data.serialize(format = "xml").decode("utf-8")
 
     if output_type == JSON:
         return json_it()
