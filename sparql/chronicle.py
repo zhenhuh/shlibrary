@@ -69,11 +69,17 @@ class Chronicle:
 
     def query_ecnu_fz_data(self, id):
         ecnu_fz_uri = Chronicle.ecnu_fz_uri(id)
-        return self.__query_ecnu_for_property_and_value(ecnu_fz_uri)
+        if len(ecnu_fz_uri) > 0:
+            return self.__query_ecnu_for_property_and_value(ecnu_fz_uri)
+        else:
+            return {"error" : "no uri found"}
 
     def query_fzwc_fz_data(self, id):
         fzwc_fz_uri = Chronicle.fzwc_fz_uri(id)
-        return self.__query_fzwc_for_property_and_value(fzwc_fz_uri)
+        if len(fzwc_fz_uri) > 0:
+            return self.__query_fzwc_for_property_and_value(fzwc_fz_uri)
+        else:
+            return {"error" : "no uri found"}
 
     def query_fz_data(self, id):
         ecnu_fz_uri = Chronicle.ecnu_fz_uri(id)
