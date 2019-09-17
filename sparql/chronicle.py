@@ -67,6 +67,14 @@ class Chronicle:
             
             self.fusefactory.fuse_append(acc, bnode_data)
 
+    def query_ecnu_fz_data(self, id):
+        ecnu_fz_uri = Chronicle.ecnu_fz_uri(id)
+        return self.__query_ecnu_for_property_and_value(ecnu_fz_uri)
+
+    def query_fzwc_fz_data(self, id):
+        fzwc_fz_uri = Chronicle.fzwc_fz_uri(id)
+        return self.__query_fzwc_for_property_and_value(fzwc_fz_uri)
+
     def query_fz_data(self, id):
         ecnu_fz_uri = Chronicle.ecnu_fz_uri(id)
         fzwc_fz_uri = Chronicle.fzwc_fz_uri(id)

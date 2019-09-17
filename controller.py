@@ -272,6 +272,18 @@ def fz_data_action(showtype, id):
     else:
         return {}
 
+@app.route("/fz/ecnu/json/<int:id>", methods = ["GET"])
+def ecnu_fz_data_action(id):
+    from sparql.chronicle import Chronicle
+    ecnu_fz = Chronicle()
+    return ecnu_fz.query_ecnu_fz_data(id)
+
+@app.route("/fz/fzwc/json/<int:id>", methods = ["GET"])
+def fzwc_fz_data_action(id):
+    from sparql.chronicle import Chronicle
+    fzwc_fz = Chronicle()
+    return fzwc_fz.query_fzwc_fz_data(id)
+
 if __name__ == "__main__":
     #app.run(host = "0.0.0.0", port = 8080, debug = True)
     import server
