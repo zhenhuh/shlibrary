@@ -95,6 +95,7 @@ map_location = "RESTfulWS/JL/jtwc/lyplace"
 
 wc_statistics_info = "RESTfulWS/JL/wc/tjwc"
 fz_statistics_info = "RESTfulWS/JL/jtwc/allFZ"
+fz_statistics_info_fuzz = "RESTfulWS/JL/jtwc/fzname"
 wc_count_in_fz_info = "RESTfulWS/JL/jtwc/wcTJ"
 
 # endregion data
