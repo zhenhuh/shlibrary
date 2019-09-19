@@ -8,13 +8,14 @@ import requests
 @unique
 class StatisticsParams(Enum):
     wcname = "wcname"
+    fzname = "fzname"
 
 class Statistics:
     def __check_statistics_params(self, args):
         check_url_params(args, StatisticsParams)
 
-        if StatisticsParams.wcname.value not in args:
-            abort(500, "wcname must has value")
+        if StatisticsParams.wcname.value not in args and StatisticsParams.fzname.value not in args:
+            abort(500, "wcname or fzname must has value")
 
     def wc(self):
         self.__check_statistics_params(get_request_params())
@@ -74,6 +75,12 @@ class Statistics:
 
         return {f"{stat_fz_count_key}" : len(fzstat_info), f"{stat_fz_data_key}" : fzstat_info }
 
+    def fz_fuzz(self):
+        self.__check_statistics_params(get_request_params())
+        fzname = get_request_params().get(StatisticsParams.fzname.value)
+        fzstat_info = query_fz_statistics_fuzz(fzname)
+        return {f"{stat_fz_count_key}" : len(fzstat_info), f"{stat_fz_data_key}" : fzstat_info }
+
 @cache
 @respjson()
 def query_wc_statistics(name):
@@ -83,6 +90,11 @@ def query_wc_statistics(name):
 @respjson()
 def query_fz_statistics():
     return requests.get(f"{data_server}/{fz_statistics_info}")
+
+@cache
+@respjson()
+def query_fz_statistics_fuzz(name):
+    return requests.get(f"{data_server}/{fz_statistics_info_fuzz}/?name={name}")
 
 # [deprecated]
 @cache

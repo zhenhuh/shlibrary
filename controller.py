@@ -211,6 +211,13 @@ def fz_statistics_action():
     stat = Statistics()
     return stat.fz()
 
+@app.route("/fzstatfuzz/", methods = ["GET", "POST"])
+@returnjson
+def fz_statistics_fuzz_action():
+    from statistics import Statistics
+    stat = Statistics()
+    return stat.fz_fuzz()
+
 @app.route("/statistics/", methods = ["GET"])
 #@returnHTML
 def fz_statistics_page():

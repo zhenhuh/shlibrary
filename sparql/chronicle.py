@@ -70,7 +70,10 @@ class Chronicle:
     def query_ecnu_fz_data(self, id):
         ecnu_fz_uri = Chronicle.ecnu_fz_uri(id)
         if len(ecnu_fz_uri) > 0:
-            return self.__query_ecnu_for_property_and_value(ecnu_fz_uri)
+            json_data = self.__query_ecnu_for_property_and_value(ecnu_fz_uri)
+            bnodes = FuseJson.get_blank_nodes(list(json_data.values())[0])
+            self.__fuse_append(json_data, bnodes)
+            return json_data
         else:
             return {"error" : "no uri found"}
 
