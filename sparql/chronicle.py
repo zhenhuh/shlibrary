@@ -4,6 +4,9 @@ from sparql.util4sparql import *
 from sparql.fusefactory import *
 from SPARQLWrapper import SPARQLWrapper, JSON, RDFXML
 
+base_fzwc_fz_uri = "http://www.fzwc.online/ontologies/bibframe/Work/"
+base_ecnu_fz_uri = "http://fangzhi.ecnu.edu.cn/entity/work/"
+
 class Chronicle:
     def __init__(self, output_type = JSON):
         self.ecnu_sparql_server = SPARQLWrapper(Databases.ecnu_server)
@@ -13,11 +16,17 @@ class Chronicle:
 
     @staticmethod
     def fzwc_fz_uri(id):
-        return f"http://www.fzwc.online/ontologies/bibframe/Work/{fz_cache[id][0]}" if fz_cache[id][0] else ""
+        uuids = fz_cache.get(id, None)
+        if uuids is None:
+            return base_fzwc_fz_uri
+        return f"{base_fzwc_fz_uri}{uuids[0]}" if uuids[0] else ""
 
     @staticmethod
     def ecnu_fz_uri(id):
-        return f"http://fangzhi.ecnu.edu.cn/entity/work/{fz_cache[id][1]}" if fz_cache[id][1] else ""
+        uuids = fz_cache.get(id, None)
+        if uuids is None:
+            return base_ecnu_fz_uri
+        return f"{base_ecnu_fz_uri}{uuids[1]}" if uuids[1] else ""
 
     def __query_fzwc_for_property_and_value(self, uri):
         if uri == "":
@@ -84,10 +93,26 @@ class Chronicle:
         else:
             return {"error" : "no uri found"}
 
-    def query_fz_data(self, id):
+    def query_fz_data_from_uuid(self, fz_uuid):
+        def find_id(internal_uuid):
+            for id, (fz, ecnu) in fz_cache.items():
+                if fz == fz_uuid:
+                    return id
+            return -1
+
+        id = find_id(fz_uuid)
         ecnu_fz_uri = Chronicle.ecnu_fz_uri(id)
         fzwc_fz_uri = Chronicle.fzwc_fz_uri(id)
 
+        return self.__query_fz_data(ecnu_fz_uri, fzwc_fz_uri)
+
+    def query_fz_data_from_id(self, id):
+        ecnu_fz_uri = Chronicle.ecnu_fz_uri(id)
+        fzwc_fz_uri = Chronicle.fzwc_fz_uri(id)
+
+        return self.__query_fz_data(ecnu_fz_uri, fzwc_fz_uri)
+
+    def __query_fz_data(self, ecnu_fz_uri, fzwc_fz_uri):
         try:
             # 1. Get all nodes
             fz_data_from_fzwc = self.__query_fzwc_for_property_and_value(fzwc_fz_uri)
@@ -115,5 +140,5 @@ if __name__ == "__main__":
     load_sparql_internal_data()
 
     fz = Chronicle(RDFXML)
-    #Printjson(fz.query_fz_data(39))
-    print(fz.query_fz_data(39))
+    #Printjson(fz.query_fz_data_from_id(39))
+    print(fz.query_fz_data_from_id(39))

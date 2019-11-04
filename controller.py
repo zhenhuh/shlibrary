@@ -249,7 +249,7 @@ def fzwc_produce_uri_action(id):
 @app.route("/produce/<string:showtype>/<int:id>", methods = ["GET"])
 #@returnjson
 def fzwc_produce_data_action(showtype, id):
-    from sparql.sparql import fzwc_produce_data_select, fzwc_produce_data_construct
+    from sparql.sparql import fzwc_produce_data_select_from_id, fzwc_produce_data_construct_from_id
     JSON   = "json"
     JSONLD = "json-ld"
     XML    = "xml"
@@ -261,9 +261,9 @@ def fzwc_produce_data_action(showtype, id):
     TSV    = "tsv"
     output_type = str.lower(showtype)
     if output_type in set([JSON, XML]):
-        return fzwc_produce_data_select(id, output_type)
+        return fzwc_produce_data_select_from_id(id, output_type)
     elif output_type in set([RDFXML]):
-        return fzwc_produce_data_construct(id, output_type)
+        return fzwc_produce_data_construct_from_id(id, output_type)
     else:
         return {}
 
@@ -275,7 +275,32 @@ def fz_data_action(showtype, id):
     output_type = str.lower(showtype)
     if output_type == JSON:
         fz = Chronicle()
-        return fz.query_fz_data(id)
+        return fz.query_fz_data_from_id(id)
+    else:
+        return {}
+
+@app.route("/uuid/produce/<string:showtype>/<string:uuid>", methods = ["GET"])
+def produce_data_from_uuid_action(showtype, uuid):
+    from sparql.sparql import fzwc_produce_data_select_from_uuid, fzwc_produce_data_construct_from_uuid
+    JSON   = "json"
+    RDFXML = "rdf+xml"
+    output_type = str.lower(showtype)
+    if output_type in set([JSON]):
+        return fzwc_produce_data_select_from_uuid(uuid, output_type)
+    elif output_type in set([RDFXML]):
+        return fzwc_produce_data_construct_from_uuid(uuid, output_type)
+    else:
+        return {}
+
+@app.route("/uuid/fz/<string:showtype>/<string:uuid>", methods = ["GET"])
+def fz_data_from_uuid_action(showtype, uuid):
+    from sparql.chronicle import Chronicle
+    JSON   = "json"
+
+    output_type = str.lower(showtype)
+    if output_type == JSON:
+        fz = Chronicle()
+        return fz.query_fz_data_from_uuid(uuid)
     else:
         return {}
 
