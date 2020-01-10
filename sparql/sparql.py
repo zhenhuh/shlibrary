@@ -8,7 +8,7 @@ def fzwc_sparql_query(produce_uri, clause, output_type):
     return query_sparql(sparql_server, clause, output_type, produce_uri)
 
 def fzwc_produce_data_uri(id):
-    base_uri = "http://www.fzwc.online/entity/produce/"
+    base_uri = "http://data.fzwc.online/entity/produce/"
     uuid = wc_cache.get(id, None)
     if uuid is None:
         return f"{base_uri}{id}" # id is uuid

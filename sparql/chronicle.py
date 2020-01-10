@@ -4,7 +4,7 @@ from sparql.util4sparql import *
 from sparql.fusefactory import *
 from SPARQLWrapper import SPARQLWrapper, JSON, RDFXML
 
-base_fzwc_fz_uri = "http://www.fzwc.online/ontologies/bibframe/Work/"
+base_fzwc_fz_uri = "http://data.fzwc.online/resource/fz/"
 base_ecnu_fz_uri = "http://fangzhi.ecnu.edu.cn/entity/work/"
 
 class Chronicle:
