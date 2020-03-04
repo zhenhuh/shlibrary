@@ -5,7 +5,7 @@ import os
 app = Flask('Yunan Products')
 
 def get_port():
-    with open(os.path.join(os.path.abspath(os.path.dirname(__file__)), r"conf\port")) as f:
+    with open(os.path.join(os.path.abspath(os.path.dirname(__file__)), r"conf", r"port")) as f:
         return int(f.readline())
 
 port_conf = get_port()

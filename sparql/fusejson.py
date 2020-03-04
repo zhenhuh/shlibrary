@@ -1,6 +1,8 @@
 class FuseJson:
     @staticmethod
     def fuse(to_data, from_data):
+        """ deprecated
+        """
         to_props_set = set(list(to_data.values())[0].keys())
         from_props_set = set(list(from_data.values())[0].keys())
         intersection_props = to_props_set.intersection(from_props_set)
