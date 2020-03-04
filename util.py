@@ -15,7 +15,7 @@ timeout_secound = 30
 
 ## data server ip
 def get_data_server():
-    with open(os.path.join(os.path.abspath(os.path.dirname(__file__)), r"conf\datasrv")) as f:
+    with open(os.path.join(os.path.abspath(os.path.dirname(__file__)), r"conf", r"datasrv")) as f:
         return f.readline()
 data_server = get_data_server() # "http://47.97.124.135" # "http://localhost:2345"
 

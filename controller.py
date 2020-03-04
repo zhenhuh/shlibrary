@@ -279,6 +279,23 @@ def fz_data_action(showtype, id):
     else:
         return {}
 
+@app.route("/fz/inverserel/<string:uuid>", methods = ["GET", "POST"])
+def fz_work_inverse_relation_uris_action(uuid):
+    from sparql.chronicle import Chronicle
+    fz = Chronicle()
+    return {"instanceOf" : fz.query_instanceOf_uris_of_fz_work(uuid), "itemOf" : fz.query_itemOf_uris_of_fz_work(uuid)}
+
+@app.route("/fz/inversedata/<string:inversetype>/<string:uuid>", methods = ["GET"])
+def fz_work_inverse_relation_data_action(inversetype, uuid):
+    from sparql.chronicle import Chronicle
+    fz = Chronicle()
+    if str.lower(inversetype) == "instance":
+        return fz.query_ecnu_for_instance_data_of_work(uuid)
+    elif str.lower(inversetype) == "item":
+        return fz.query_ecnu_for_item_data_of_work(uuid)
+    else:
+        return {}
+
 @app.route("/uuid/produce/<string:showtype>/<string:uuid>", methods = ["GET"])
 def produce_data_from_uuid_action(showtype, uuid):
     from sparql.sparql import fzwc_produce_data_select_from_uuid, fzwc_produce_data_construct_from_uuid
