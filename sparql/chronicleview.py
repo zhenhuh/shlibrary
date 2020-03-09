@@ -35,23 +35,25 @@ class ChronicleView:
         return work_data
 
     def work(self, id):
+        fzwc_suffix = "（FZWC）"
+        ecnu_suffix = "（ECNU）"
         view_items = {
-            f"{dc}abstract": "摘要",
-            f"{dc}title": "志书题名",
-            f"{fzwc}catalogOf": "藏录信息",
-            f"{fzwc}classification": "分类号",
-            f"{fzwc}dataBase": "收录库",
-            f"{fzwc}electronicLocator": "电子书",
-            f"{fzwc}hasCreator": "责任者",
-            f"{fzwc}modifyDate": "重印、增补日期",
-            f"{fzwc}stereotypeDate": "刻板日期",
-            f"{fzwc}typeOfFz": "方志类型",
-            f"{fzwc}volumeOfFz": "卷次",
-            f"{fzwc}writeDate": "纂修日期",
-            f"{shl}place": "地区",
-            f"{rdfs}label": "名称（ECNU）",
-            f"{bf}subject": "主题词（ECNU）",
-            f"{shl}temporal": "方志年代（ECNU）",
+            f"{dc}abstract": f"摘要{fzwc_suffix}",
+            f"{dc}title": f"志书题名{fzwc_suffix}",
+            f"{fzwc}catalogOf": f"藏录信息{fzwc_suffix}",
+            f"{fzwc}classification": f"分类号{fzwc_suffix}",
+            f"{fzwc}dataBase": f"收录库{fzwc_suffix}",
+            f"{fzwc}electronicLocator": f"电子书{fzwc_suffix}",
+            f"{fzwc}hasCreator": f"责任者{fzwc_suffix}",
+            f"{fzwc}modifyDate": f"重印、增补日期{fzwc_suffix}",
+            f"{fzwc}stereotypeDate": f"刻板日期{fzwc_suffix}",
+            f"{fzwc}typeOfFz": f"方志类型{fzwc_suffix}",
+            f"{fzwc}volumeOfFz": f"卷次{fzwc_suffix}",
+            f"{fzwc}writeDate": f"纂修日期{fzwc_suffix}",
+            f"{shl}place": f"地区{fzwc_suffix}",
+            f"{rdfs}label": f"名称{ecnu_suffix}",
+            f"{bf}subject": f"主题词{ecnu_suffix}",
+            f"{shl}temporal": f"方志年代{ecnu_suffix}",
         }
 
         bnode_mappings = {
