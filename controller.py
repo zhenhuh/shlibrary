@@ -279,20 +279,26 @@ def fz_data_action(showtype, id):
     else:
         return {}
 
+@app.route("/fz/view/<int:id>", methods = ["GET"])
+def fz_view_action(id):
+    from sparql.chronicleview import ChronicleView
+    fzview = ChronicleView()
+    return fzview.work(id)
+
 @app.route("/fz/inverserel/<string:uuid>", methods = ["GET", "POST"])
 def fz_work_inverse_relation_uris_action(uuid):
     from sparql.chronicle import Chronicle
     fz = Chronicle()
     return {"instanceOf" : fz.query_instanceOf_uris_of_fz_work(uuid), "itemOf" : fz.query_itemOf_uris_of_fz_work(uuid)}
 
-@app.route("/fz/inversedata/<string:inversetype>/<string:uuid>", methods = ["GET"])
-def fz_work_inverse_relation_data_action(inversetype, uuid):
-    from sparql.chronicle import Chronicle
-    fz = Chronicle()
+@app.route("/fz/inversedata/view/<string:inversetype>/<string:uuid>", methods = ["GET"])
+def fz_work_inverse_relation_data_view_action(inversetype, uuid):
+    from sparql.chronicleview import ChronicleView
+    fzview = ChronicleView()
     if str.lower(inversetype) == "instance":
-        return fz.query_ecnu_for_instance_data_of_work(uuid)
+        return fzview.instance(uuid)
     elif str.lower(inversetype) == "item":
-        return fz.query_ecnu_for_item_data_of_work(uuid)
+        return fzview.item(uuid)
     else:
         return {}
 

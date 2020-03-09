@@ -1,5 +1,6 @@
 from sparql.databases import Databases
 from sparql.preload import *
+from sparql.prefix import *
 from sparql.util4sparql import *
 from sparql.fusefactory import *
 from SPARQLWrapper import SPARQLWrapper, JSON, RDFXML
@@ -9,11 +10,6 @@ base_ecnu_fz_uri = "http://fangzhi.ecnu.edu.cn/entity/work/"
 
 base_ecnu_instance_uri = "http://fangzhi.ecnu.edu.cn/entity/instance/"
 base_ecnu_item_uri = "http://fangzhi.ecnu.edu.cn/entity/item/"
-
-rdfs = "http://www.w3.org/2000/01/rdf-schema#"
-rdf  = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-shl  = "http://www.library.sh.cn/ontology/"
-bf   = "http://id.loc.gov/ontologies/bibframe/"
 
 class Chronicle:
     def __init__(self, output_type = JSON):
@@ -209,7 +205,24 @@ if __name__ == "__main__":
     load_sparql_internal_data()
 
     fz = Chronicle(JSON)
-    Printjson(fz.query_fz_data_from_id(17))
+    #Printjson(fz.query_fz_data_from_id(17))
     #Printjson(fz.query_instanceOf_uris_of_fz_work("5f5e8d47f16a407281fdd544093f35e2"))
     #Printjson(fz.query_ecnu_for_inverse_relation_data_of_work("http://fangzhi.ecnu.edu.cn/entity/instance/be2c5342aa3742ec99703fdb8972abc4"))
     #Printjson(fz.query_ecnu_for_inverse_relation_data_of_work(fz.query_instanceOf_uris_of_fz_work("5f5e8d47f16a407281fdd544093f35e2")[0]))
+    Printjson(fz.query_ecnu_for_instance_data_of_work("7bc468bda6a94729953394213c370507"))
+
+
+"""
+add to product_detail_data/nowiki
+prefix fzwc: <http://www.fzwc.online/ontology/>
+select ?s
+where {
+    ?s fzwc:record <http://data.fzwc.online/entity/produce/y4TB3g50o79n4x61> .
+}
+
+prefix fzwc: <http://www.fzwc.online/ontology/>
+select ?p
+where {
+    <http://data.fzwc.online/entity/produce/y4TB3g50o79n4x61> fzwc:concept ?p .
+}
+"""
